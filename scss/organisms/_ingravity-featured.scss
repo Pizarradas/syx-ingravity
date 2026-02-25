@@ -1,0 +1,63 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-featured
+// Featured products section.
+// =============================================
+
+.org-ingravity-featured {
+    @include padding(var(--component-landing-section-padding-y) var(--component-landing-section-padding-x));
+    background-color: var(--semantic-color-bg-secondary);
+
+    &__inner {
+        max-width: var(--component-landing-container-max);
+        @include margin(null auto);
+    }
+
+    &__header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        @include margin(0 0 clamp(1.5rem, 4vw, 2.5rem));
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    &__kicker {
+        display: block;
+        @include padding(0.2rem 0.6rem);
+        background-color: var(--component-landing-section-tag-bg);
+        color: var(--component-landing-section-tag-color);
+        @include border-radius(var(--component-landing-section-tag-radius));
+        font-family: var(--component-ingravity-section-tag-font);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        width: fit-content;
+        @include margin(0 0 0.6rem);
+    }
+
+    &__title {
+        font-family: var(--component-ingravity-section-title-font);
+        font-size: var(--component-ingravity-section-title-size);
+        color: var(--semantic-color-text-primary);
+        line-height: 0.95;
+        letter-spacing: -0.01em;
+        @include margin(0);
+        text-transform: uppercase;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+
+        @include breakpoint(phablet) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include breakpoint(desktop) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
+

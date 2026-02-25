@@ -1,0 +1,102 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-cta-drop
+// Email capture CTA (drop subscriptions).
+// =============================================
+
+.org-ingravity-cta-drop {
+    @include padding(var(--component-landing-cta-padding-y) var(--component-landing-section-padding-x));
+    background: linear-gradient(135deg,
+            var(--primitive-color-orange-600) 0%,
+            var(--primitive-color-orange-500) 50%,
+            color-mix(in srgb, var(--primitive-color-orange-500) 70%, var(--primitive-color-blue-500)) 100%);
+
+    &__inner {
+        max-width: var(--component-landing-container-max);
+        @include margin(null auto);
+        text-align: center;
+    }
+
+    &__kicker {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: color-mix(in srgb, var(--primitive-color-white) 75%, transparent);
+        @include margin(0 0 0.75rem);
+    }
+
+    &__title {
+        font-family: var(--component-ingravity-section-title-font);
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        color: var(--primitive-color-white);
+        line-height: 0.9;
+        @include margin(0 0 1.25rem);
+        text-transform: uppercase;
+    }
+
+    &__desc {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        color: color-mix(in srgb, var(--primitive-color-white) 80%, transparent);
+        max-width: 36ch;
+        @include margin(0 auto 2rem);
+        line-height: 1.55;
+        font-family: var(--primitive-font-family-ingravity-ui);
+    }
+
+    &__form {
+        display: flex;
+        gap: 0.5rem;
+        max-width: 26rem;
+        @include margin(null auto);
+        flex-wrap: wrap;
+        justify-content: center;
+
+        label {
+            width: 100%;
+        }
+
+        @include breakpoint(mobile-only) {
+            flex-wrap: nowrap;
+        }
+    }
+
+    &__input {
+        flex: 1;
+        min-width: 0;
+        @include padding(0.75rem 1rem);
+        background-color: color-mix(in srgb, var(--primitive-color-white) 10%, transparent);
+        @include border(all, 2px, solid, color-mix(in srgb, var(--primitive-color-white) 30%, transparent));
+        @include border-radius(4px);
+        color: var(--primitive-color-white);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.9rem;
+
+        &::placeholder {
+            color: color-mix(in srgb, var(--primitive-color-white) 55%, transparent);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--primitive-color-white);
+        }
+    }
+
+    &__perks {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        @include margin(1.5rem 0 0);
+    }
+
+    &__perk {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.78rem;
+        color: color-mix(in srgb, var(--primitive-color-white) 75%, transparent);
+        font-family: var(--primitive-font-family-ingravity-ui);
+    }
+}
+

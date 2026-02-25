@@ -1,0 +1,233 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-hero
+// Full-bleed landing hero with display headline,
+// subheading, CTAs, social proof pill and visual.
+// Uses SYX layout-grid internally.
+// =============================================
+
+.org-ingravity-hero {
+    @include relative();
+    background-color: var(--component-landing-hero-bg);
+    min-height: var(--component-landing-hero-min-height);
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+
+    // Dark radial glow  orange center
+    &::before {
+        content: '';
+        @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+        background: radial-gradient(ellipse 70% 60% at 35% 60%,
+                color-mix(in srgb, var(--primitive-color-orange-500) 18%, transparent) 0%,
+                transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    // Blue accent glow  right side
+    &::after {
+        content: '';
+        @include absolute($top: 0, $right: 0, $bottom: 0);
+        width: 55%;
+        background: radial-gradient(ellipse 70% 50% at 80% 40%,
+                color-mix(in srgb, var(--primitive-color-blue-500) 12%, transparent) 0%,
+                transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    &__inner {
+        @include relative();
+        z-index: 1;
+        max-width: var(--component-landing-container-max);
+        @include margin(null auto);
+        @include padding(var(--component-landing-hero-padding-y) var(--component-landing-section-padding-x));
+        width: 100%;
+        justify-content: center;
+    }
+
+    // Grid: text left, visual right
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: center;
+
+        @include breakpoint(tablet) {
+            grid-template-columns: 55fr 45fr;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        @include padding(0.4rem 0.85rem);
+        background-color: var(--component-landing-hero-pill-bg);
+        @include border-radius(99px);
+        font-family: var(--component-ingravity-hero-pill-font);
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--component-landing-hero-pill-color);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        width: fit-content;
+
+        &::before {
+            content: '';
+            width: 0.45rem;
+            height: 0.45rem;
+            @include border-radius(50%);
+            background-color: var(--primitive-color-orange-500);
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+    }
+
+    &__headline {
+        font-family: var(--component-ingravity-hero-display-font);
+        font-size: var(--component-ingravity-hero-display-size);
+        color: var(--semantic-color-text-primary);
+        line-height: 0.92;
+        letter-spacing: -0.01em;
+        @include margin(0);
+        text-transform: uppercase;
+        word-break: keep-all;
+        overflow-wrap: break-word; // prevent syllable splits (e.g. 'LÍMITES') on mobile
+
+        em {
+            font-style: normal;
+            color: var(--primitive-color-orange-500);
+            display: block;
+        }
+
+        strong {
+            font-weight: 400;
+            -webkit-text-stroke: 1px var(--semantic-color-text-primary);
+            color: transparent;
+        }
+    }
+
+    &__lead {
+        font-family: var(--component-ingravity-hero-lead-font);
+        font-size: var(--component-landing-hero-lead-size);
+        color: var(--semantic-color-text-secondary);
+        line-height: 1.65;
+        max-width: 38ch;
+        @include margin(0);
+    }
+
+    &__ctas {
+        display: flex;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+    }
+
+    &__social-proof {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    &__avatars {
+        display: flex;
+    }
+
+    &__avatar {
+        @include flex-center;
+        width: 2rem;
+        height: 2rem;
+        @include border-radius(50%);
+        background-color: var(--component-landing-hero-avatar-bg);
+        @include border(all, 2px, solid, var(--primitive-color-gray-900));
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--component-landing-hero-avatar-color);
+        margin-left: -0.5rem;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
+    &__social-text {
+        font-size: 0.78rem;
+        color: var(--semantic-color-text-secondary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+
+        strong {
+            color: var(--semantic-color-text-primary);
+            font-weight: 600;
+        }
+    }
+
+    // Visual column
+    &__visual {
+        @include relative();
+        @include flex-center;
+    }
+
+    &__visual-frame {
+        @include relative();
+        width: min(90%, 540px);
+        aspect-ratio: 4 / 5;
+        @include border-radius(16px);
+        overflow: hidden;
+        background-color: var(--primitive-color-gray-700);
+        @include border(all, 1px, solid, var(--primitive-color-gray-500));
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 2rem;
+        }
+    }
+
+    // Floating badge on visual
+    &__float-badge {
+        @include absolute($bottom: -1rem, $left: -1rem);
+        @include padding(0.85rem 1.1rem);
+        background-color: var(--primitive-color-gray-800);
+        @include border(all, 1px, solid, var(--primitive-color-gray-500));
+        @include border-radius(10px);
+        backdrop-filter: blur(12px);
+    }
+
+    &__float-badge-label {
+        display: block;
+        font-size: 0.65rem;
+        color: var(--semantic-color-text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-family: var(--primitive-font-family-ingravity-ui);
+    }
+
+    &__float-badge-number {
+        display: block;
+        font-family: var(--primitive-font-family-ingravity-display);
+        font-size: 2rem;
+        color: var(--primitive-color-orange-500);
+        line-height: 1;
+    }
+}
+

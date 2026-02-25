@@ -1,0 +1,48 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-sidebar-filters
+// Desktop sticky filter sidebar.
+// =============================================
+
+.org-ingravity-sidebar-filters {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+        width: 240px;
+        flex-shrink: 0;
+        @include sticky($top: calc(var(--component-header-height) + 1rem));
+        max-height: calc(100vh - var(--component-header-height) - 2rem);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--semantic-color-border-default) transparent;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--semantic-color-border-default);
+            @include border-radius(2px);
+        }
+    }
+
+    &__title {
+        font-family: var(--component-ingravity-filter-heading-font);
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--semantic-color-text-tertiary);
+        @include margin(0 0 1rem);
+    }
+
+    // Active color accent for filter labels
+    .mol-ingravity-filter-group {
+        border-color: var(--component-ingravity-filter-border);
+    }
+}
+

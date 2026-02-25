@@ -1,0 +1,366 @@
+﻿@use "../abstracts/index" as *;
+// CHECKOUT MOLECULES
+// Components used exclusively on checkout-ingravity.html
+// mol-ingravity-cart-item, -price-row, -coupon,
+// -step, -trust-badge, -payment-tab, -delivery-opt
+// =============================================
+
+
+// ── mol-ingravity-cart-item ──────────────────
+.mol-ingravity-cart-item {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+
+    &__thumb {
+        flex-shrink: 0;
+        width: 72px;
+        height: 72px;
+        @include border-radius(6px);
+        overflow: hidden;
+        background-color: var(--semantic-color-bg-elevated);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    &__info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    &__name {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--semantic-color-text-primary);
+        @include margin(0);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__meta {
+        font-size: 0.75rem;
+        color: var(--semantic-color-text-tertiary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        @include margin(0);
+    }
+
+    &__qty-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        @include margin(0.4rem 0 0);
+        flex-wrap: wrap;
+    }
+
+    &__qty {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+    }
+
+    &__qty-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        background-color: var(--semantic-color-bg-elevated);
+        @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+        @include border-radius(4px);
+        cursor: pointer;
+        @include transition(border-color 0.18s ease, background-color 0.18s ease);
+
+        &:hover {
+            border-color: var(--semantic-color-primary);
+            background-color: color-mix(in srgb, var(--semantic-color-primary) 8%, transparent);
+        }
+    }
+
+    &__qty-num {
+        display: inline-block;
+        min-width: 1.5rem;
+        text-align: center;
+        font-family: var(--primitive-font-family-ingravity-mono);
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--semantic-color-text-primary);
+    }
+
+    &__price {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--semantic-color-text-primary);
+        white-space: nowrap;
+    }
+}
+
+
+// ── mol-ingravity-price-row ──────────────────
+.mol-ingravity-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+
+    &__label {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.82rem;
+        color: var(--semantic-color-text-secondary);
+    }
+
+    &__val {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--semantic-color-text-primary);
+        white-space: nowrap;
+    }
+
+    &--discount {
+        .mol-ingravity-price-row__label,
+        .mol-ingravity-price-row__val {
+            color: var(--primitive-color-success-400);
+        }
+    }
+
+    &--total {
+        @include margin(0.5rem 0 0);
+        @include padding(0.75rem 0 0);
+        border-top: 1px solid var(--semantic-color-border-subtle);
+
+        .mol-ingravity-price-row__label {
+            font-family: var(--component-ingravity-summary-title-font);
+            font-size: 0.85rem;
+            color: var(--semantic-color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .mol-ingravity-price-row__val {
+            font-family: var(--component-ingravity-summary-title-font);
+            font-size: 1.35rem;
+            color: var(--primitive-color-orange-400);
+            letter-spacing: -0.01em;
+        }
+    }
+}
+
+
+// ── mol-ingravity-coupon ─────────────────────
+.mol-ingravity-coupon {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: stretch;
+    @include margin(0 0 0.35rem);
+
+    .atom-input {
+        flex: 1 1 120px;
+        min-width: 0;
+    }
+
+    .atom-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    &__feedback {
+        font-size: 0.75rem;
+        font-family: var(--primitive-font-family-ingravity-ui);
+        @include margin(0 0 0.25rem);
+        min-height: 1em;
+    }
+}
+
+
+// ── mol-ingravity-step ───────────────────────
+.mol-ingravity-step {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+    min-width: 0;
+
+    &__num {
+        @include flex-center;
+        width: 1.5rem;
+        height: 1.5rem;
+        @include border-radius(50%);
+        background-color: var(--semantic-color-bg-elevated);
+        @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+        color: var(--semantic-color-text-tertiary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.72rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    &__label {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--semantic-color-text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+
+        @media (max-width: 360px) {
+            display: none;
+        }
+    }
+
+    &__divider {
+        flex: 1;
+        height: 1px;
+        background-color: var(--semantic-color-border-subtle);
+        min-width: 0.5rem;
+        @include transition(background-color 0.3s ease);
+
+        &.is-done {
+            background-color: var(--primitive-color-success-500);
+        }
+    }
+
+    &.is-active {
+        .mol-ingravity-step__num {
+            background-color: var(--primitive-color-orange-500);
+            border-color: var(--primitive-color-orange-500);
+            color: var(--primitive-color-white);
+        }
+
+        .mol-ingravity-step__label {
+            color: var(--primitive-color-orange-400);
+        }
+    }
+
+    &.is-done {
+        .mol-ingravity-step__num {
+            background-color: var(--primitive-color-success-500);
+            border-color: var(--primitive-color-success-500);
+            color: var(--primitive-color-gray-900);
+        }
+
+        .mol-ingravity-step__label {
+            color: var(--primitive-color-success-400);
+        }
+    }
+}
+
+
+// ── mol-ingravity-trust-badge ─────────────────
+.mol-ingravity-trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    @include padding(0.2rem 0);
+
+    &__icon {
+        font-size: 0.9rem;
+        flex-shrink: 0;
+        line-height: 1;
+    }
+
+    &__text {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.75rem;
+        color: var(--semantic-color-text-tertiary);
+        line-height: 1.4;
+    }
+}
+
+
+// ── mol-ingravity-payment-tab ─────────────────
+.mol-ingravity-payment-tab {
+    @include padding(0.5rem 1rem);
+    background-color: var(--semantic-color-bg-elevated);
+    @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+    @include border-radius(6px);
+    color: var(--semantic-color-text-secondary);
+    font-family: var(--primitive-font-family-ingravity-ui);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    @include transition(border-color 0.18s ease, color 0.18s ease, background-color 0.18s ease);
+
+    &:hover {
+        border-color: var(--semantic-color-primary);
+        color: var(--semantic-color-text-primary);
+    }
+
+    &.is-active {
+        border-color: var(--semantic-color-primary);
+        background-color: color-mix(in srgb, var(--semantic-color-primary) 10%, transparent);
+        color: var(--primitive-color-orange-300);
+    }
+}
+
+
+// ── mol-ingravity-delivery-opt (card variant) ──
+.mol-ingravity-delivery-opt {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    @include padding(0.85rem 1rem);
+    @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+    @include border-radius(8px);
+    background-color: var(--semantic-color-bg-elevated);
+    cursor: pointer;
+    @include transition(border-color 0.18s ease, background-color 0.18s ease);
+
+    &:hover {
+        border-color: color-mix(in srgb, var(--semantic-color-primary) 50%, transparent);
+    }
+
+    &.is-selected {
+        border-color: var(--semantic-color-primary);
+        background-color: color-mix(in srgb, var(--semantic-color-primary) 6%, transparent);
+    }
+
+    &__icon {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    &__name {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.87rem;
+        font-weight: 600;
+        color: var(--semantic-color-text-primary);
+        display: block;
+    }
+
+    &__desc {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.75rem;
+        color: var(--semantic-color-text-tertiary);
+        display: block;
+    }
+
+    &__price {
+        margin-left: auto;
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--semantic-color-text-primary);
+        white-space: nowrap;
+        flex-shrink: 0;
+
+        &--free {
+            color: var(--primitive-color-success-400);
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+    }
+}
+

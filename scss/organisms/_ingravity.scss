@@ -1,0 +1,107 @@
+// ORGANISMS: INGRAVITY basket
+// =============================================
+// Entry point. All component CSS lives in partials
+// directly in scss/organisms/ prefixed _ingravity-*.
+//
+// Uses Sass meta.load-css() to emit each partial's
+// CSS inside @layer syx.organisms.
+//
+// PUBLIC MIXINS
+// ─────────────
+//   org-ingravity()          All components (monolith / dev)
+//   org-ingravity-landing()  Landing page only
+//   org-ingravity-plp()      Product Listing Page only
+//   org-ingravity-checkout() Checkout only
+// =============================================
+@use "sass:meta";
+@use "../abstracts/index" as *;
+
+
+// ─────────────────────────────────────────────
+// SHARED: loaded by every page
+// header + footer + atom overrides (dark theme)
+// ─────────────────────────────────────────────
+@mixin _ingravity-shared() {
+    @include meta.load-css("ingravity-header");
+    @include meta.load-css("ingravity-footer");
+    @include meta.load-css("ingravity-atom-overrides");
+}
+
+
+// ─────────────────────────────────────────────
+// MIXIN: org-ingravity-landing
+// Only landing page organisms.
+// ─────────────────────────────────────────────
+@mixin org-ingravity-landing($theme: null) {
+    @layer syx.organisms {
+        @include _ingravity-shared();
+        @include meta.load-css("ingravity-hero");
+        @include meta.load-css("ingravity-stat-bar");
+        @include meta.load-css("ingravity-categories");
+        @include meta.load-css("ingravity-featured");
+        @include meta.load-css("ingravity-manifesto");
+        @include meta.load-css("ingravity-cta-drop");
+    }
+}
+
+
+// ─────────────────────────────────────────────
+// MIXIN: org-ingravity-plp
+// Only Product Listing Page organisms.
+// ─────────────────────────────────────────────
+@mixin org-ingravity-plp($theme: null) {
+    @layer syx.organisms {
+        @include _ingravity-shared();
+        @include meta.load-css("ingravity-product-grid");
+        @include meta.load-css("ingravity-sidebar-filters");
+        @include meta.load-css("ingravity-mobile-drawer");
+        @include meta.load-css("ingravity-plp-toolbar");
+    }
+}
+
+
+// ─────────────────────────────────────────────
+// MIXIN: org-ingravity-checkout
+// Only Checkout page organisms + checkout molecules.
+// ─────────────────────────────────────────────
+@mixin org-ingravity-checkout($theme: null) {
+    @layer syx.organisms {
+        @include _ingravity-shared();
+        @include meta.load-css("ingravity-checkout");
+        @include meta.load-css("../molecules/ingravity-checkout-molecules");
+    }
+}
+
+
+// ─────────────────────────────────────────────
+// MIXIN: org-ingravity  (full monolith)
+// Loads ALL components. Use in setup.scss / dev bundles.
+// ─────────────────────────────────────────────
+@mixin org-ingravity($theme: null) {
+    @layer syx.organisms {
+
+        // ── SHARED ──────────────────────────────
+        @include _ingravity-shared();
+
+        // ── LANDING ─────────────────────────────
+        @include meta.load-css("ingravity-hero");
+        @include meta.load-css("ingravity-stat-bar");
+        @include meta.load-css("ingravity-categories");
+        @include meta.load-css("ingravity-featured");
+        @include meta.load-css("ingravity-manifesto");
+        @include meta.load-css("ingravity-cta-drop");
+
+        // ── PLP ─────────────────────────────────
+        @include meta.load-css("ingravity-product-grid");
+        @include meta.load-css("ingravity-sidebar-filters");
+        @include meta.load-css("ingravity-mobile-drawer");
+        @include meta.load-css("ingravity-plp-toolbar");
+
+        // ── CHECKOUT ────────────────────────────
+        @include meta.load-css("ingravity-checkout");
+
+        // ── CHECKOUT MOLECULES ───────────────────
+        @include meta.load-css("../molecules/ingravity-checkout-molecules");
+
+    } // end @layer syx.organisms
+}

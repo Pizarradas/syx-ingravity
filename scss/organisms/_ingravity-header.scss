@@ -1,0 +1,187 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-header (basket variant)
+// Sticky horizontal header: logo text + nav + actions.
+// Works alongside org-ingravity-hero.
+// =============================================
+
+.org-header {
+    @include sticky($top: 0);
+    z-index: 100;
+    background-color: color-mix(in srgb, var(--primitive-color-gray-900) 92%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    @include border(bottom, 1px, solid, var(--primitive-color-gray-500));
+
+    &__inner {
+        max-width: var(--component-landing-container-max);
+        @include margin(null auto);
+        @include padding(0 var(--component-landing-section-padding-x));
+        height: var(--component-header-height, 64px);
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    // Logo  text-based for INGRAVITY
+    &__logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+
+    &__logo-text {
+        font-family: var(--primitive-font-family-ingravity-display);
+        font-size: 1.5rem;
+        color: var(--primitive-color-white);
+        letter-spacing: 0.04em;
+        @include transition(color 0.2s ease);
+
+        .org-header__logo:hover & {
+            color: var(--primitive-color-orange-500);
+        }
+    }
+
+    // Primary nav  horizontal, desktop only
+    &__nav {
+        display: none;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: auto;
+
+        @include breakpoint(tablet) {
+            display: flex;
+        }
+    }
+
+    &__nav-link {
+        @include padding(0.45rem 0.75rem);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--semantic-color-text-secondary);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        @include border-radius(4px);
+        @include transition(color 0.18s ease, background-color 0.18s ease);
+
+        &:hover {
+            color: var(--semantic-color-text-primary);
+            background-color: color-mix(in srgb, var(--primitive-color-white) 6%, transparent);
+        }
+
+        &.is-active {
+            color: var(--primitive-color-orange-500);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--semantic-color-border-focus);
+            outline-offset: 2px;
+        }
+    }
+
+    // Action buttons cluster
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: auto;
+
+        @include breakpoint(tablet) {
+            margin-left: 0;
+        }
+    }
+
+    &__action-btn {
+        @include flex-center;
+        width: 2.25rem;
+        height: 2.25rem;
+        background: none;
+        border: none;
+        color: var(--semantic-color-text-secondary);
+        @include border-radius(4px);
+        cursor: pointer;
+        text-decoration: none;
+        @include transition(color 0.18s ease, background-color 0.18s ease);
+        @include relative();
+
+        &:hover {
+            color: var(--semantic-color-text-primary);
+            background-color: color-mix(in srgb, var(--primitive-color-white) 6%, transparent);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--semantic-color-border-focus);
+            outline-offset: 2px;
+        }
+    }
+
+    // Cart button with count badge
+    &__cart-btn {
+        color: var(--semantic-color-text-primary);
+    }
+
+    &__cart-count {
+        @include absolute($top: 0, $right: 0);
+        @include flex-center;
+        width: 1.1rem;
+        height: 1.1rem;
+        background-color: var(--primitive-color-orange-500);
+        @include border-radius(50%);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.6rem;
+        font-weight: 700;
+        color: var(--primitive-color-white);
+        line-height: 1;
+        transform: translate(30%, -30%);
+    }
+
+    // Hamburger  visible only on mobile
+    &__hamburger {
+        @include breakpoint(tablet) {
+            display: none;
+        }
+    }
+
+    // Sidenav overlay (mobile)
+    &__sidenav-overlay {
+        @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
+        background-color: rgba(0, 0, 0, 0.65);
+        z-index: 99;
+        opacity: 0;
+        pointer-events: none;
+        @include transition(opacity 0.3s ease);
+
+        &.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+
+    // Sidenav panel (mobile)
+    &__sidenav {
+        @include fixed($top: 0, $right: 0, $bottom: 0);
+        width: min(280px, 80vw);
+        z-index: 100;
+        background-color: var(--primitive-color-gray-800);
+        @include border(left, 1px, solid, var(--primitive-color-gray-500));
+        @include padding(2rem 1.5rem);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        transform: translateX(100%);
+        @include transition(transform 0.35s cubic-bezier(0.32, 0.72, 0, 1));
+        overflow-y: auto;
+
+        &.is-open {
+            transform: translateX(0);
+        }
+    }
+
+    // Compact modifier  reduces height
+    &--compact &__inner {
+        height: var(--component-header-height, 56px);
+    }
+}
+

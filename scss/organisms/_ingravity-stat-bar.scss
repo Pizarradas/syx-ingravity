@@ -1,0 +1,35 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-stat-bar
+// Horizontal metric band (4 stats).
+// =============================================
+
+.org-ingravity-stat-bar {
+    background-color: var(--component-ingravity-stat-bg);
+    @include border(top, 1px, solid, var(--component-ingravity-stat-border));
+    @include border(bottom, 1px, solid, var(--component-ingravity-stat-border));
+
+    &__inner {
+        max-width: var(--component-landing-container-max);
+        @include margin(null auto);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include breakpoint(tablet) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    // Dividers between stat cells
+    .mol-ingravity-stat {
+        @include relative();
+
+        &:not(:last-child)::after {
+            content: '';
+            @include absolute($top: 25%, $right: 0);
+            height: 50%;
+            width: 1px;
+            background-color: var(--component-ingravity-stat-border);
+        }
+    }
+}
+

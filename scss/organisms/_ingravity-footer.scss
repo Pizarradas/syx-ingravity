@@ -1,0 +1,25 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: page-ingravity-footer
+// Simple footer bar shared across all INGRAVITY pages.
+// =============================================
+
+.page-ingravity-footer {
+    background-color: var(--primitive-color-gray-800);
+    @include border(top, 1px, solid, var(--primitive-color-gray-500));
+    @include padding(1.5rem var(--component-landing-section-padding-x));
+    text-align: center;
+    font-family: var(--primitive-font-family-ingravity-ui);
+    font-size: 0.78rem;
+    color: var(--semantic-color-text-tertiary);
+
+    a {
+        color: var(--semantic-color-text-secondary);
+        text-decoration: none;
+        @include transition(color 0.18s ease);
+
+        &:hover {
+            color: var(--primitive-color-orange-500);
+        }
+    }
+}
+

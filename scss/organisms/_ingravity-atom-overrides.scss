@@ -1,0 +1,291 @@
+﻿@use "../abstracts/index" as *;
+// ATOM / MOLECULE OVERRIDES — basket context
+// Override default SYX tokens to match dark-orange INGRAVITY palette.
+// Scoped here so the overrides only apply when this bundle is active.
+// =============================================
+
+// atom-check  checkbox tick uses brand orange
+.atom-check {
+    --component-check-border-color: var(--primitive-color-gray-600);
+    --component-check-border-color-hover: var(--semantic-color-primary);
+    --component-check-bg-checked: var(--semantic-color-primary);
+    --component-check-shadow-focus: 0 0 0 3px color-mix(in srgb, var(--semantic-color-primary) 25%, transparent);
+    --component-form-field-color: var(--semantic-color-text-primary);
+    --component-form-field-border-focus: var(--semantic-color-primary);
+    --component-check-size: 1.25rem;
+    gap: 0.6rem;
+    cursor: pointer;
+    align-items: center;
+
+    // Ensure label text is legible on dark background
+    .atom-check__label {
+        color: var(--semantic-color-text-secondary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.875rem;
+        cursor: pointer;
+    }
+
+    // Scale checkbox size via token (core uses var(--component-check-size) for both box + tick positioning)
+    .atom-check__label::before {
+        background-color: var(--semantic-color-bg-elevated);
+        border-color: var(--semantic-color-border-default);
+    }
+
+    // Checked state: orange fill
+    .atom-check__input:checked + .atom-check__label::before {
+        background-color: var(--semantic-color-primary);
+        border-color: var(--semantic-color-primary);
+    }
+}
+
+// atom-input / atom-label  force legible colors in INGRAVITY dark theme
+.atom-label {
+    color: var(--semantic-color-text-secondary);
+    font-family: var(--primitive-font-family-ingravity-ui);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+}
+
+.atom-input,
+.atom-form {
+    --component-form-field-color: var(--semantic-color-text-primary);
+    --component-form-field-bg: var(--semantic-color-bg-elevated);
+    --component-form-field-border: var(--semantic-color-border-subtle);
+    --component-form-field-border-focus: var(--semantic-color-primary);
+    --component-form-field-placeholder: var(--semantic-color-text-tertiary);
+    color: var(--semantic-color-text-primary);
+    background-color: var(--semantic-color-bg-elevated);
+    min-height: 2.75rem;
+    box-sizing: border-box;
+
+    &::placeholder {
+        color: var(--semantic-color-text-tertiary);
+    }
+}
+
+// atom-radio  radio dot uses brand orange
+.atom-radio {
+    --component-radio-border-color: var(--primitive-color-gray-600);
+    --component-radio-border-color-hover: var(--semantic-color-primary);
+    --component-radio-bg-checked: var(--semantic-color-primary);
+    --component-form-field-color: var(--semantic-color-text-default);
+}
+
+// atom-pagination — brand orange active state
+.atom-pagination {
+    --component-pagination-color: var(--semantic-color-text-secondary);
+    --component-pagination-color-hover: var(--semantic-color-primary);
+    --component-pagination-border-color-hover: var(--semantic-color-primary);
+    --component-pagination-bg-active: var(--semantic-color-primary);
+    --component-pagination-color-active: var(--primitive-color-gray-900);
+    --component-pagination-color-disabled: var(--primitive-color-gray-700);
+    --component-pagination-shadow-focus: var(--semantic-color-primary);
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    @include margin(0);
+    @include padding(2rem 0 0.5rem);
+    border-top: 1px solid var(--semantic-color-border-subtle);
+    margin-top: 5.5rem;
+
+    .atom-pagination__trigger.atom-pagination__item--is-active,
+    .atom-pagination__trigger[aria-current="page"] {
+        background-color: var(--semantic-color-primary);
+        color: var(--primitive-color-gray-900);
+        font-weight: var(--primitive-font-weight-bold);
+    }
+}
+
+// atom-pill--primary + active-filter pills — brand orange
+.atom-pill--primary,
+.org-ingravity-plp-toolbar__active-pill.atom-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    @include padding(0.3rem 0.65rem);
+    background-color: color-mix(in srgb, var(--primitive-color-orange-500) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primitive-color-orange-500) 40%, transparent);
+    @include border-radius(99px);
+    color: var(--primitive-color-orange-400);
+    font-family: var(--primitive-font-family-ingravity-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    outline: none;
+    cursor: default;
+
+    button {
+        background: none;
+        border: none;
+        color: currentColor;
+        opacity: 0.65;
+        cursor: pointer;
+        font-size: 0.85rem;
+        line-height: 1;
+        @include padding(0 0 0 0.1rem);
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+// atom-breadcrumb overrides for dark bg
+.atom-breadcrumb {
+    &__link {
+        color: var(--semantic-color-text-secondary);
+
+        &:hover {
+            color: var(--semantic-color-primary);
+        }
+    }
+
+    &__item:not(:last-child)::after {
+        color: var(--primitive-color-gray-600);
+    }
+
+    &__item:last-child span {
+        color: var(--primitive-color-gray-500);
+    }
+}
+
+// SELECT COLOR FIX  atom-form--select
+// Custom arrow + force legible text in dark theme.
+.atom-form--select,
+select.atom-form {
+    color: var(--semantic-color-text-primary);
+    background-color: var(--semantic-color-bg-elevated);
+    border-color: var(--semantic-color-border-subtle);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23FF8733' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    background-size: 0.8rem;
+    padding-right: 2rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    line-height: 1.25;
+
+    option {
+        background-color: var(--primitive-color-gray-800);
+        color: var(--primitive-color-white);
+    }
+
+    &:focus {
+        outline: 2px solid var(--semantic-color-primary);
+        outline-offset: 1px;
+    }
+}
+
+// mol-form-field  spacing between label and input
+.mol-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1rem;
+}
+
+// atom-list  reset list styles
+.atom-list {
+    list-style: none;
+    @include padding(0);
+    @include margin(0);
+
+    > li {
+        list-style: none;
+        display: block;
+        padding-left: 0;
+    }
+}
+
+// HTML5 DETAILS/SUMMARY accordion for filter groups
+details.mol-ingravity-filter-group--details {
+
+    summary.mol-ingravity-filter-group__summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        list-style: none;
+        color: var(--semantic-color-text-primary);
+        font-family: var(--component-ingravity-filter-heading-font);
+        font-size: var(--component-ingravity-filter-heading-size);
+        font-weight: var(--component-ingravity-filter-heading-wt);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        @include padding(0.55rem 0);
+        gap: 0.65rem;
+        user-select: none;
+
+        &::-webkit-details-marker { display: none; }
+        &::marker { display: none; }
+
+        .atom-icon--ui-chevron {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            @include transition(transform 0.22s ease);
+            transform: rotate(0deg); // closed: chevron right
+        }
+    }
+
+    // Open state: rotate chevron down
+    &[open] summary.mol-ingravity-filter-group__summary .atom-icon--ui-chevron {
+        transform: rotate(90deg);
+    }
+
+    .mol-ingravity-filter-group__body {
+        @include padding(0.5rem 0 0.25rem);
+    }
+}
+
+// Filter list items
+.mol-ingravity-filter-group__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    > li {
+        list-style: none;
+        display: block;
+    }
+}
+
+// mol-ingravity-delivery-opt — atom-radio as card
+.mol-ingravity-delivery-opt {
+
+    .atom-radio__label {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        cursor: pointer;
+
+        &::before,
+        &::after {
+            display: none;
+        }
+    }
+
+    .mol-ingravity-delivery-opt__info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+        flex: 1;
+    }
+
+    .atom-radio__input {
+        position: absolute;
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+        pointer-events: none;
+    }
+}
+

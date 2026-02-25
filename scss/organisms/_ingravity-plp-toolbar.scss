@@ -1,0 +1,146 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-plp-toolbar
+// PLP sort bar with active pills, view toggle, sort.
+// =============================================
+
+.org-ingravity-plp-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    @include padding(0.75rem 0);
+    @include border(bottom, 1px, solid, var(--semantic-color-border-subtle));
+    @include margin(0 0 1.5rem);
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &__filters-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        @include padding(0.5rem 0.85rem);
+        background-color: var(--semantic-color-bg-elevated);
+        @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+        @include border-radius(4px);
+        color: var(--semantic-color-text-secondary);
+        font-size: 0.82rem;
+        font-family: var(--primitive-font-family-ingravity-ui);
+        cursor: pointer;
+
+        @include breakpoint(tablet) {
+            display: none;
+        }
+    }
+
+    &__active-pills {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+
+    &__active-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        @include padding(0.3rem 0.6rem);
+        background-color: color-mix(in srgb, var(--primitive-color-orange-500) 12%, transparent);
+        @include border(all, 1px, solid, color-mix(in srgb, var(--primitive-color-orange-500) 35%, transparent));
+        @include border-radius(99px);
+        font-size: 0.72rem;
+        color: var(--primitive-color-orange-400);
+        font-family: var(--primitive-font-family-ingravity-ui);
+
+        button {
+            background: none;
+            border: none;
+            color: currentColor;
+            cursor: pointer;
+            font-size: 0.65rem;
+            line-height: 1;
+            @include padding(0);
+        }
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin-left: auto;
+    }
+
+    &__count {
+        font-size: 0.78rem;
+        color: var(--semantic-color-text-tertiary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        white-space: nowrap;
+    }
+
+    &__sort {
+        @include padding(0.45rem 0.75rem);
+        background-color: var(--semantic-color-bg-elevated);
+        @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+        @include border-radius(4px);
+        color: var(--semantic-color-text-secondary);
+        font-size: 0.82rem;
+        font-family: var(--primitive-font-family-ingravity-ui);
+        cursor: pointer;
+
+        &:focus {
+            outline: 2px solid var(--semantic-color-border-focus);
+        }
+    }
+
+    &__view-toggle {
+        display: none;
+        gap: 0.25rem;
+
+        @include breakpoint(tablet) {
+            display: flex;
+        }
+
+        button {
+            @include flex-center;
+            width: 2rem;
+            height: 2rem;
+            background: none;
+            @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+            @include border-radius(3px);
+            color: var(--semantic-color-text-tertiary);
+            cursor: pointer;
+            @include transition(border-color 0.15s ease, color 0.15s ease);
+
+            &.is-active {
+                border-color: var(--primitive-color-orange-500);
+                color: var(--primitive-color-orange-500);
+            }
+        }
+    }
+
+    // Active-pill × remove button & select wrapper
+    &__pill-remove {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: inherit;
+        line-height: 1;
+        padding: 0 0 0 0.15rem;
+        font-size: 1em;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &__sort-field {
+        // Ensure the mol-form-field occupies only its natural width in the toolbar
+        flex-shrink: 0;
+        margin-bottom: 0;
+
+        .atom-form--select {
+            padding-right: 2rem;
+            min-width: 8rem;
+        }
+    }
+}
+

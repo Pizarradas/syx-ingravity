@@ -1,0 +1,412 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISMS: Checkout
+// All layout organisms used on checkout-ingravity.html
+// =============================================
+
+// ORGANISM: org-ingravity-checkout
+// Checkout page two-column layout: form + summary.
+// =============================================
+.org-ingravity-checkout {
+    max-width: var(--component-landing-container-max);
+    @include margin(null auto);
+    @include padding(2rem var(--component-landing-section-padding-x) 5rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+    overflow-x: hidden;
+
+    @include breakpoint(desktop) {
+        grid-template-columns: 1fr 380px;
+    }
+}
+
+
+// ORGANISM: org-ingravity-checkout-steps
+// Step indicator bar at top of checkout.
+// =============================================
+.org-ingravity-checkout-steps {
+    display: flex;
+    align-items: center;
+    max-width: var(--component-landing-container-max);
+    @include margin(null auto);
+    @include padding(1.25rem var(--component-landing-section-padding-x) 0.5rem);
+    overflow-x: hidden;
+    overflow: hidden;
+
+    .mol-ingravity-step {
+        min-width: 0;
+    }
+}
+
+
+// ORGANISM: org-ingravity-progress-bar
+// Progress bar under step indicator.
+// =============================================
+.org-ingravity-progress-bar {
+    max-width: var(--component-landing-container-max);
+    @include margin(0 auto 0.75rem);
+    @include padding(0 var(--component-landing-section-padding-x));
+    overflow-x: hidden;
+
+    &__track {
+        height: var(--component-ingravity-progress-h);
+        background-color: var(--component-ingravity-progress-bg);
+        @include border-radius(2px);
+        overflow: hidden;
+    }
+
+    &__fill {
+        height: 100%;
+        background: var(--component-ingravity-progress-fill);
+        @include border-radius(2px);
+        @include transition(width 0.4s ease);
+        width: 33%;
+    }
+}
+
+
+// ORGANISM: org-ingravity-checkout-panel
+// Single collapsible checkout step panel.
+// =============================================
+.org-ingravity-checkout-panel {
+    background-color: var(--component-ingravity-panel-bg);
+    @include border(all, 1px, solid, var(--component-ingravity-panel-border));
+    @include border-radius(var(--component-ingravity-panel-radius));
+    @include margin(0 0 1.25rem);
+    overflow: hidden;
+    @include transition(border-color 0.25s ease);
+
+    &.is-active {
+        border-color: var(--component-ingravity-panel-border-active);
+    }
+
+    &.is-done {
+        border-color: var(--primitive-color-success-500);
+    }
+
+    &__header {
+        @include flex-between;
+        align-items: center;
+        @include padding(1.1rem 1.5rem);
+        cursor: pointer;
+    }
+
+    &__title {
+        font-family: var(--component-ingravity-panel-title-family);
+        font-size: 1rem;
+        font-weight: var(--component-ingravity-panel-title-weight);
+        color: var(--semantic-color-text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        @include margin(0);
+    }
+
+    &__step-badge {
+        @include flex-center;
+        width: 1.6rem;
+        height: 1.6rem;
+        @include border-radius(50%);
+        background-color: var(--semantic-color-bg-elevated);
+        @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+        color: var(--semantic-color-text-secondary);
+        font-size: 0.72rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    &.is-active &__step-badge {
+        background-color: var(--primitive-color-orange-500);
+        border-color: var(--primitive-color-orange-500);
+        color: var(--primitive-color-white);
+    }
+
+    &.is-done &__step-badge {
+        background-color: var(--primitive-color-success-500);
+        border-color: var(--primitive-color-success-500);
+        color: var(--primitive-color-gray-900);
+    }
+
+    &__edit {
+        font-size: 0.78rem;
+        color: var(--primitive-color-orange-500);
+        background: none;
+        border: none;
+        cursor: pointer;
+        @include padding(0);
+        text-decoration: underline;
+        font-family: var(--primitive-font-family-ingravity-ui);
+    }
+
+    &__body {
+        @include padding(0 1.5rem 1.5rem);
+        display: none;
+    }
+
+    &.is-active &__body {
+        display: block;
+    }
+
+    &__save-card {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        @include margin(0.5rem 0 1.25rem);
+        font-size: 0.85rem;
+        color: var(--semantic-color-text-secondary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        cursor: pointer;
+
+        .atom-check__label {
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--semantic-color-text-secondary);
+        }
+    }
+
+    &__submit {
+        width: 100%;
+        @include margin(1.5rem 0 0);
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+    }
+
+    &__legal {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.72rem;
+        color: var(--semantic-color-text-tertiary);
+        text-align: center;
+        @include margin(0.75rem 0 0);
+        line-height: 1.5;
+    }
+
+    &__note {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.875rem;
+        color: var(--semantic-color-text-secondary);
+        text-align: center;
+        @include padding(2rem 1rem);
+        @include margin(0);
+    }
+
+    &__fieldset {
+        border: none;
+        @include padding(0);
+        @include margin(0 0 1rem);
+
+        legend {
+            font-family: var(--primitive-font-family-ingravity-ui);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--semantic-color-text-secondary);
+            display: block;
+            width: 100%;
+            @include margin(0 0 0.5rem);
+        }
+    }
+}
+
+
+// ORGANISM: org-ingravity-order-summary
+// Sticky order summary sidebar in checkout.
+// =============================================
+.org-ingravity-order-summary {
+    background-color: var(--component-ingravity-summary-bg);
+    @include border(all, 1px, solid, var(--component-ingravity-summary-border));
+    @include border-radius(var(--component-ingravity-summary-radius));
+    @include padding(1.5rem);
+    @include sticky($top: calc(var(--component-header-height) + 1rem));
+
+    &__title {
+        font-family: var(--component-ingravity-summary-title-font);
+        font-size: 1.5rem;
+        color: var(--semantic-color-text-primary);
+        @include margin(0 0 1.25rem);
+        text-transform: uppercase;
+    }
+
+    &__cart-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        @include margin(0 0 1.25rem);
+    }
+
+    &__divider {
+        height: 1px;
+        background-color: var(--semantic-color-border-subtle);
+        @include margin(0.75rem 0);
+    }
+
+    &__price-breakdown {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+    }
+
+    &__trust {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        @include margin(1rem 0 0);
+    }
+}
+
+
+// ORGANISM: org-ingravity-confirm
+// Post-order confirmation screen.
+// =============================================
+.org-ingravity-confirm {
+    grid-column: 1 / -1;
+    text-align: center;
+    @include padding(4rem 2rem);
+
+    &__icon {
+        font-size: 4rem;
+        @include margin(0 0 1rem);
+        animation: basket-pop 0.5s cubic-bezier(.22, .68, 0, 1.2) both;
+    }
+
+    @keyframes basket-pop {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    &__title {
+        font-family: var(--component-ingravity-section-title-font);
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 400;
+        color: var(--semantic-color-text-primary);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        @include margin(0 0 0.5rem);
+        text-transform: uppercase;
+    }
+
+    &__ref {
+        font-family: var(--primitive-font-family-ingravity-mono);
+        font-size: 0.85rem;
+        color: var(--primitive-color-orange-500);
+        letter-spacing: 0.06em;
+        @include margin(0 0 1rem);
+    }
+
+    &__desc {
+        font-size: 1rem;
+        color: var(--semantic-color-text-secondary);
+        line-height: 1.6;
+        max-width: 28rem;
+        @include margin(0 auto 2rem);
+        font-family: var(--primitive-font-family-ingravity-ui);
+    }
+
+    &__actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+// CHECKOUT AUX: form grid, card icons, secure notice, payment tabs
+// =============================================
+
+.org-ingravity-form-grid {
+    gap: 0.75rem;
+    max-width: none; // don't clamp to --layout-max-width inside a panel
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.org-ingravity-card-icons {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    @include margin(0 0 0.85rem);
+}
+
+.org-ingravity-card-icon {
+    @include padding(0.2rem 0.5rem);
+    background-color: var(--semantic-color-bg-elevated);
+    @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+    @include border-radius(4px);
+    font-size: 0.7rem;
+    color: var(--semantic-color-text-secondary);
+    font-family: var(--primitive-font-family-ingravity-ui);
+}
+
+.org-ingravity-secure-notice {
+    @include padding(0.85rem 1rem);
+    background: color-mix(in srgb, var(--primitive-color-success-500) 8%, transparent);
+    @include border(all, 1px, solid, color-mix(in srgb, var(--primitive-color-success-500) 25%, transparent));
+    @include border-radius(6px);
+    @include margin(1rem 0);
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
+    p {
+        font-size: 0.78rem;
+        color: var(--semantic-color-text-secondary);
+        @include margin(0);
+        font-family: var(--primitive-font-family-ingravity-ui);
+    }
+}
+
+.org-ingravity-payment-tabs {
+    display: flex;
+    gap: 0.35rem;
+    @include margin(0 0 1.25rem);
+    flex-wrap: wrap;
+}
+
+.org-ingravity-delivery-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    @include margin(0.5rem 0 1.25rem);
+}
+
+
+// PAGE-LEVEL POLISH
+// =============================================
+
+.page-ingravity__main {
+    min-height: calc(100dvh - var(--component-header-height, 64px) - 3rem);
+}
+
+
+// MOBILE OVERFLOW FIXES — 320px
+// =============================================
+
+@media (max-width: 400px) {
+    .org-ingravity-checkout-panel {
+        &__header {
+            @include padding(0.85rem 1rem);
+        }
+
+        &__body {
+            @include padding(0 1rem 1rem);
+        }
+    }
+
+    .org-ingravity-order-summary {
+        @include padding(1.1rem);
+    }
+
+    .org-ingravity-checkout {
+        @include padding(1.25rem 0.75rem 3rem);
+    }
+}
+

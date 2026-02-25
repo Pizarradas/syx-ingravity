@@ -1,0 +1,62 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-manifesto
+// Brand manifesto / quote section.
+// =============================================
+
+.org-ingravity-manifesto {
+    @include relative();
+    @include padding(clamp(5rem, 12vw, 10rem) var(--component-landing-section-padding-x));
+    background-color: var(--semantic-color-bg-primary);
+    text-align: center;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+        background: radial-gradient(ellipse 80% 60% at 50% 50%,
+                color-mix(in srgb, var(--primitive-color-orange-500) 8%, transparent),
+                transparent 70%);
+        pointer-events: none;
+    }
+
+    &__inner {
+        @include relative();
+        z-index: 1;
+        max-width: 56rem;
+        @include margin(null auto);
+    }
+
+    &__eyebrow {
+        display: block;
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--primitive-color-orange-500);
+        @include margin(0 0 2rem);
+    }
+
+    &__quote {
+        font-family: var(--component-ingravity-section-title-font);
+        font-size: clamp(3rem, 8vw, 7rem);
+        color: var(--semantic-color-text-primary);
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        @include margin(0 0 2.5rem);
+        text-transform: uppercase;
+
+        em {
+            font-style: normal;
+            color: var(--primitive-color-orange-500);
+        }
+    }
+
+    &__ctas {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+

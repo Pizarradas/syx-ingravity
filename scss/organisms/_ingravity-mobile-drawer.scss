@@ -1,0 +1,84 @@
+﻿@use "../abstracts/index" as *;
+// ORGANISM: org-ingravity-mobile-drawer
+// Slide-up filter drawer for mobile.
+// =============================================
+
+.org-ingravity-mobile-drawer {
+    @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
+    z-index: 200;
+    pointer-events: none;
+    visibility: hidden;
+
+    &.is-open {
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+    &__overlay {
+        @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+        background: rgba(0, 0, 0, 0.65);
+        opacity: 0;
+        @include transition(opacity 0.3s ease);
+    }
+
+    &.is-open &__overlay {
+        opacity: 1;
+    }
+
+    &__panel {
+        @include absolute($bottom: 0, $left: 0, $right: 0);
+        background-color: var(--semantic-color-bg-secondary);
+        @include border-radius(16px 16px 0 0);
+        @include padding(0 1.25rem 2rem);
+        max-height: 85vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+        @include transition(transform 0.35s cubic-bezier(0.32, 0.72, 0, 1));
+    }
+
+    &.is-open &__panel {
+        transform: translateY(0);
+    }
+
+    &__handle {
+        @include margin(null auto);
+        width: 2.5rem;
+        height: 4px;
+        background-color: var(--semantic-color-border-default);
+        @include border-radius(2px);
+        @include margin(0.75rem auto 1.25rem);
+        display: block;
+    }
+
+    &__header {
+        @include flex-between;
+        align-items: center;
+        @include margin(0 0 1rem);
+    }
+
+    &__title {
+        font-family: var(--primitive-font-family-ingravity-ui);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--semantic-color-text-primary);
+        @include margin(0);
+    }
+
+    &__close {
+        @include flex-center;
+        width: 2rem;
+        height: 2rem;
+        background: none;
+        border: none;
+        color: var(--semantic-color-text-secondary);
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+
+    // Apply button  full-width utility
+    &__apply {
+        width: 100%;
+        @include margin(1.5rem 0 0);
+    }
+}
+

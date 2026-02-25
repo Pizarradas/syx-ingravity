@@ -1,0 +1,860 @@
+// CORE
+// ===============================================
+@use "../abstracts/index" as *;
+// ===============================================
+
+// MOLECULES: basket
+// ===============================================
+// Compound components for the INGRAVITY basket
+// e-commerce theme. All values via --component-ingravity-* tokens.
+//
+// BEM naming  layer prefix: mol-ingravity-*
+// ===============================================
+
+@mixin mol-ingravity($theme: null) {
+  @layer syx.molecules {
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-product-card
+    // Full product card with image, badge, name, price, sizes and CTA.
+    // Usage:
+    //   <article class="mol-ingravity-product-card">
+    //     <div class="mol-ingravity-product-card__media">
+    //       <span class="atom-ingravity-badge atom-ingravity-badge--new">NEW</span>
+    //       <img ...>
+    //       <button class="atom-ingravity-wishlist">-</button>
+    //     </div>
+    //     <div class="mol-ingravity-product-card__body">
+    //       <p class="mol-ingravity-product-card__category">Running</p>
+    //       <h3 class="mol-ingravity-product-card__name">APEX PRO GEN7</h3>
+    //       <div class="atom-ingravity-rating">...</div>
+    //       <div class="mol-ingravity-product-card__sizes">
+    //         <div class="atom-ingravity-sizepicker">...</div>
+    //       </div>
+    //       <div class="mol-ingravity-product-card__footer">
+    //         <div class="atom-ingravity-price">...</div>
+    //         <button class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-sm">+</button>
+    //       </div>
+    //     </div>
+    //   </article>
+    // ---------------------------------------------
+    .mol-ingravity-product-card {
+        @include relative();
+        display: flex;
+        flex-direction: column;
+        background-color: var(--component-ingravity-card-bg);
+        @include border(all, 1px, solid, var(--component-ingravity-card-border));
+        @include border-radius(var(--component-ingravity-card-radius));
+        box-shadow: var(--component-ingravity-card-shadow);
+        overflow: hidden;
+        @include transition(border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease);
+
+        &:hover {
+            border-color: var(--component-ingravity-card-border-hover);
+            box-shadow: var(--component-ingravity-card-shadow-hover);
+            transform: translateY(-4px);
+
+            .mol-ingravity-product-card__wishlist {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .mol-ingravity-product-card__media img {
+                transform: scale(1.05);
+            }
+        }
+
+        &__media {
+            @include relative();
+            background-color: var(--component-ingravity-card-media-bg);
+            aspect-ratio: var(--component-ingravity-card-media-ratio);
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                padding: 0.75rem;
+                @include transition(transform 0.4s ease);
+            }
+        }
+
+        &__badge {
+            @include absolute($top: 0.75rem, $left: 0.75rem);
+            z-index: 1;
+        }
+
+        &__wishlist {
+            @include absolute($top: 0.6rem, $right: 0.6rem);
+            z-index: 2;
+            opacity: 0;
+            transform: scale(0.85);
+            @include transition(opacity 0.2s ease, transform 0.2s ease);
+        }
+
+        // Touch: always visible
+        @media (hover: none) {
+            &__wishlist {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        &__body {
+            @include padding(var(--component-ingravity-card-body-padding));
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            flex: 1 0 auto;
+        }
+
+        &__category {
+            font-family: var(--component-ingravity-badge-font-family);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primitive-color-orange-500);
+            @include margin(0);
+        }
+
+        &__name {
+            font-family: var(--component-ingravity-card-name-family);
+            font-size: var(--component-ingravity-card-name-size);
+            font-weight: var(--component-ingravity-card-name-weight);
+            color: var(--semantic-color-text-primary);
+            @include margin(0);
+            line-height: 1.2;
+        }
+
+        &__spec {
+            font-size: var(--component-ingravity-card-meta-size);
+            color: var(--component-ingravity-card-meta-color);
+            @include margin(0);
+        }
+
+        &__sizes {
+            @include margin(0.2rem 0);
+        }
+
+        &__footer {
+            @include flex-between;
+            align-items: center;
+            @include margin(0.35rem 0 0);
+            gap: 0.5rem;
+        }
+
+        // Color swatch dots
+        &__colors {
+            display: flex;
+            gap: 0.3rem;
+            align-items: center;
+        }
+
+        &__color-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            @include border-radius(50%);
+            border: 1.5px solid var(--semantic-color-border-subtle);
+            cursor: pointer;
+            @include transition(transform 0.15s ease, border-color 0.15s ease);
+
+            &.is-active {
+                border-color: var(--semantic-color-text-primary);
+                transform: scale(1.2);
+            }
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-category-card
+    // Pictorial category card with image and label overlay.
+    // Usage:
+    //   <a class="mol-ingravity-category-card" href="#">
+    //     <div class="mol-ingravity-category-card__media">
+    //       <img src="..." alt="...">
+    //     </div>
+    //     <div class="mol-ingravity-category-card__label">
+    //       <span class="mol-ingravity-category-card__name">Zapatillas</span>
+    //       <span class="mol-ingravity-category-card__count">48 productos</span>
+    //     </div>
+    //   </a>
+    // ---------------------------------------------
+    .mol-ingravity-category-card {
+        @include relative();
+        display: block;
+        text-decoration: none;
+        background-color: var(--component-ingravity-catcard-bg);
+        @include border(all, 1px, solid, var(--component-ingravity-catcard-border));
+        @include border-radius(var(--component-ingravity-catcard-radius));
+        overflow: hidden;
+        @include transition(border-color 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease);
+
+        &:hover {
+            border-color: var(--component-ingravity-catcard-border-hover);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(255, 106, 0, 0.2);
+
+            .mol-ingravity-category-card__media img {
+                transform: scale(1.08);
+            }
+
+            .mol-ingravity-category-card__overlay {
+                opacity: 1;
+            }
+        }
+
+        &__media {
+            @include relative();
+            aspect-ratio: var(--component-ingravity-catcard-media-ratio);
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                @include transition(transform 0.5s ease);
+            }
+        }
+
+        &__overlay {
+            @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+            background: linear-gradient(to bottom,
+                    transparent 40%,
+                    color-mix(in srgb, var(--primitive-color-orange-500) 10%, rgba(0, 0, 0, 0.55)) 100%);
+            opacity: 0.35; // reduced from 0.65 — images were too dark
+            @include transition(opacity 0.3s ease);
+        }
+
+        &__label {
+            @include absolute($bottom: 0, $left: 0, $right: 0);
+            @include padding(1rem 0.85rem 0.85rem);
+            z-index: 1;
+        }
+
+        &__name {
+            display: block;
+            font-family: var(--component-ingravity-catcard-label-family);
+            font-size: var(--component-ingravity-catcard-label-size);
+            color: var(--primitive-color-white);
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        &__count {
+            display: block;
+            font-size: 0.7rem;
+            color: color-mix(in srgb, var(--primitive-color-white) 70%, transparent);
+            margin-top: 0.2rem;
+            font-family: var(--primitive-font-family-ingravity-ui);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--semantic-color-border-focus);
+            outline-offset: 2px;
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-stat
+    // Single metric in the stat bar.
+    // Content lives inside org-ingravity-stat-bar.
+    // Usage:
+    //   <div class="mol-ingravity-stat">
+    //     <span class="mol-ingravity-stat__number">+8.400</span>
+    //     <span class="mol-ingravity-stat__label">Productos únicos</span>
+    //   </div>
+    // ---------------------------------------------
+    .mol-ingravity-stat {
+        @include flex(column, null, center, center, null);
+        gap: 0.3rem;
+        text-align: center;
+        @include padding(clamp(1.25rem, 3vw, 2rem) clamp(0.5rem, 3vw, 2rem));
+
+        &__number {
+            font-family: var(--component-ingravity-stat-number-family);
+            font-size: var(--component-ingravity-stat-number-size);
+            color: var(--component-ingravity-stat-number-color);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        &__label {
+            font-size: var(--component-ingravity-stat-label-size);
+            color: var(--component-ingravity-stat-label-color);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-family: var(--primitive-font-family-ingravity-ui);
+            font-weight: 500;
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-step
+    // Single checkout step (number + label + divider).
+    // Usage:
+    //   <div class="mol-ingravity-step is-active">
+    //     <div class="mol-ingravity-step__num">2</div>
+    //     <span class="mol-ingravity-step__label">Datos</span>
+    //   </div>
+    //   <div class="mol-ingravity-step__divider"></div>
+    // ---------------------------------------------
+    .mol-ingravity-step {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+
+        &__num {
+            @include flex-center;
+            width: var(--component-ingravity-step-size);
+            height: var(--component-ingravity-step-size);
+            @include border-radius(50%);
+            background-color: var(--component-ingravity-step-bg);
+            border: 2px solid var(--component-ingravity-step-border);
+            color: var(--semantic-color-text-tertiary);
+            font-family: var(--component-ingravity-step-font);
+            font-size: 0.82rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            @include transition(background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease);
+        }
+
+        &__label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-family: var(--component-ingravity-step-font);
+            color: var(--semantic-color-text-tertiary);
+            white-space: nowrap;
+            @include transition(color 0.25s ease);
+        }
+
+        &.is-active &__num {
+            background-color: var(--component-ingravity-step-active-bg);
+            border-color: var(--component-ingravity-step-active-border);
+            color: var(--primitive-color-white);
+        }
+
+        &.is-active &__label {
+            color: var(--semantic-color-text-primary);
+        }
+
+        &.is-done &__num {
+            background-color: var(--component-ingravity-step-done-bg);
+            border-color: var(--component-ingravity-step-done-border);
+            color: var(--component-ingravity-step-done-color);
+        }
+
+        &.is-done &__label {
+            color: var(--component-ingravity-step-done-bg);
+        }
+
+        // Divider between steps (not inside .mol-ingravity-step, but sibling)
+        &__divider {
+            flex: 1;
+            height: 2px;
+            background-color: var(--component-ingravity-step-divider-bg);
+            margin: 0 0.4rem;
+            @include transition(background-color 0.3s ease);
+
+            &.is-done {
+                background-color: var(--component-ingravity-step-divider-done);
+            }
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-filter-group
+    // Collapsible filter section in sidebar/drawer.
+    // Usage:
+    //   <div class="mol-ingravity-filter-group">
+    //     <button class="mol-ingravity-filter-group__trigger">Categoría <span>+</span></button>
+    //     <div class="mol-ingravity-filter-group__body">
+    //       <label class="mol-ingravity-filter-group__item">
+    //         <input type="checkbox"> Nike (24)
+    //       </label>
+    //     </div>
+    //   </div>
+    // ---------------------------------------------
+    .mol-ingravity-filter-group {
+        @include border(bottom, 1px, solid, var(--component-ingravity-filter-border));
+        @include padding(0.85rem 0);
+
+        &__trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--semantic-color-text-primary);
+            font-family: var(--component-ingravity-filter-heading-font);
+            font-size: var(--component-ingravity-filter-heading-size);
+            font-weight: var(--component-ingravity-filter-heading-wt);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            @include padding(0);
+
+            span {
+                @include transition(transform 0.2s ease);
+            }
+
+            &.is-open span {
+                transform: rotate(45deg);
+            }
+        }
+
+        &__body {
+            @include padding(0.75rem 0 0);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            color: var(--semantic-color-text-secondary);
+            cursor: pointer;
+            @include transition(color 0.15s ease);
+
+            input[type="checkbox"] {
+                accent-color: var(--primitive-color-orange-500);
+                width: 1rem;
+                height: 1rem;
+                flex-shrink: 0;
+            }
+
+            &:hover {
+                color: var(--semantic-color-text-primary);
+            }
+        }
+
+        &__count {
+            margin-left: auto;
+            font-size: 0.72rem;
+            color: var(--semantic-color-text-tertiary);
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-cart-item
+    // Item in checkout order summary sidebar.
+    // Usage:
+    //   <div class="mol-ingravity-cart-item">
+    //     <div class="mol-ingravity-cart-item__thumb"><img ...></div>
+    //     <div class="mol-ingravity-cart-item__info">
+    //       <p class="mol-ingravity-cart-item__name">...</p>
+    //       <p class="mol-ingravity-cart-item__meta">Nike · T43 · Naranja</p>
+    //       <div class="mol-ingravity-cart-item__qty-price">
+    //         <div class="mol-ingravity-cart-item__qty">...</div>
+    //         <span class="mol-ingravity-cart-item__price">189,99 </span>
+    //       </div>
+    //     </div>
+    //   </div>
+    // ---------------------------------------------
+    .mol-ingravity-cart-item {
+        display: grid;
+        grid-template-columns: 4.5rem 1fr;
+        gap: 0.85rem;
+        align-items: start;
+
+        &__thumb {
+            width: 4.5rem;
+            height: 4.5rem;
+            @include border-radius(6px);
+            background-color: var(--component-ingravity-card-media-bg);
+            @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+            overflow: hidden;
+            @include flex-center;
+
+            img {
+                width: 90%;
+                height: 90%;
+                object-fit: contain;
+            }
+        }
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        &__name {
+            font-family: var(--primitive-font-family-ingravity-ui);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--semantic-color-text-primary);
+            @include margin(0);
+            line-height: 1.2;
+        }
+
+        &__meta {
+            font-size: 0.72rem;
+            color: var(--semantic-color-text-secondary);
+            @include margin(0);
+        }
+
+        &__qty-price {
+            @include flex-between;
+            align-items: center;
+            @include margin(0.35rem 0 0);
+        }
+
+        &__qty {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        &__qty-btn {
+            @include flex-center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: var(--semantic-color-bg-elevated);
+            @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+            @include border-radius(3px);
+            color: var(--semantic-color-text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            @include transition(border-color 0.15s ease, color 0.15s ease);
+
+            &:hover {
+                border-color: var(--primitive-color-orange-500);
+                color: var(--primitive-color-orange-500);
+            }
+        }
+
+        &__qty-num {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--semantic-color-text-primary);
+            min-width: 1rem;
+            text-align: center;
+        }
+
+        &__price {
+            font-family: var(--primitive-font-family-ingravity-display);
+            font-size: 1rem;
+            color: var(--semantic-color-text-primary);
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-trust-badge
+    // Row of a single trust badge icon + text.
+    // Usage:
+    //   <div class="mol-ingravity-trust-badge">
+    //     <span class="mol-ingravity-trust-badge__icon">--</span>
+    //     <span class="mol-ingravity-trust-badge__text">Entrega en 24h</span>
+    //   </div>
+    // ---------------------------------------------
+    .mol-ingravity-trust-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &__icon {
+            font-size: var(--component-ingravity-trust-icon-size);
+            flex-shrink: 0;
+        }
+
+        &__text {
+            font-size: var(--component-ingravity-trust-font-size);
+            color: var(--component-ingravity-trust-color);
+            font-family: var(--primitive-font-family-ingravity-ui);
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-delivery-opt
+    // Delivery option radio card.
+    // Usage:
+    //   <label class="mol-ingravity-delivery-opt is-selected">
+    //     <input type="radio" name="envio" value="express">
+    //     <span class="mol-ingravity-delivery-opt__icon">-</span>
+    //     <div class="mol-ingravity-delivery-opt__info">
+    //       <span class="mol-ingravity-delivery-opt__name">Express 24h</span>
+    //       <span class="mol-ingravity-delivery-opt__desc">Mañana antes de las 14h</span>
+    //     </div>
+    //     <span class="mol-ingravity-delivery-opt__price">4,99 </span>
+    //   </label>
+    // ---------------------------------------------
+    .mol-ingravity-delivery-opt {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        @include padding(0.85rem 1rem);
+        background-color: var(--component-ingravity-delivery-bg);
+        @include border(all, 2px, solid, var(--component-ingravity-delivery-border));
+        @include border-radius(var(--component-ingravity-delivery-radius));
+        cursor: pointer;
+        @include transition(border-color 0.18s ease, background-color 0.18s ease);
+
+        input[type="radio"] {
+            accent-color: var(--primitive-color-orange-500);
+            flex-shrink: 0;
+        }
+
+        &:hover {
+            border-color: var(--semantic-color-border-strong);
+        }
+
+        &.is-selected {
+            border-color: var(--component-ingravity-delivery-border-sel);
+            background-color: color-mix(in srgb, var(--primitive-color-orange-500) 5%, var(--component-ingravity-delivery-bg));
+        }
+
+        &__icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        &__info {
+            flex: 1;
+        }
+
+        &__name {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            font-family: var(--primitive-font-family-ingravity-ui);
+            color: var(--semantic-color-text-primary);
+        }
+
+        &__desc {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--semantic-color-text-secondary);
+        }
+
+        &__price {
+            font-family: var(--primitive-font-family-ingravity-display);
+            font-size: 0.95rem;
+            color: var(--semantic-color-text-primary);
+            white-space: nowrap;
+
+            &--free {
+                color: var(--primitive-color-success-500);
+            }
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-payment-tab
+    // Payment method tab button.
+    // Usage:
+    //   <button class="mol-ingravity-payment-tab is-active">-- Tarjeta</button>
+    // ---------------------------------------------
+    .mol-ingravity-payment-tab {
+        flex: 1;
+        min-width: 100px;
+        @include padding(0.6rem 0.5rem);
+        background-color: var(--component-ingravity-pay-tab-bg);
+        @include border(all, 2px, solid, var(--component-ingravity-pay-tab-border));
+        @include border-radius(var(--component-ingravity-pay-tab-radius));
+        color: var(--semantic-color-text-secondary);
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-family: var(--component-ingravity-pay-tab-font);
+        cursor: pointer;
+        text-align: center;
+        @include transition(border-color 0.18s ease, color 0.18s ease);
+
+        &.is-active {
+            border-color: var(--component-ingravity-pay-tab-border-sel);
+            color: var(--semantic-color-text-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--semantic-color-border-focus);
+            outline-offset: 2px;
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-coupon
+    // Coupon code input + apply button row.
+    // Usage:
+    //   <div class="mol-ingravity-coupon">
+    //     <input type="text" placeholder="Código de descuento">
+    //     <button>Aplicar</button>
+    //   </div>
+    // ---------------------------------------------
+    .mol-ingravity-coupon {
+        display: flex;
+        gap: 0.5rem;
+
+        input {
+            flex: 1;
+            @include padding(0.6rem 0.8rem);
+            background-color: var(--component-ingravity-input-bg);
+            @include border(all, 1px, solid, var(--component-ingravity-input-border));
+            @include border-radius(var(--component-ingravity-input-radius));
+            color: var(--component-ingravity-input-color);
+            font-size: 0.85rem;
+            font-family: var(--component-ingravity-input-font);
+            @include transition(border-color 0.18s ease);
+
+            &::placeholder {
+                color: var(--component-ingravity-input-placeholder);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: var(--component-ingravity-input-border-focus);
+            }
+
+            &.is-valid {
+                border-color: var(--primitive-color-success-500);
+            }
+
+            &.is-invalid {
+                border-color: var(--primitive-color-error-500);
+            }
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-price-row
+    // Single row in price breakdown (label + value).
+    // Usage:
+    //   <div class="mol-ingravity-price-row">
+    //     <span class="mol-ingravity-price-row__label">Subtotal</span>
+    //     <span class="mol-ingravity-price-row__val">354,98 </span>
+    //   </div>
+    //   <div class="mol-ingravity-price-row mol-ingravity-price-row--total">...</div>
+    // ---------------------------------------------
+    .mol-ingravity-price-row {
+        @include flex-between;
+        align-items: center;
+
+        &__label {
+            font-size: 0.85rem;
+            color: var(--semantic-color-text-secondary);
+        }
+
+        &__val {
+            font-size: 0.85rem;
+            color: var(--semantic-color-text-primary);
+        }
+
+        &--total &__label {
+            font-family: var(--component-ingravity-summary-title-font);
+            font-size: 1rem;
+            color: var(--semantic-color-text-primary);
+        }
+
+        &--total &__val {
+            font-family: var(--component-ingravity-summary-total-font);
+            font-size: var(--component-ingravity-summary-total-size);
+            color: var(--component-ingravity-summary-total-color);
+        }
+
+        &--discount &__label,
+        &--discount &__val {
+            color: var(--primitive-color-success-500);
+        }
+    }
+
+
+    // ---------------------------------------------
+    // MOLECULE: mol-ingravity-form-field
+    // Labeled input field for checkout forms.
+    // Usage:
+    //   <div class="mol-ingravity-form-field">
+    //     <label class="mol-ingravity-form-field__label" for="email">Email</label>
+    //     <input class="mol-ingravity-form-field__input" type="email" id="email">
+    //     <span class="mol-ingravity-form-field__hint">Te enviaremos la confirmación</span>
+    //     <span class="mol-ingravity-form-field__error">Campo requerido</span>
+    //   </div>
+    // ---------------------------------------------
+    .mol-ingravity-form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        &__label {
+            font-family: var(--component-ingravity-input-label-family);
+            font-size: var(--component-ingravity-input-label-size);
+            font-weight: var(--component-ingravity-input-label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--semantic-color-text-secondary);
+        }
+
+        &__input,
+        &__select,
+        &__textarea {
+            @include padding(0.7rem 0.9rem);
+            background-color: var(--component-ingravity-input-bg);
+            @include border(all, 1px, solid, var(--component-ingravity-input-border));
+            @include border-radius(var(--component-ingravity-input-radius));
+            color: var(--component-ingravity-input-color);
+            font-size: 0.9rem;
+            font-family: var(--component-ingravity-input-font);
+            width: 100%;
+            @include transition(border-color 0.18s ease, box-shadow 0.18s ease);
+
+            &::placeholder {
+                color: var(--component-ingravity-input-placeholder);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: var(--component-ingravity-input-border-focus);
+                box-shadow: 0 0 0 2px color-mix(in srgb, var(--primitive-color-orange-500) 20%, transparent);
+            }
+
+            &.is-invalid {
+                border-color: var(--primitive-color-error-500);
+            }
+        }
+
+        &__hint {
+            font-size: 0.72rem;
+            color: var(--semantic-color-text-tertiary);
+        }
+
+        &__error {
+            font-size: 0.72rem;
+            color: var(--primitive-color-error-500);
+        }
+
+        // Checkbox inside form field
+        &__checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            cursor: pointer;
+            font-size: 0.82rem;
+            color: var(--semantic-color-text-secondary);
+
+            input[type="checkbox"] {
+                margin-top: 0.1rem;
+                accent-color: var(--primitive-color-orange-500);
+                flex-shrink: 0;
+            }
+        }
+    }
+
+  } // end @layer syx.molecules
+}
+
+// end @mixin mol-ingravity
