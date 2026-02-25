@@ -1,0 +1,252 @@
+// CORE
+// ===============================================
+@use "../abstracts/index" as *;
+// ===============================================
+
+// ATOMS: basket
+// ===============================================
+// Atomic building blocks for the INGRAVITY basket
+// e-commerce theme. All values via --component-ingravity-* tokens.
+//
+// BEM naming  layer prefix: atom-ingravity-*
+// ===============================================
+
+@mixin atom-ingravity($theme: null) {
+  @layer syx.atoms {
+
+    // ---------------------------------------------
+    // ATOM: atom-ingravity-badge
+    // Product status badges: NEW DROP / SALE / LIMITED
+    // Usage: <span class="atom-ingravity-badge atom-ingravity-badge--new">NEW DROP</span>
+    // ---------------------------------------------
+    .atom-ingravity-badge {
+        display: inline-flex;
+        align-items: center;
+        @include padding(var(--component-ingravity-badge-padding));
+        @include border-radius(var(--component-ingravity-badge-radius));
+        font-family: var(--component-ingravity-badge-font-family);
+        font-size: var(--component-ingravity-badge-font-size);
+        font-weight: var(--component-ingravity-badge-font-weight);
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+
+        // Variants
+        &--new {
+            background-color: var(--component-ingravity-badge-bg-new);
+            color: var(--component-ingravity-badge-color-new);
+        }
+
+        &--drop {
+            background-color: var(--component-ingravity-badge-bg-drop);
+            color: var(--component-ingravity-badge-color-drop);
+        }
+
+        &--sale {
+            background-color: var(--component-ingravity-badge-bg-sale);
+            color: var(--component-ingravity-badge-color-sale);
+        }
+
+        &--limited {
+            background-color: var(--component-ingravity-badge-bg-limited);
+            color: var(--component-ingravity-badge-color-limited);
+        }
+
+        &--outline {
+            background: transparent;
+            border: 1px solid currentColor;
+        }
+    }
+
+
+    // ---------------------------------------------
+    // ATOM: atom-ingravity-price
+    // Price display with optional sale + old price
+    // Usage:
+    //   <div class="atom-ingravity-price atom-ingravity-price--sale">
+    //     <span class="atom-ingravity-price__current">89,99 </span>
+    //     <s class="atom-ingravity-price__old">129,99 </s>
+    //   </div>
+    // ---------------------------------------------
+    .atom-ingravity-price {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+
+        &__current {
+            font-family: var(--component-ingravity-price-font-family);
+            font-size: var(--component-ingravity-price-size);
+            color: var(--component-ingravity-price-color);
+            line-height: 1;
+        }
+
+        &__old {
+            font-size: var(--component-ingravity-price-old-size);
+            color: var(--component-ingravity-price-old-color);
+            text-decoration: line-through;
+            line-height: 1;
+        }
+
+        &--sale &__current {
+            color: var(--component-ingravity-price-sale-color);
+        }
+
+        &--lg &__current {
+            font-size: var(--component-ingravity-price-size-lg);
+        }
+    }
+
+
+    // ---------------------------------------------
+    // ATOM: atom-ingravity-rating
+    // Star rating + count
+    // Usage:
+    //   <div class="atom-ingravity-rating" aria-label="4.8 de 5  1.2k reviews">
+    //     <span class="atom-ingravity-rating__stars" aria-hidden="true">-----</span>
+    //     <span class="atom-ingravity-rating__count">4.8 (1.2k)</span>
+    //   </div>
+    // ---------------------------------------------
+    .atom-ingravity-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        &__stars {
+            font-size: var(--component-ingravity-rating-font-size);
+            color: var(--component-ingravity-rating-star-color);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        &__count {
+            font-size: var(--component-ingravity-rating-font-size);
+            color: var(--component-ingravity-rating-color);
+            line-height: 1;
+        }
+    }
+
+
+    // ---------------------------------------------
+    // ATOM: atom-ingravity-sizepicker
+    // Grid of size buttons. Out-of-stock gets --oos modifier.
+    // Usage:
+    //   <div class="atom-ingravity-sizepicker" role="group" aria-label="Tallas">
+    //     <button class="atom-ingravity-sizepicker__btn is-active">43</button>
+    //     <button class="atom-ingravity-sizepicker__btn">44</button>
+    //     <button class="atom-ingravity-sizepicker__btn atom-ingravity-sizepicker__btn--oos" disabled>45</button>
+    //   </div>
+    // ---------------------------------------------
+    .atom-ingravity-sizepicker {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+
+        &__btn {
+            @include flex-center;
+            width: var(--component-ingravity-sizepicker-size);
+            height: var(--component-ingravity-sizepicker-size);
+            @include border-radius(var(--component-ingravity-sizepicker-radius));
+            background-color: var(--component-ingravity-sizepicker-bg);
+            border: 1px solid var(--component-ingravity-sizepicker-border);
+            color: var(--component-ingravity-sizepicker-color);
+            font-family: var(--component-ingravity-sizepicker-font-family);
+            font-size: var(--component-ingravity-sizepicker-font-size);
+            font-weight: 600;
+            cursor: pointer;
+            @include transition(background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease);
+
+            &:hover:not(:disabled):not(.atom-ingravity-sizepicker__btn--oos) {
+                background-color: var(--component-ingravity-sizepicker-bg-hover);
+                border-color: var(--component-ingravity-sizepicker-border-hover);
+                color: var(--component-ingravity-sizepicker-color-hover);
+            }
+
+            &.is-active,
+            &[aria-pressed="true"] {
+                background-color: var(--component-ingravity-sizepicker-bg-active);
+                border-color: var(--component-ingravity-sizepicker-border-active);
+                color: var(--component-ingravity-sizepicker-color-active);
+            }
+
+            &--oos,
+            &:disabled {
+                background-color: var(--component-ingravity-sizepicker-bg-oos);
+                color: var(--component-ingravity-sizepicker-color-oos);
+                cursor: not-allowed;
+                opacity: 0.45;
+                position: relative;
+
+                // Diagonal strike through
+                &::after {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(to top right,
+                            transparent calc(50% - 0.5px),
+                            var(--component-ingravity-sizepicker-color-oos) calc(50% - 0.5px),
+                            var(--component-ingravity-sizepicker-color-oos) calc(50% + 0.5px),
+                            transparent calc(50% + 0.5px));
+                    @include border-radius(var(--component-ingravity-sizepicker-radius));
+                }
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--semantic-color-border-focus);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+
+    // ---------------------------------------------
+    // ATOM: atom-ingravity-wishlist
+    // Heart toggle button (outline - filled)
+    // Usage:
+    //   <button class="atom-ingravity-wishlist" aria-label="Añadir a favoritos" aria-pressed="false">
+    //     <svg ...>...</svg>
+    //   </button>
+    // ---------------------------------------------
+    .atom-ingravity-wishlist {
+        @include flex-center;
+        width: 2rem;
+        height: 2rem;
+        @include border-radius(50%);
+        background: color-mix(in srgb, var(--semantic-color-bg-elevated) 80%, transparent);
+        border: 1px solid var(--semantic-color-border-subtle);
+        color: var(--semantic-color-text-tertiary);
+        cursor: pointer;
+        @include transition(color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+
+        svg,
+        span {
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        &:hover {
+            color: var(--primitive-color-error-500);
+            border-color: var(--primitive-color-error-500);
+            transform: scale(1.1);
+        }
+
+        &.is-active,
+        &[aria-pressed="true"] {
+            color: var(--primitive-color-error-500);
+            background-color: color-mix(in srgb, var(--primitive-color-error-500) 15%, var(--semantic-color-bg-elevated));
+            border-color: var(--primitive-color-error-500);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--semantic-color-border-focus);
+            outline-offset: 2px;
+        }
+    }
+
+  } // end @layer syx.atoms
+}
+
+// end @mixin atom-ingravity
