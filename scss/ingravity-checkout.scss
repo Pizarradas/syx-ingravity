@@ -1,0 +1,68 @@
+// SYX — INGRAVITY · CHECKOUT PAGE · BASE THEME
+// ================================================
+// Output: css/ingravity-checkout.css
+// ================================================
+// Atoms + molecules: only what checkout-ingravity.html uses.
+// Organisms: header + org-ingravity-checkout().
+// ================================================
+
+@use "abstracts/index" as *;
+@use "base/index" as *;
+@use "layout/grids/grid" as *;
+@use "atoms/index" as *;
+@use "molecules/index" as *;
+@use "organisms/index" as *;
+@use "themes/_base/universal" as *;
+@use "themes/ingravity/theme" as *;
+@use "utilities/accessibility";  // .syx-sr-only, .syx-sr-only-focusable, .syx-skip-link
+
+@use "pages/ingravity" as *;
+
+// ── TOKENS ───────────────────────────────────────
+@include universal-values();
+@include theme-ingravity();
+
+// ── BASE ─────────────────────────────────────────
+@include resets-global(ingravity);
+@include elements-base(ingravity);
+
+// ── HELPERS ──────────────────────────────────────
+@include helper-icons();
+@include layout-grid(ingravity);
+@include helper-font-sizes(ingravity);
+@include helper-dimensions(ingravity);
+@include helper-spacer(ingravity);
+@include helper-fonts(ingravity);
+@include helper-backgrounds(ingravity);
+
+// ── ATOMS: solo los usados en checkout ───────────
+// YES: btn, check, form, icon, label, link,
+//      list, radio
+// NO:  breadcrumb, pill, pagination, switch,
+//      table, title, txt, atom-ingravity
+@include atom-btn(ingravity);
+@include atom-check(ingravity);
+@include atom-form(ingravity);
+@include atom-icon(ingravity);
+@include atom-label(ingravity);
+@include atom-link(ingravity);
+@include atom-list(ingravity);
+@include atom-radio(ingravity);
+
+// ── MOLECULES: solo las usadas en checkout ───────
+// YES: mol-form-field, mol-ingravity
+// NO:  card, btn-group, label-group, form-field-set,
+//      landing, docs
+@include mol-form-field(ingravity);
+@include mol-ingravity(ingravity);
+
+// ── ORGANISMS: SYX base ──────────────────────────
+@include org-header(ingravity);
+// ✗ org-navbar, org-landing, org-docs
+
+// ── ORGANISMS: ingravity — CHECKOUT ONLY ─────────
+@include org-ingravity-checkout(ingravity);
+
+// ── PAGE ─────────────────────────────────────────
+@include page-ingravity-shared(ingravity);
+// ✗ page-ingravity-plp

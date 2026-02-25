@@ -1,0 +1,65 @@
+// SYX — INGRAVITY · LANDING PAGE · BASE THEME
+// ================================================
+// Output: css/ingravity-landing.css
+// ================================================
+// Atoms + molecules: only what landing-ingravity.html uses.
+// Organisms: header, navbar, org-landing + org-ingravity-landing().
+// ================================================
+
+@use "abstracts/index" as *;
+@use "base/index" as *;
+@use "layout/grids/grid" as *;
+@use "atoms/index" as *;
+@use "molecules/index" as *;
+@use "organisms/index" as *;
+@use "themes/_base/universal" as *;
+@use "themes/ingravity/theme" as *;
+@use "utilities/accessibility";  // .syx-sr-only, .syx-sr-only-focusable, .syx-skip-link
+
+@use "pages/landing-brand" as *;
+@use "pages/ingravity" as *;
+
+// ── TOKENS ───────────────────────────────────────
+@include universal-values();
+@include theme-ingravity();
+
+// ── BASE ─────────────────────────────────────────
+@include resets-global(ingravity);
+@include elements-base(ingravity);
+
+// ── HELPERS ──────────────────────────────────────
+@include helper-icons();
+@include layout-grid(ingravity);
+@include helper-font-sizes(ingravity);
+@include helper-dimensions(ingravity);
+@include helper-spacer(ingravity);
+@include helper-fonts(ingravity);
+@include helper-backgrounds(ingravity);
+
+// ── ATOMS: solo los usados en landing ────────────
+// YES: atom-btn, atom-icon, atom-link, atom-ingravity
+// NO:  breadcrumb, pill, check, form, label, list,
+//      pagination, radio, switch, table, title, txt
+@include atom-btn(ingravity);
+@include atom-icon(ingravity);
+@include atom-link(ingravity);
+@include atom-ingravity(ingravity);
+
+// ── MOLECULES: solo las usadas en landing ────────
+// YES: mol-ingravity (cards de producto, filter-group)
+// NO:  card, form-field, btn-group, label-group,
+//      form-field-set, landing, docs
+@include mol-ingravity(ingravity);
+
+// ── ORGANISMS: SYX base ──────────────────────────
+@include org-navbar(ingravity);
+@include org-header(ingravity);
+@include org-landing(ingravity);
+// ✗ org-docs
+
+// ── ORGANISMS: ingravity — LANDING ONLY ──────────
+@include org-ingravity-landing(ingravity);
+
+// ── PAGE ─────────────────────────────────────────
+@include page-landing-brand(ingravity);
+@include page-ingravity-shared(ingravity);

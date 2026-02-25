@@ -1,0 +1,57 @@
+// SYX — INGRAVITY · LANDING PAGE · SUMMER THEME
+// ================================================
+// Output: css/ingravity-landing-summer.css
+// ================================================
+// Atoms + molecules: only what landing-ingravity.html uses.
+// ================================================
+
+@use "abstracts/index" as *;
+@use "base/index" as *;
+@use "layout/grids/grid" as *;
+@use "atoms/index" as *;
+@use "molecules/index" as *;
+@use "organisms/index" as *;
+@use "themes/_base/universal" as *;
+@use "themes/ingravity/theme-summer" as *;
+@use "utilities/accessibility";  // .syx-sr-only, .syx-sr-only-focusable, .syx-skip-link
+
+@use "pages/landing-brand" as *;
+@use "pages/ingravity" as *;
+
+// ── TOKENS ───────────────────────────────────────
+@include universal-values();
+@include theme-ingravity-summer();
+
+// ── BASE ─────────────────────────────────────────
+@include resets-global(ingravity);
+@include elements-base(ingravity);
+
+// ── HELPERS ──────────────────────────────────────
+@include helper-icons();
+@include layout-grid(ingravity);
+@include helper-font-sizes(ingravity);
+@include helper-dimensions(ingravity);
+@include helper-spacer(ingravity);
+@include helper-fonts(ingravity);
+@include helper-backgrounds(ingravity);
+
+// ── ATOMS: solo los usados en landing ────────────
+@include atom-btn(ingravity);
+@include atom-icon(ingravity);
+@include atom-link(ingravity);
+@include atom-ingravity(ingravity);
+
+// ── MOLECULES: solo las usadas en landing ────────
+@include mol-ingravity(ingravity);
+
+// ── ORGANISMS: SYX base ──────────────────────────
+@include org-navbar(ingravity);
+@include org-header(ingravity);
+@include org-landing(ingravity);
+
+// ── ORGANISMS: ingravity — LANDING ONLY ──────────
+@include org-ingravity-landing(ingravity);
+
+// ── PAGE ─────────────────────────────────────────
+@include page-landing-brand(ingravity);
+@include page-ingravity-shared(ingravity);

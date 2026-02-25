@@ -1,0 +1,62 @@
+// SYX — INGRAVITY · PLP PAGE · SUMMER THEME
+// ================================================
+// Output: css/ingravity-plp-summer.css
+// ================================================
+// Atoms + molecules: only what plp-ingravity.html uses.
+// ================================================
+
+@use "abstracts/index" as *;
+@use "base/index" as *;
+@use "layout/grids/grid" as *;
+@use "atoms/index" as *;
+@use "molecules/index" as *;
+@use "organisms/index" as *;
+@use "themes/_base/universal" as *;
+@use "themes/ingravity/theme-summer" as *;
+@use "utilities/accessibility";  // .syx-sr-only, .syx-sr-only-focusable, .syx-skip-link
+
+@use "pages/ingravity" as *;
+
+// ── TOKENS ───────────────────────────────────────
+@include universal-values();
+@include theme-ingravity-summer();
+
+// ── BASE ─────────────────────────────────────────
+@include resets-global(ingravity);
+@include elements-base(ingravity);
+
+// ── HELPERS ──────────────────────────────────────
+@include helper-icons();
+@include layout-grid(ingravity);
+@include helper-font-sizes(ingravity);
+@include helper-dimensions(ingravity);
+@include helper-spacer(ingravity);
+@include helper-fonts(ingravity);
+@include helper-backgrounds(ingravity);
+
+// ── ATOMS: solo los usados en PLP ────────────────
+@include atom-breadcrumb(ingravity);
+@include atom-btn(ingravity);
+@include atom-pill(ingravity);
+@include atom-check(ingravity);
+@include atom-form(ingravity);
+@include atom-icon(ingravity);
+@include atom-link(ingravity);
+@include atom-list(ingravity);
+@include atom-pagination(ingravity);
+@include atom-ingravity(ingravity);
+
+// ── MOLECULES: solo las usadas en PLP ────────────
+@include mol-form-field(ingravity);
+@include mol-ingravity(ingravity);
+
+// ── ORGANISMS: SYX base ──────────────────────────
+@include org-navbar(ingravity);
+@include org-header(ingravity);
+
+// ── ORGANISMS: ingravity — PLP ONLY ──────────────
+@include org-ingravity-plp(ingravity);
+
+// ── PAGE ─────────────────────────────────────────
+@include page-ingravity-shared(ingravity);
+@include page-ingravity-plp(ingravity);
