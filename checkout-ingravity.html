@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finalizar compra — INGRAVITY. Proceso de pago seguro en pocos pasos.">
+    <meta name="theme-color" content="#0a0a0f">
+    <!-- Checkout should not be indexed by search engines -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph (shared on social, not indexed) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="INGRAVITY">
+    <meta property="og:title" content="Checkout — INGRAVITY">
+    <meta property="og:description" content="Finaliza tu compra de forma rápida y segura.">
+    <meta property="og:locale" content="es_ES">
+
+    <title>Checkout — INGRAVITY</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link id="theme-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    </noscript>
+
+    <!-- Critical CSS — checkout page bundle (base theme) -->
+    <link id="theme-style" rel="stylesheet" href="css/ingravity-checkout.css">
+    <link rel="prefetch" href="css/ingravity-checkout-summer.css">
+</head>
+
+<body class="syx syx--theme-ingravity">
+
+    <a href="#main-content" class="syx-skip-link">Saltar al contenido</a>
+
+    <!-- HEADER -->
+    <header class="org-header org-header--compact" role="banner">
+        <div class="org-header__inner">
+            <a href="landing-ingravity.html" class="org-header__logo" aria-label="INGRAVITY inicio">
+                <span class="org-header__logo-text">INGRAVITY</span>
+            </a>
+            <div class="org-header__actions">
+                <button class="org-header__action-btn" aria-label="Ayuda">
+                    <span class="atom-icon atom-icon--ui-circle-help atom-icon--md atom-icon--color-white"
+                        aria-hidden="true"></span>
+                </button>
+                <a href="landing-ingravity.html" class="org-header__action-btn" aria-label="Volver a la tienda">
+                    <span class="atom-icon atom-icon--ui-cart atom-icon--md atom-icon--color-white"
+                        aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress bar -->
+    <div class="org-ingravity-progress-bar" aria-label="Progreso del checkout" role="progressbar" aria-valuenow="33"
+        aria-valuemin="0" aria-valuemax="100">
+        <div class="org-ingravity-progress-bar__track">
+            <div class="org-ingravity-progress-bar__fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="org-ingravity-checkout-steps" aria-label="Pasos del pago">
+        <div class="mol-ingravity-step is-done" id="step-indicator-1">
+            <div class="mol-ingravity-step__num" aria-hidden="true">
+                <span class="atom-icon atom-icon--ui-circle-check atom-icon--sm atom-icon--color-primary"></span>
+            </div>
+            <span class="mol-ingravity-step__label">Carrito</span>
+        </div>
+        <div class="mol-ingravity-step__divider is-done"></div>
+        <div class="mol-ingravity-step is-active" id="step-indicator-2">
+            <div class="mol-ingravity-step__num" aria-hidden="true">2</div>
+            <span class="mol-ingravity-step__label">Datos</span>
+        </div>
+        <div class="mol-ingravity-step__divider" id="divider-2-3"></div>
+        <div class="mol-ingravity-step" id="step-indicator-3">
+            <div class="mol-ingravity-step__num" aria-hidden="true">3</div>
+            <span class="mol-ingravity-step__label">Pago</span>
+        </div>
+        <div class="mol-ingravity-step__divider" id="divider-3-4"></div>
+        <div class="mol-ingravity-step" id="step-indicator-4">
+            <div class="mol-ingravity-step__num" aria-hidden="true">4</div>
+            <span class="mol-ingravity-step__label">Confirmación</span>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main id="main-content" class="page-ingravity__main">
+        <div class="org-ingravity-checkout" id="checkout-layout">
+
+            <!-- LEFT: panels -->
+            <div id="checkout-panels" aria-live="polite">
+
+                <!-- CONFIRMATION screen (hidden by default) -->
+                <div class="org-ingravity-confirm" id="confirmation-screen" hidden>
+                    <div class="org-ingravity-confirm__icon" aria-hidden="true">
+                        <span class="atom-icon atom-icon--ui-trophy atom-icon--xl atom-icon--color-primary"></span>
+                    </div>
+                    <h2 class="org-ingravity-confirm__title">¡PEDIDO<br>CONFIRMADO!</h2>
+                    <p class="org-ingravity-confirm__ref" aria-label="Referencia del pedido">Ref: ING-2025-88421</p>
+                    <p class="org-ingravity-confirm__desc">
+                        Te hemos enviado la confirmación a tu email. Tu pedido llegará en
+                        24–48h. Prepárate para jugar.
+                    </p>
+                    <div class="org-ingravity-confirm__actions">
+                        <a href="plp-ingravity.html"
+                            class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-lg">
+                            Seguir comprando
+                        </a>
+                        <a href="#" class="atom-btn atom-btn--tertiary atom-btn--filled atom-btn--size-lg">
+                            Ver mis pedidos
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PANEL 1: Datos personales -->
+                <section class="org-ingravity-checkout-panel is-active" id="panel-datos"
+                    aria-labelledby="panel-datos-title">
+                    <div class="org-ingravity-checkout-panel__header">
+                        <h2 class="org-ingravity-checkout-panel__title" id="panel-datos-title">
+                            <span class="org-ingravity-checkout-panel__step-badge" aria-hidden="true">2</span>
+                            Datos de entrega
+                        </h2>
+                    </div>
+                    <div class="org-ingravity-checkout-panel__body">
+                        <form id="form-datos" novalidate>
+
+                            <!-- Nombre + Apellidos: 2 col SYX grid -->
+                            <div class="layout-grid layout-grid--no-padding org-ingravity-form-grid">
+                                <div class="layout-grid__col-xs-12 layout-grid__col-sm-6">
+                                    <div class="mol-form-field">
+                                        <label class="atom-label" for="nombre">Nombre</label>
+                                        <div class="atom-input-wrapper">
+                                            <input class="atom-input" type="text" id="nombre" name="nombre"
+                                                placeholder="Carlos" autocomplete="given-name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layout-grid__col-xs-12 layout-grid__col-sm-6">
+                                    <div class="mol-form-field">
+                                        <label class="atom-label" for="apellidos">Apellidos</label>
+                                        <div class="atom-input-wrapper">
+                                            <input class="atom-input" type="text" id="apellidos" name="apellidos"
+                                                placeholder="García López" autocomplete="family-name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Email: full width -->
+                            <div class="mol-form-field">
+                                <label class="atom-label" for="email">Email</label>
+                                <div class="atom-input-wrapper">
+                                    <input class="atom-input" type="email" id="email" name="email"
+                                        placeholder="carlos@email.com" autocomplete="email" required>
+                                </div>
+                            </div>
+
+                            <!-- Teléfono: full width -->
+                            <div class="mol-form-field">
+                                <label class="atom-label" for="telefono">Teléfono</label>
+                                <div class="atom-input-wrapper">
+                                    <input class="atom-input" type="tel" id="telefono" name="telefono"
+                                        placeholder="+34 612 345 678" autocomplete="tel">
+                                </div>
+                            </div>
+
+                            <!-- Dirección: full width -->
+                            <div class="mol-form-field">
+                                <label class="atom-label" for="direccion">Dirección</label>
+                                <div class="atom-input-wrapper">
+                                    <input class="atom-input" type="text" id="direccion" name="direccion"
+                                        placeholder="Calle Mayor, 42" autocomplete="street-address" required>
+                                </div>
+                            </div>
+
+                            <!-- CP + Ciudad + País: 3 col -->
+                            <div class="layout-grid layout-grid--no-padding org-ingravity-form-grid">
+                                <div class="layout-grid__col-xs-12 layout-grid__col-sm-4">
+                                    <div class="mol-form-field">
+                                        <label class="atom-label" for="cp">Código postal</label>
+                                        <div class="atom-input-wrapper">
+                                            <input class="atom-input" type="text" id="cp" name="cp" placeholder="28001"
+                                                autocomplete="postal-code" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layout-grid__col-xs-12 layout-grid__col-sm-4">
+                                    <div class="mol-form-field">
+                                        <label class="atom-label" for="ciudad">Ciudad</label>
+                                        <div class="atom-input-wrapper">
+                                            <input class="atom-input" type="text" id="ciudad" name="ciudad"
+                                                placeholder="Madrid" autocomplete="address-level2" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layout-grid__col-xs-12 layout-grid__col-sm-4">
+                                    <div class="mol-form-field mol-form-field--has-select">
+                                        <label class="atom-label" for="pais">País</label>
+                                        <div class="atom-input-wrapper">
+                                            <select class="atom-form atom-form--select" id="pais" name="pais"
+                                                autocomplete="country-name">
+                                                <option selected>España</option>
+                                                <option>Portugal</option>
+                                                <option>Francia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Método de envío con atom-radio -->
+                            <fieldset class="org-ingravity-checkout-panel__fieldset">
+                                <legend class="atom-label">Método de envío</legend>
+                                <ul class="atom-list org-ingravity-delivery-list">
+                                    <li>
+                                        <div class="mol-ingravity-delivery-opt is-selected atom-radio">
+                                            <input class="atom-radio__input" type="radio" name="envio" value="standard"
+                                                id="envio-standard" checked>
+                                            <label class="atom-radio__label" for="envio-standard">
+                                                <span class="mol-ingravity-delivery-opt__icon" aria-hidden="true">
+                                                    <span
+                                                        class="atom-icon atom-icon--ui-package atom-icon--sm atom-icon--color-white"></span>
+                                                </span>
+                                                <span class="mol-ingravity-delivery-opt__info">
+                                                    <span class="mol-ingravity-delivery-opt__name">Estándar 3–5
+                                                        días</span>
+                                                    <span class="mol-ingravity-delivery-opt__desc">Envío a domicilio o
+                                                        punto de recogida</span>
+                                                </span>
+                                            </label>
+                                            <span
+                                                class="mol-ingravity-delivery-opt__price mol-ingravity-delivery-opt__price--free">GRATIS</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="mol-ingravity-delivery-opt atom-radio">
+                                            <input class="atom-radio__input" type="radio" name="envio" value="express"
+                                                id="envio-express">
+                                            <label class="atom-radio__label" for="envio-express">
+                                                <span class="mol-ingravity-delivery-opt__icon" aria-hidden="true">
+                                                    <span
+                                                        class="atom-icon atom-icon--ui-zap atom-icon--sm atom-icon--color-primary"></span>
+                                                </span>
+                                                <span class="mol-ingravity-delivery-opt__info">
+                                                    <span class="mol-ingravity-delivery-opt__name">Express 24h</span>
+                                                    <span class="mol-ingravity-delivery-opt__desc">Mañana antes de las
+                                                        14h</span>
+                                                </span>
+                                            </label>
+                                            <span class="mol-ingravity-delivery-opt__price">4,99 €</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </fieldset>
+
+                            <button type="submit"
+                                class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-lg org-ingravity-checkout-panel__submit"
+                                id="btn-next-payment">
+                                Continuar al pago
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- PANEL 2: Pago -->
+                <section class="org-ingravity-checkout-panel" id="panel-pago" aria-labelledby="panel-pago-title">
+                    <div class="org-ingravity-checkout-panel__header">
+                        <h2 class="org-ingravity-checkout-panel__title" id="panel-pago-title">
+                            <span class="org-ingravity-checkout-panel__step-badge" aria-hidden="true">3</span>
+                            Método de pago
+                        </h2>
+                        <button class="org-ingravity-checkout-panel__edit" id="btn-edit-datos"
+                            aria-label="Editar datos de entrega">Editar</button>
+                    </div>
+                    <div class="org-ingravity-checkout-panel__body">
+
+                        <div class="org-ingravity-payment-tabs" role="tablist" aria-label="Método de pago">
+                            <button class="mol-ingravity-payment-tab is-active" role="tab" aria-selected="true"
+                                id="tab-card" aria-controls="panel-card">
+                                💳 Tarjeta
+                            </button>
+                            <button class="mol-ingravity-payment-tab" role="tab" aria-selected="false" id="tab-paypal"
+                                aria-controls="panel-paypal">
+                                🅿 PayPal
+                            </button>
+                            <button class="mol-ingravity-payment-tab" role="tab" aria-selected="false" id="tab-bizum"
+                                aria-controls="panel-bizum">
+                                📱 Bizum
+                            </button>
+                        </div>
+
+                        <!-- Card form -->
+                        <div id="panel-card" role="tabpanel" aria-labelledby="tab-card">
+                            <div class="org-ingravity-card-icons" aria-label="Tarjetas aceptadas">
+                                <span class="org-ingravity-card-icon">VISA</span>
+                                <span class="org-ingravity-card-icon">MC</span>
+                                <span class="org-ingravity-card-icon">AMEX</span>
+                            </div>
+
+                            <!-- Número tarjeta -->
+                            <div class="mol-form-field">
+                                <label class="atom-label" for="card-num">Número de tarjeta</label>
+                                <div class="atom-input-wrapper">
+                                    <input class="atom-input" type="text" id="card-num"
+                                        placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number">
+                                </div>
+                            </div>
+
+                            <!-- Caducidad + CVV -->
+                            <div class="layout-grid layout-grid--no-padding org-ingravity-form-grid">
+                                <div class="layout-grid__col-xs-12 layout-grid__col-sm-6">
+                                    <div class="mol-form-field">
+                                        <label class="atom-label" for="card-exp">Caducidad</label>
+                                        <div class="atom-input-wrapper">
+                                            <input class="atom-input" type="text" id="card-exp" placeholder="MM/AA"
+                                                maxlength="5" autocomplete="cc-exp">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layout-grid__col-xs-12 layout-grid__col-sm-6">
+                                    <div class="mol-form-field">
+                                        <label class="atom-label" for="card-cvv">CVV</label>
+                                        <div class="atom-input-wrapper">
+                                            <input class="atom-input" type="text" id="card-cvv" placeholder="123"
+                                                maxlength="4" autocomplete="cc-csc">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Titular -->
+                            <div class="mol-form-field">
+                                <label class="atom-label" for="card-name">Titular</label>
+                                <div class="atom-input-wrapper">
+                                    <input class="atom-input" type="text" id="card-name" placeholder="CARLOS GARCIA"
+                                        autocomplete="cc-name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PayPal panel (hidden) -->
+                        <div id="panel-paypal" role="tabpanel" aria-labelledby="tab-paypal" hidden>
+                            <p class="org-ingravity-checkout-panel__note">Serás redirigido a PayPal para completar el
+                                pago
+                                de forma segura.</p>
+                        </div>
+
+                        <!-- Bizum panel (hidden) -->
+                        <div id="panel-bizum" role="tabpanel" aria-labelledby="tab-bizum" hidden>
+                            <div class="mol-form-field">
+                                <label class="atom-label" for="bizum-phone">Teléfono Bizum</label>
+                                <div class="atom-input-wrapper">
+                                    <input class="atom-input" type="tel" id="bizum-phone" placeholder="+34 612 345 678"
+                                        autocomplete="tel">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="org-ingravity-secure-notice" role="note">
+                            <span class="atom-icon atom-icon--ui-lock atom-icon--sm atom-icon--color-primary"
+                                aria-hidden="true"></span>
+                            <p>Tu pago está protegido con cifrado SSL de 256 bits. Nunca almacenamos los datos de tu
+                                tarjeta.</p>
+                        </div>
+
+                        <!-- Guardar tarjeta: atom-check (input + label hermanos) -->
+                        <div class="atom-check org-ingravity-checkout-panel__save-card">
+                            <input class="atom-check__input" type="checkbox" id="save-card">
+                            <label class="atom-check__label" for="save-card">Guardar esta tarjeta para futuras
+                                compras</label>
+                        </div>
+
+                        <button type="button"
+                            class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-lg org-ingravity-checkout-panel__submit"
+                            id="btn-confirm-order">
+                            Confirmar y pagar — 462,97 €
+                        </button>
+
+                        <p class="org-ingravity-checkout-panel__legal">
+                            Al confirmar aceptas los <a href="#" class="atom-link">Términos de uso</a> e
+                            <a href="#" class="atom-link">implicaciones legales</a>
+                        </p>
+
+                    </div>
+                </section>
+
+            </div><!-- /checkout-panels -->
+
+            <!-- RIGHT: Order summary -->
+            <aside class="org-ingravity-order-summary" aria-label="Resumen del pedido" id="order-summary">
+
+                <h2 class="org-ingravity-order-summary__title">Tu pedido</h2>
+
+                <ul class="atom-list org-ingravity-order-summary__cart-list">
+
+                    <li class="mol-ingravity-cart-item">
+                        <div class="mol-ingravity-cart-item__thumb">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80"
+                                alt="Nike Air Zoom GT Hustle 3" loading="lazy" width="90" height="90">
+                        </div>
+                        <div class="mol-ingravity-cart-item__info">
+                            <p class="mol-ingravity-cart-item__name">Air Zoom G.T. Hustle 3</p>
+                            <p class="mol-ingravity-cart-item__meta">Nike · T42 · Naranja</p>
+                            <div class="mol-ingravity-cart-item__qty-price">
+                                <div class="mol-ingravity-cart-item__qty">
+                                    <button class="mol-ingravity-cart-item__qty-btn"
+                                        aria-label="Disminuir cantidad"><span
+                                            class="atom-icon atom-icon--ui-minus atom-icon--sm atom-icon--color-white"
+                                            aria-hidden="true"></span></button>
+                                    <span class="mol-ingravity-cart-item__qty-num" aria-live="polite">1</span>
+                                    <button class="mol-ingravity-cart-item__qty-btn"
+                                        aria-label="Aumentar cantidad"><span
+                                            class="atom-icon atom-icon--ui-plus atom-icon--sm atom-icon--color-white"
+                                            aria-hidden="true"></span></button>
+                                </div>
+                                <span class="mol-ingravity-cart-item__price">149,99 €</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="mol-ingravity-cart-item">
+                        <div class="mol-ingravity-cart-item__thumb">
+                            <img src="https://images.unsplash.com/photo-1591901546005-94ae73bf0b2c?q=80&w=2011&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Jordan Why Not 0.6" loading="lazy" width="90" height="90">
+                        </div>
+                        <div class="mol-ingravity-cart-item__info">
+                            <p class="mol-ingravity-cart-item__name">Why Not Zer0.6</p>
+                            <p class="mol-ingravity-cart-item__meta">Jordan · T43 · Blanco/Negro</p>
+                            <div class="mol-ingravity-cart-item__qty-price">
+                                <div class="mol-ingravity-cart-item__qty">
+                                    <button class="mol-ingravity-cart-item__qty-btn"
+                                        aria-label="Disminuir cantidad"><span
+                                            class="atom-icon atom-icon--ui-minus atom-icon--sm atom-icon--color-white"
+                                            aria-hidden="true"></span></button>
+                                    <span class="mol-ingravity-cart-item__qty-num" aria-live="polite">1</span>
+                                    <button class="mol-ingravity-cart-item__qty-btn"
+                                        aria-label="Aumentar cantidad"><span
+                                            class="atom-icon atom-icon--ui-plus atom-icon--sm atom-icon--color-white"
+                                            aria-hidden="true"></span></button>
+                                </div>
+                                <span class="mol-ingravity-cart-item__price">219,99 €</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="mol-ingravity-cart-item">
+                        <div class="mol-ingravity-cart-item__thumb">
+                            <img src="https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?w=200&q=80"
+                                alt="Camiseta INGRAVITY Court" loading="lazy" width="90" height="90">
+                        </div>
+                        <div class="mol-ingravity-cart-item__info">
+                            <p class="mol-ingravity-cart-item__name">INGRAVITY Court Jersey</p>
+                            <p class="mol-ingravity-cart-item__meta">INGRAVITY · L · Negro</p>
+                            <div class="mol-ingravity-cart-item__qty-price">
+                                <div class="mol-ingravity-cart-item__qty">
+                                    <button class="mol-ingravity-cart-item__qty-btn"
+                                        aria-label="Disminuir cantidad"><span
+                                            class="atom-icon atom-icon--ui-minus atom-icon--sm atom-icon--color-white"
+                                            aria-hidden="true"></span></button>
+                                    <span class="mol-ingravity-cart-item__qty-num" aria-live="polite">1</span>
+                                    <button class="mol-ingravity-cart-item__qty-btn"
+                                        aria-label="Aumentar cantidad"><span
+                                            class="atom-icon atom-icon--ui-plus atom-icon--sm atom-icon--color-white"
+                                            aria-hidden="true"></span></button>
+                                </div>
+                                <span class="mol-ingravity-cart-item__price">74,99 €</span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <!-- Coupon -->
+                <div class="mol-ingravity-coupon">
+                    <input class="atom-input" type="text" id="coupon-code" placeholder="Código descuento"
+                        aria-label="Código de descuento">
+                    <button class="atom-btn atom-btn--primary atom-btn--outline atom-btn--size-sm"
+                        id="btn-apply-coupon">
+                        Aplicar
+                    </button>
+                </div>
+                <p id="coupon-feedback" class="mol-ingravity-coupon__feedback" aria-live="polite"></p>
+
+                <div class="org-ingravity-order-summary__divider" aria-hidden="true"></div>
+
+                <!-- Price breakdown -->
+                <ul class="atom-list org-ingravity-order-summary__price-breakdown">
+                    <li class="mol-ingravity-price-row">
+                        <span class="mol-ingravity-price-row__label">Subtotal (3 artículos)</span>
+                        <span class="mol-ingravity-price-row__val">444,97 €</span>
+                    </li>
+                    <li class="mol-ingravity-price-row">
+                        <span class="mol-ingravity-price-row__label">Envío</span>
+                        <span class="mol-ingravity-price-row__val">Gratis</span>
+                    </li>
+                    <li class="mol-ingravity-price-row mol-ingravity-price-row--discount" id="discount-row" hidden>
+                        <span class="mol-ingravity-price-row__label">Descuento (COURT20)</span>
+                        <span class="mol-ingravity-price-row__val">−88,99 €</span>
+                    </li>
+                    <li class="mol-ingravity-price-row">
+                        <span class="mol-ingravity-price-row__label">IVA (21%)</span>
+                        <span class="mol-ingravity-price-row__val">18,00 €</span>
+                    </li>
+                </ul>
+
+                <div class="org-ingravity-order-summary__divider" aria-hidden="true"></div>
+
+                <div class="mol-ingravity-price-row mol-ingravity-price-row--total">
+                    <span class="mol-ingravity-price-row__label">Total</span>
+                    <span class="mol-ingravity-price-row__val" id="total-price">462,97 €</span>
+                </div>
+
+                <!-- Trust badges -->
+                <ul class="atom-list org-ingravity-order-summary__trust" aria-label="Garantías">
+                    <li class="mol-ingravity-trust-badge">
+                        <span class="mol-ingravity-trust-badge__icon" aria-hidden="true">🔒</span>
+                        <span class="mol-ingravity-trust-badge__text">Pago 100% seguro</span>
+                    </li>
+                    <li class="mol-ingravity-trust-badge">
+                        <span class="mol-ingravity-trust-badge__icon" aria-hidden="true">🔄</span>
+                        <span class="mol-ingravity-trust-badge__text">Devolución gratuita 30 días</span>
+                    </li>
+                    <li class="mol-ingravity-trust-badge">
+                        <span class="mol-ingravity-trust-badge__icon" aria-hidden="true">🚀</span>
+                        <span class="mol-ingravity-trust-badge__text">Entrega en 24h disponible</span>
+                    </li>
+                </ul>
+
+            </aside>
+
+        </div>
+    </main>
+
+    <footer class="page-ingravity-footer" role="contentinfo">
+        <p>© 2025 INGRAVITY · <a href="#" class="atom-link">Privacidad</a> · <a href="#" class="atom-link">Términos</a>
+            · <a href="#" class="atom-link">Ayuda</a></p>
+    </footer>
+
+    <!-- GSAP + page scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+    <script src="js/checkout.js" defer></script>
+    <!-- SYX theme switcher demo -->
+    <script src="js/theme-switcher.js" defer></script>
+
+</body>
+
+</html>

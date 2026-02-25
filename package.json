@@ -1,0 +1,36 @@
+﻿{
+  "name": "syx-ingravity",
+  "version": "3.0.3",
+  "description": "SYX Design System — INGRAVITY Basketball brand theme instance.",
+  "main": "landing-ingravity.html",
+  "scripts": {
+    "start": "npm run watch",
+    "build": "npm run build:ingravity",
+    "build:ingravity": "sass scss/styles-theme-ingravity.scss css/styles-theme-ingravity.css --style=expanded --no-source-map",
+    "watch": "sass --watch scss/styles-theme-ingravity.scss:css/styles-theme-ingravity.css --style=expanded --no-source-map",
+    "lint": "echo \"TODO: Add stylelint\" && exit 0"
+  },
+  "keywords": [
+    "design-system",
+    "scss",
+    "atomic-design",
+    "tokens",
+    "css-layers",
+    "ecommerce",
+    "basketball"
+  ],
+  "author": "José Luis Pizarro Feo",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.77.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 0.2%",
+    "not dead"
+  ]
+}
+

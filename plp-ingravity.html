@@ -1,0 +1,591 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Catálogo de zapatillas y ropa de baloncesto INGRAVITY. Filtros avanzados, mejores marcas, entrega 24h.">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ingravity.example.com/plp-ingravity.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="INGRAVITY">
+    <meta property="og:title" content="Zapatillas Basketball — INGRAVITY">
+    <meta property="og:description"
+        content="Catálogo de zapatillas y ropa de baloncesto. Filtros avanzados, mejores marcas, entrega 24h.">
+    <meta property="og:url" content="https://ingravity.example.com/plp-ingravity.html">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zapatillas Basketball — INGRAVITY">
+    <meta name="twitter:description"
+        content="Catálogo de zapatillas y ropa de baloncesto. Filtros avanzados, mejores marcas.">
+
+    <title>Zapatillas Basketball — INGRAVITY</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link id="theme-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+    </noscript>
+
+    <!-- Critical CSS — PLP page bundle (base theme) -->
+    <link id="theme-style" rel="stylesheet" href="css/ingravity-plp.css">
+    <link rel="prefetch" href="css/ingravity-plp-summer.css">
+</head>
+
+<body class="syx syx--theme-ingravity">
+
+    <a href="#main-content" class="syx-skip-link">Saltar al contenido</a>
+
+    <header class="org-header org-header--compact" role="banner">
+        <div class="org-header__inner">
+            <a href="landing-ingravity.html" class="org-header__logo" aria-label="INGRAVITY inicio">
+                <span class="org-header__logo-text">INGRAVITY</span>
+            </a>
+            <nav class="org-header__nav" aria-label="Principal">
+                <a href="landing-ingravity.html#categorias" class="org-header__nav-link">Categorías</a>
+                <a href="landing-ingravity.html#nuevos" class="org-header__nav-link">Drops</a>
+                <a href="landing-ingravity.html#marcas" class="org-header__nav-link">Marcas</a>
+            </nav>
+            <div class="org-header__actions">
+                <button class="org-header__action-btn" aria-label="Buscar">
+                    <span class="atom-icon atom-icon--ui-search atom-icon--md atom-icon--color-white"
+                        aria-hidden="true"></span>
+                </button>
+                <a href="checkout-ingravity.html" class="org-header__action-btn org-header__cart-btn"
+                    aria-label="Carrito (3)">
+                    <span class="atom-icon atom-icon--ui-cart atom-icon--md atom-icon--color-white"
+                        aria-hidden="true"></span>
+                    <span class="org-header__cart-count" aria-hidden="true">3</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-ingravity-plp__header">
+        <div class="page-ingravity-plp__header-inner">
+
+            <!-- SYX breadcrumb nativo: la clase se aplica al ol -->
+            <nav aria-label="Ruta">
+                <ol class="atom-breadcrumb">
+                    <li class="atom-breadcrumb__item">
+                        <a href="landing-ingravity.html" class="atom-breadcrumb__link">Inicio</a>
+                    </li>
+                    <li class="atom-breadcrumb__item" aria-current="page">
+                        Zapatillas Basketball
+                    </li>
+                </ol>
+            </nav>
+
+            <h1 class="page-ingravity-plp__page-title">ZAPATILLAS<br>BASKETBALL</h1>
+            <p class="page-ingravity-plp__result-count">48 productos encontrados</p>
+        </div>
+    </div>
+
+    <main id="main-content" class="page-ingravity__main">
+        <div class="page-ingravity-plp__body">
+
+            <!-- Sidebar Filtros — accordions HTML5 sin JS -->
+            <aside class="org-ingravity-sidebar-filters" aria-label="Filtros">
+                <p class="org-ingravity-sidebar-filters__title">Filtros</p>
+
+                <!-- Filtro: Marca -->
+                <details class="mol-ingravity-filter-group mol-ingravity-filter-group--details" open>
+                    <summary class="mol-ingravity-filter-group__summary">Marca <span
+                            class="atom-icon atom-icon--ui-chevron atom-icon--sm atom-icon--color-primary"
+                            aria-hidden="true"></span></summary>
+                    <div class="mol-ingravity-filter-group__body">
+                        <ul class="atom-list mol-ingravity-filter-group__list">
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="marca" value="nike"
+                                        id="marca-nike" checked>
+                                    <label class="atom-check__label" for="marca-nike">Nike <span
+                                            class="mol-ingravity-filter-group__count">(18)</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="marca" value="adidas"
+                                        id="marca-adidas">
+                                    <label class="atom-check__label" for="marca-adidas">Adidas <span
+                                            class="mol-ingravity-filter-group__count">(12)</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="marca" value="jordan"
+                                        id="marca-jordan">
+                                    <label class="atom-check__label" for="marca-jordan">Jordan <span
+                                            class="mol-ingravity-filter-group__count">(8)</span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="marca" value="under-armour"
+                                        id="marca-ua">
+                                    <label class="atom-check__label" for="marca-ua">Under Armour <span
+                                            class="mol-ingravity-filter-group__count">(6)</span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Filtro: Talla -->
+                <details class="mol-ingravity-filter-group mol-ingravity-filter-group--details" open>
+                    <summary class="mol-ingravity-filter-group__summary">Talla <span
+                            class="atom-icon atom-icon--ui-chevron atom-icon--sm atom-icon--color-primary"
+                            aria-hidden="true"></span></summary>
+                    <div class="mol-ingravity-filter-group__body">
+                        <div class="atom-ingravity-sizepicker" role="group" aria-label="Filtrar talla">
+                            <button class="atom-ingravity-sizepicker__btn">40</button>
+                            <button class="atom-ingravity-sizepicker__btn">41</button>
+                            <button class="atom-ingravity-sizepicker__btn is-active" aria-pressed="true">42</button>
+                            <button class="atom-ingravity-sizepicker__btn">43</button>
+                            <button class="atom-ingravity-sizepicker__btn">44</button>
+                            <button class="atom-ingravity-sizepicker__btn">45</button>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Filtro: Precio -->
+                <details class="mol-ingravity-filter-group mol-ingravity-filter-group--details" open>
+                    <summary class="mol-ingravity-filter-group__summary">Precio <span
+                            class="atom-icon atom-icon--ui-chevron atom-icon--sm atom-icon--color-primary"
+                            aria-hidden="true"></span></summary>
+                    <div class="mol-ingravity-filter-group__body">
+                        <ul class="atom-list mol-ingravity-filter-group__list">
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="precio" value="hasta-100"
+                                        id="precio-100">
+                                    <label class="atom-check__label" for="precio-100">Hasta 100 €</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="precio" value="100-200"
+                                        id="precio-100-200" checked>
+                                    <label class="atom-check__label" for="precio-100-200">100–200 €</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="precio" value="mas-200"
+                                        id="precio-200">
+                                    <label class="atom-check__label" for="precio-200">Más de 200 €</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Filtro: Superficie (cerrado por defecto) -->
+                <details class="mol-ingravity-filter-group mol-ingravity-filter-group--details">
+                    <summary class="mol-ingravity-filter-group__summary">Superficie <span
+                            class="atom-icon atom-icon--ui-chevron atom-icon--sm atom-icon--color-primary"
+                            aria-hidden="true"></span>
+                    </summary>
+                    <div class="mol-ingravity-filter-group__body">
+                        <ul class="atom-list mol-ingravity-filter-group__list">
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="superficie" value="parquet"
+                                        id="sup-parquet">
+                                    <label class="atom-check__label" for="sup-parquet">Parquet</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="atom-check">
+                                    <input class="atom-check__input" type="checkbox" name="superficie" value="exterior"
+                                        id="sup-exterior">
+                                    <label class="atom-check__label" for="sup-exterior">Exterior</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+            </aside>
+
+            <!-- Contenido -->
+            <div class="page-ingravity-plp__content">
+
+                <div class="org-ingravity-plp-toolbar" role="toolbar" aria-label="Opciones listado">
+                    <button class="org-ingravity-plp-toolbar__filters-btn" id="btn-filters-mobile"
+                        aria-label="Abrir filtros" aria-expanded="false">
+                        <span class="atom-icon atom-icon--ui-filters atom-icon--sm atom-icon--color-primary"
+                            aria-hidden="true"></span>
+                        Filtros
+                    </button>
+
+                    <!-- Filtros activos como atom-pill -->
+                    <div class="org-ingravity-plp-toolbar__active-pills" aria-label="Filtros activos">
+                        <span class="atom-pill atom-pill--primary org-ingravity-plp-toolbar__active-pill">
+                            Nike
+                            <button class="org-ingravity-plp-toolbar__pill-remove" aria-label="Quitar filtro Nike"><span
+                                    class="atom-icon atom-icon--ui-x atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </span>
+                        <span class="atom-pill atom-pill--primary org-ingravity-plp-toolbar__active-pill">
+                            100–200 €
+                            <button class="org-ingravity-plp-toolbar__pill-remove"
+                                aria-label="Quitar filtro precio"><span
+                                    class="atom-icon atom-icon--ui-x atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </span>
+                        <span class="atom-pill atom-pill--primary org-ingravity-plp-toolbar__active-pill">
+                            T42
+                            <button class="org-ingravity-plp-toolbar__pill-remove"
+                                aria-label="Quitar filtro talla"><span
+                                    class="atom-icon atom-icon--ui-x atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </span>
+                    </div>
+
+                    <div class="org-ingravity-plp-toolbar__right">
+                        <span class="org-ingravity-plp-toolbar__count" aria-live="polite">48 resultados</span>
+                        <div class="mol-form-field mol-form-field--has-select org-ingravity-plp-toolbar__sort-field">
+                            <label for="sort-select" class="syx-sr-only">Ordenar por</label>
+                            <select class="atom-form atom-form--select" id="sort-select">
+                                <option>Más relevantes</option>
+                                <option>Menor precio</option>
+                                <option>Mayor precio</option>
+                                <option>Novedades</option>
+                            </select>
+                        </div>
+                        <div class="org-ingravity-plp-toolbar__view-toggle" role="group" aria-label="Vista">
+                            <button class="is-active" aria-label="Cuadrícula" aria-pressed="true">
+                                <span class="atom-icon atom-icon--ui-grid atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span>
+                            </button>
+                            <button aria-label="Lista" aria-pressed="false">
+                                <span class="atom-icon atom-icon--ui-list atom-icon--sm atom-icon--color-white"
+                                    aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="org-ingravity-product-grid" id="product-grid" data-gsap="product-grid"
+                    aria-label="Productos">
+
+                    <article class="mol-ingravity-product-card" id="prod-1" data-gsap="product-card">
+                        <div class="mol-ingravity-product-card__media">
+                            <span
+                                class="atom-ingravity-badge atom-ingravity-badge--new mol-ingravity-product-card__badge">NEW</span>
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80"
+                                alt="Nike Air Zoom GT Hustle 3 naranja" loading="lazy" width="400" height="400">
+                            <button class="atom-ingravity-wishlist mol-ingravity-product-card__wishlist"
+                                aria-label="Añadir a favoritos" aria-pressed="false"><span
+                                    class="atom-icon atom-icon--ui-heart atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </div>
+                        <div class="mol-ingravity-product-card__body">
+                            <p class="mol-ingravity-product-card__category">Nike Basketball</p>
+                            <h2 class="mol-ingravity-product-card__name">Air Zoom G.T. Hustle 3</h2>
+                            <div class="atom-ingravity-rating" aria-label="4.8 de 5 — 1.2k reseñas">
+                                <span class="atom-ingravity-rating__stars" aria-hidden="true">★★★★★</span>
+                                <span class="atom-ingravity-rating__count">4.8 (1.2k)</span>
+                            </div>
+                            <div class="mol-ingravity-product-card__sizes">
+                                <div class="atom-ingravity-sizepicker" role="group" aria-label="Talla">
+                                    <button class="atom-ingravity-sizepicker__btn">41</button>
+                                    <button class="atom-ingravity-sizepicker__btn is-active"
+                                        aria-pressed="true">42</button>
+                                    <button class="atom-ingravity-sizepicker__btn">43</button>
+                                    <button class="atom-ingravity-sizepicker__btn">44</button>
+                                    <button class="atom-ingravity-sizepicker__btn atom-ingravity-sizepicker__btn--oos"
+                                        disabled aria-label="T45 agotada">45</button>
+                                </div>
+                            </div>
+                            <div class="mol-ingravity-product-card__footer">
+                                <div class="atom-ingravity-price atom-ingravity-price--sale">
+                                    <span class="atom-ingravity-price__current">149,99 €</span>
+                                    <s class="atom-ingravity-price__old">189,99 €</s>
+                                </div>
+                                <button class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-sm"
+                                    aria-label="Añadir al carrito"><span
+                                        class="atom-icon atom-icon--ui-plus atom-icon--sm"
+                                        aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="mol-ingravity-product-card" id="prod-2" data-gsap="product-card">
+                        <div class="mol-ingravity-product-card__media">
+                            <span
+                                class="atom-ingravity-badge atom-ingravity-badge--drop mol-ingravity-product-card__badge">DROP</span>
+                            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80"
+                                alt="Adidas Harden Vol. 8 negro" loading="lazy" width="400" height="400">
+                            <button class="atom-ingravity-wishlist mol-ingravity-product-card__wishlist"
+                                aria-label="Añadir a favoritos" aria-pressed="false"><span
+                                    class="atom-icon atom-icon--ui-heart atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </div>
+                        <div class="mol-ingravity-product-card__body">
+                            <p class="mol-ingravity-product-card__category">Adidas Basketball</p>
+                            <h2 class="mol-ingravity-product-card__name">Harden Vol. 8</h2>
+                            <div class="atom-ingravity-rating" aria-label="4.6 de 5 — 856 reseñas">
+                                <span class="atom-ingravity-rating__stars" aria-hidden="true">★★★★☆</span>
+                                <span class="atom-ingravity-rating__count">4.6 (856)</span>
+                            </div>
+                            <div class="mol-ingravity-product-card__sizes">
+                                <div class="atom-ingravity-sizepicker" role="group" aria-label="Talla">
+                                    <button class="atom-ingravity-sizepicker__btn">42</button>
+                                    <button class="atom-ingravity-sizepicker__btn is-active"
+                                        aria-pressed="true">43</button>
+                                    <button class="atom-ingravity-sizepicker__btn">44</button>
+                                </div>
+                            </div>
+                            <div class="mol-ingravity-product-card__footer">
+                                <div class="atom-ingravity-price">
+                                    <span class="atom-ingravity-price__current">189,99 €</span>
+                                </div>
+                                <button class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-sm"
+                                    aria-label="Añadir al carrito"><span
+                                        class="atom-icon atom-icon--ui-plus atom-icon--sm"
+                                        aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="mol-ingravity-product-card" id="prod-3" data-gsap="product-card">
+                        <div class="mol-ingravity-product-card__media">
+                            <span
+                                class="atom-ingravity-badge atom-ingravity-badge--limited mol-ingravity-product-card__badge">LIMITED</span>
+                            <img src="https://images.unsplash.com/photo-1591901546005-94ae73bf0b2c?q=80&w=2011&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Jordan Why Not Zer0.6 edición limitada" loading="lazy" width="400" height="400">
+                            <button class="atom-ingravity-wishlist mol-ingravity-product-card__wishlist"
+                                aria-label="Añadir a favoritos" aria-pressed="false"><span
+                                    class="atom-icon atom-icon--ui-heart atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </div>
+                        <div class="mol-ingravity-product-card__body">
+                            <p class="mol-ingravity-product-card__category">Jordan Brand</p>
+                            <h2 class="mol-ingravity-product-card__name">Why Not Zer0.6</h2>
+                            <div class="atom-ingravity-rating" aria-label="4.9 de 5 — 342 reseñas">
+                                <span class="atom-ingravity-rating__stars" aria-hidden="true">★★★★★</span>
+                                <span class="atom-ingravity-rating__count">4.9 (342)</span>
+                            </div>
+                            <div class="mol-ingravity-product-card__sizes">
+                                <div class="atom-ingravity-sizepicker" role="group" aria-label="Talla">
+                                    <button class="atom-ingravity-sizepicker__btn is-active"
+                                        aria-pressed="true">43</button>
+                                    <button class="atom-ingravity-sizepicker__btn">44</button>
+                                </div>
+                            </div>
+                            <div class="mol-ingravity-product-card__footer">
+                                <div class="atom-ingravity-price atom-ingravity-price--sale">
+                                    <span class="atom-ingravity-price__current">219,99 €</span>
+                                    <s class="atom-ingravity-price__old">249,99 €</s>
+                                </div>
+                                <button class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-sm"
+                                    aria-label="Añadir al carrito"><span
+                                        class="atom-icon atom-icon--ui-plus atom-icon--sm"
+                                        aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="mol-ingravity-product-card" id="prod-4" data-gsap="product-card">
+                        <div class="mol-ingravity-product-card__media">
+                            <span
+                                class="atom-ingravity-badge atom-ingravity-badge--sale mol-ingravity-product-card__badge">-20%</span>
+                            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500&q=80"
+                                alt="Under Armour Curry 12 Splash" loading="lazy" width="400" height="400">
+                            <button class="atom-ingravity-wishlist mol-ingravity-product-card__wishlist is-active"
+                                aria-label="Quitar de favoritos" aria-pressed="true"><span
+                                    class="atom-icon atom-icon--ui-heart-filled atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </div>
+                        <div class="mol-ingravity-product-card__body">
+                            <p class="mol-ingravity-product-card__category">Under Armour</p>
+                            <h2 class="mol-ingravity-product-card__name">Curry 12 "Splash"</h2>
+                            <div class="atom-ingravity-rating" aria-label="4.7 de 5 — 521 reseñas">
+                                <span class="atom-ingravity-rating__stars" aria-hidden="true">★★★★☆</span>
+                                <span class="atom-ingravity-rating__count">4.7 (521)</span>
+                            </div>
+                            <div class="mol-ingravity-product-card__sizes">
+                                <div class="atom-ingravity-sizepicker" role="group" aria-label="Talla">
+                                    <button class="atom-ingravity-sizepicker__btn">41</button>
+                                    <button class="atom-ingravity-sizepicker__btn">42</button>
+                                    <button class="atom-ingravity-sizepicker__btn is-active"
+                                        aria-pressed="true">43</button>
+                                    <button class="atom-ingravity-sizepicker__btn">44</button>
+                                </div>
+                            </div>
+                            <div class="mol-ingravity-product-card__footer">
+                                <div class="atom-ingravity-price atom-ingravity-price--sale">
+                                    <span class="atom-ingravity-price__current">119,99 €</span>
+                                    <s class="atom-ingravity-price__old">149,99 €</s>
+                                </div>
+                                <button class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-sm"
+                                    aria-label="Añadir al carrito"><span
+                                        class="atom-icon atom-icon--ui-plus atom-icon--sm"
+                                        aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="mol-ingravity-product-card" id="prod-5" data-gsap="product-card">
+                        <div class="mol-ingravity-product-card__media">
+                            <img src="https://images.unsplash.com/photo-1704949834515-e9d11a0ceb9a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Puma Stewie 2 Earth" loading="lazy" width="400" height="400">
+                            <button class="atom-ingravity-wishlist mol-ingravity-product-card__wishlist"
+                                aria-label="Añadir a favoritos" aria-pressed="false"><span
+                                    class="atom-icon atom-icon--ui-heart atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </div>
+                        <div class="mol-ingravity-product-card__body">
+                            <p class="mol-ingravity-product-card__category">Puma Basketball</p>
+                            <h2 class="mol-ingravity-product-card__name">Stewie 2 Earth</h2>
+                            <div class="atom-ingravity-rating" aria-label="4.5 de 5 — 234 reseñas">
+                                <span class="atom-ingravity-rating__stars" aria-hidden="true">★★★★☆</span>
+                                <span class="atom-ingravity-rating__count">4.5 (234)</span>
+                            </div>
+                            <div class="mol-ingravity-product-card__sizes">
+                                <div class="atom-ingravity-sizepicker" role="group" aria-label="Talla">
+                                    <button class="atom-ingravity-sizepicker__btn">40</button>
+                                    <button class="atom-ingravity-sizepicker__btn is-active"
+                                        aria-pressed="true">41</button>
+                                    <button class="atom-ingravity-sizepicker__btn">42</button>
+                                </div>
+                            </div>
+                            <div class="mol-ingravity-product-card__footer">
+                                <div class="atom-ingravity-price">
+                                    <span class="atom-ingravity-price__current">109,99 €</span>
+                                </div>
+                                <button class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-sm"
+                                    aria-label="Añadir al carrito"><span
+                                        class="atom-icon atom-icon--ui-plus atom-icon--sm"
+                                        aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="mol-ingravity-product-card" id="prod-6" data-gsap="product-card">
+                        <div class="mol-ingravity-product-card__media">
+                            <span
+                                class="atom-ingravity-badge atom-ingravity-badge--new mol-ingravity-product-card__badge">NEW</span>
+                            <img src="https://images.unsplash.com/photo-1595309849731-f7ce86eda9fc?q=80&w=1966&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Nike LeBron XXI negro dorado" loading="lazy" width="400" height="400">
+                            <button class="atom-ingravity-wishlist mol-ingravity-product-card__wishlist"
+                                aria-label="Añadir a favoritos" aria-pressed="false"><span
+                                    class="atom-icon atom-icon--ui-heart atom-icon--sm atom-icon--color-primary"
+                                    aria-hidden="true"></span></button>
+                        </div>
+                        <div class="mol-ingravity-product-card__body">
+                            <p class="mol-ingravity-product-card__category">Nike Basketball</p>
+                            <h2 class="mol-ingravity-product-card__name">LeBron XXI</h2>
+                            <div class="atom-ingravity-rating" aria-label="4.8 de 5 — 987 reseñas">
+                                <span class="atom-ingravity-rating__stars" aria-hidden="true">★★★★★</span>
+                                <span class="atom-ingravity-rating__count">4.8 (987)</span>
+                            </div>
+                            <div class="mol-ingravity-product-card__sizes">
+                                <div class="atom-ingravity-sizepicker" role="group" aria-label="Talla">
+                                    <button class="atom-ingravity-sizepicker__btn">43</button>
+                                    <button class="atom-ingravity-sizepicker__btn is-active"
+                                        aria-pressed="true">44</button>
+                                    <button class="atom-ingravity-sizepicker__btn">45</button>
+                                </div>
+                            </div>
+                            <div class="mol-ingravity-product-card__footer">
+                                <div class="atom-ingravity-price">
+                                    <span class="atom-ingravity-price__current">109,99 €</span>
+                                </div>
+                                <button class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-sm"
+                                    aria-label="Añadir al carrito"><span
+                                        class="atom-icon atom-icon--ui-plus atom-icon--sm"
+                                        aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Paginación: atom-pagination SYX nativo (flex directo, sin __list) -->
+                <nav aria-label="Paginación">
+                    <div class="atom-pagination">
+                        <button class="atom-pagination__trigger" aria-label="Página anterior" disabled><span
+                                class="atom-icon atom-icon--ui-arrow-left atom-icon--sm atom-icon--color-primary"
+                                aria-hidden="true"></span></button>
+                        <button class="atom-pagination__trigger atom-pagination__item--is-active" aria-current="page"
+                            aria-label="Página 1">1</button>
+                        <button class="atom-pagination__trigger" aria-label="Página 2">2</button>
+                        <button class="atom-pagination__trigger" aria-label="Página 3">3</button>
+                        <span class="atom-pagination__trigger" aria-hidden="true">…</span>
+                        <button class="atom-pagination__trigger" aria-label="Página 8">8</button>
+                        <button class="atom-pagination__trigger" aria-label="Página siguiente"><span
+                                class="atom-icon atom-icon--ui-arrow-right atom-icon--sm atom-icon--color-primary"
+                                aria-hidden="true"></span></button>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile drawer — mantiene mol-ingravity-filter-group con atom-check -->
+    <div class="org-ingravity-mobile-drawer" id="filter-drawer" role="dialog" aria-modal="true" aria-label="Filtros">
+        <div class="org-ingravity-mobile-drawer__overlay" id="drawer-overlay"></div>
+        <div class="org-ingravity-mobile-drawer__panel">
+            <span class="org-ingravity-mobile-drawer__handle"></span>
+            <div class="org-ingravity-mobile-drawer__header">
+                <h2 class="org-ingravity-mobile-drawer__title">Filtros</h2>
+                <button class="org-ingravity-mobile-drawer__close" id="btn-close-drawer" aria-label="Cerrar"><span
+                        class="atom-icon atom-icon--ui-x atom-icon--sm" aria-hidden="true"></span></button>
+            </div>
+            <div class="mol-ingravity-filter-group">
+                <button class="mol-ingravity-filter-group__trigger is-open" aria-expanded="true">Marca
+                    <span class="atom-icon atom-icon--ui-plus atom-icon--sm" aria-hidden="true"></span></button>
+                <div class="mol-ingravity-filter-group__body">
+                    <ul class="atom-list mol-ingravity-filter-group__list">
+                        <li>
+                            <div class="atom-check">
+                                <input class="atom-check__input" type="checkbox" name="marca-mob" value="nike"
+                                    id="mob-nike" checked>
+                                <label class="atom-check__label" for="mob-nike">Nike <span
+                                        class="mol-ingravity-filter-group__count">(18)</span></label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="atom-check">
+                                <input class="atom-check__input" type="checkbox" name="marca-mob" value="adidas"
+                                    id="mob-adidas">
+                                <label class="atom-check__label" for="mob-adidas">Adidas <span
+                                        class="mol-ingravity-filter-group__count">(12)</span></label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button
+                class="atom-btn atom-btn--primary atom-btn--filled atom-btn--size-lg org-ingravity-mobile-drawer__apply"
+                id="btn-apply-filters">Ver 48 resultados</button>
+        </div>
+    </div>
+
+    <footer class="page-ingravity-footer" role="contentinfo">
+        <p>© 2025 INGRAVITY · <a href="#" class="atom-link">Privacidad</a> · <a href="#" class="atom-link">Términos</a>
+        </p>
+    </footer>
+
+    <!-- GSAP + page scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+    <script src="js/plp.js" defer></script>
+    <!-- SYX theme switcher demo -->
+    <script src="js/theme-switcher.js" defer></script>
+</body>
+
+</html>
