@@ -1,0 +1,206 @@
+﻿// CORE
+// ===============================================
+@use "../abstracts/index" as *;
+// ===============================================
+
+// PAGE: basket — INGRAVITY
+// ===============================================
+// Page-level composition classes for INGRAVITY
+// basket e-commerce pages (landing, PLP, checkout).
+//
+// PUBLIC MIXINS
+// ─────────────
+//   page-ingravity-shared()    Body wrappers, skip-link, footer (every page)
+//   page-ingravity-plp()       PLP-specific layout classes
+//   page-ingravity()           All (backwards-compat / dev / monolith)
+// ===============================================
+
+
+// ─────────────────────────────────────────────
+// MIXIN: page-ingravity-shared
+// Used by ALL INGRAVITY pages (landing, PLP, checkout).
+// ─────────────────────────────────────────────
+@mixin page-ingravity-shared($theme: null) {
+
+    // ROOT: .syx body-class defaults
+    .syx {
+        background-color: var(--semantic-color-bg-primary);
+        color: var(--semantic-color-text-primary);
+        font-family: var(--semantic-font-family-primary);
+    }
+
+    // Page wrapper applied to <body>
+    .page-ingravity {
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
+        background-color: var(--semantic-color-bg-primary);
+    }
+
+    .page-ingravity-landing   { @extend .page-ingravity; }
+    .page-ingravity-plp-page  { @extend .page-ingravity; }
+    .page-ingravity-checkout  { @extend .page-ingravity; }
+
+    // <main> — grows + offset for sticky header
+    .page-ingravity__main {
+        flex: 1 0 auto;
+        max-width: 100%;
+        padding: 0;
+        padding-top: var(--component-header-height, 4rem);
+    }
+
+    // Generic section wrapper
+    .page-ingravity__section {
+        width: 100%;
+    }
+
+    // Skip link — accessibility
+    .syx-skip-link {
+        position: absolute;
+        top: -100%;
+        left: var(--semantic-space-component-sm);
+        background: var(--semantic-color-primary);
+        color: var(--semantic-color-text-inverse);
+        @include padding(var(--semantic-space-component-sm) var(--semantic-space-component-md));
+        @include border-radius(var(--semantic-border-radius-default));
+        font-weight: var(--semantic-font-weight-bold);
+        text-decoration: none;
+        z-index: 9999;
+        @include transition(top 0.2s ease);
+
+        &:focus {
+            top: var(--semantic-space-component-sm);
+        }
+    }
+
+    // Minimal footer (checkout / shared)
+    .page-ingravity-footer {
+        text-align: center;
+        @include padding(2rem var(--component-landing-section-padding-x));
+        @include border(top, 1px, solid, var(--semantic-color-border-subtle));
+
+        p {
+            font-size: 0.78rem;
+            color: var(--semantic-color-text-tertiary);
+            @include margin(0);
+            font-family: var(--primitive-font-family-ingravity-ui);
+        }
+
+        a {
+            color: var(--semantic-color-text-tertiary);
+            text-decoration: none;
+
+            &:hover { color: var(--primitive-color-orange-500); }
+        }
+    }
+}
+
+
+// ─────────────────────────────────────────────
+// MIXIN: page-ingravity-plp
+// PLP-specific layout classes only.
+// ─────────────────────────────────────────────
+@mixin page-ingravity-plp($theme: null) {
+
+    // PLP body: sidebar + content grid
+    .page-ingravity-plp__body {
+        max-width: var(--component-landing-container-max);
+        @include margin(null auto);
+        @include padding(clamp(1.25rem, 3vw, 2rem) var(--component-landing-section-padding-x) 5rem);
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+
+    .page-ingravity-plp__content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .page-ingravity-plp__header {
+        @include padding(1.5rem var(--component-landing-section-padding-x));
+        background-color: var(--semantic-color-bg-secondary);
+        @include border(bottom, 1px, solid, var(--semantic-color-border-subtle));
+
+        &-inner {
+            max-width: var(--component-landing-container-max);
+            @include margin(null auto);
+        }
+    }
+
+    .page-ingravity-plp__breadcrumb {
+        @include margin(0 0 0.5rem);
+        font-size: 0.78rem;
+        color: var(--semantic-color-text-tertiary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+
+        a {
+            color: var(--semantic-color-text-tertiary);
+            text-decoration: none;
+            &:hover { color: var(--primitive-color-orange-500); }
+        }
+
+        span { color: var(--semantic-color-text-secondary); }
+    }
+
+    .page-ingravity-plp__page-title {
+        font-family: var(--component-ingravity-section-title-font);
+        font-size: clamp(2rem, 5vw, 4rem);
+        color: var(--semantic-color-text-primary);
+        line-height: 0.92;
+        @include margin(0 0 0.5rem);
+        text-transform: uppercase;
+    }
+
+    .page-ingravity-plp__result-count {
+        font-size: 0.82rem;
+        color: var(--semantic-color-text-tertiary);
+        font-family: var(--primitive-font-family-ingravity-ui);
+        @include margin(0);
+    }
+
+    // Pagination
+    .page-ingravity-plp__pagination {
+        @include margin(2.5rem 0 0);
+        @include flex-center;
+        gap: 0.4rem;
+
+        &-btn {
+            @include flex-center;
+            min-width: 2.2rem;
+            height: 2.2rem;
+            @include padding(0 0.6rem);
+            background-color: var(--semantic-color-bg-elevated);
+            @include border(all, 1px, solid, var(--semantic-color-border-subtle));
+            @include border-radius(4px);
+            color: var(--semantic-color-text-secondary);
+            font-size: 0.85rem;
+            font-family: var(--primitive-font-family-ingravity-ui);
+            cursor: pointer;
+            @include transition(border-color 0.15s ease, color 0.15s ease);
+
+            &:hover,
+            &.is-active {
+                border-color: var(--primitive-color-orange-500);
+                color: var(--primitive-color-orange-500);
+            }
+
+            &.is-active {
+                background-color: color-mix(in srgb, var(--primitive-color-orange-500) 10%, transparent);
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+
+// ─────────────────────────────────────────────
+// MIXIN: page-ingravity  (full / backwards-compat)
+// Calls both shared + plp. Use in setup.scss / dev.
+// ─────────────────────────────────────────────
+@mixin page-ingravity($theme: null) {
+    @include page-ingravity-shared($theme);
+    @include page-ingravity-plp($theme);
+}
+
+// end @mixin page-ingravity

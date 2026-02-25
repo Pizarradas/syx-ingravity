@@ -1,0 +1,1111 @@
+// ================================================
+// INGRAVITY SUMMER — COMPLETE TOKEN OVERRIDE
+// ================================================
+// "CAYO COURT" Summer Drop 2026
+// 🌊 Light · Tropical · Playful · Premium
+//
+// Palette: Sunburn Coral · Swim Turquoise · Sand White · Sunset Amber
+// Fonts: Playfair Display (display) · Lato (UI/body)
+//
+// Proof of concept: ZERO HTML changes required.
+// Swap the linked CSS and the entire brand identity changes.
+// ================================================
+
+@use '../../abstracts/index' as *;
+
+@mixin theme-ingravity-summer {
+    :root {
+
+        // ================================================
+        // SECTION 1 — BRAND PRIMITIVES (Cayo Court palette)
+        // ================================================
+
+        --primitive-space-base: 0.3rem;  // ↑ +20% — more air = resort feel (all spacing auto-scales)
+
+        // Sunburn Coral — primary identity
+        --primitive-color-orange-500: #FF6B6B; // Coral flamingo — primary
+        --primitive-color-orange-400: #FF8E8E; // Coral lighter — hover
+        --primitive-color-orange-600: #E84444; // Coral darker — pressed
+        --primitive-color-orange-50:  #FFF0F0; // Coral tint — light surface
+
+        // Swim Turquoise — accent fresh water
+        --primitive-color-blue-500:  #00BFA5; // Turquoise — accent
+        --primitive-color-blue-400:  #4DD8C4; // Turquoise lighter — ice surf
+        --primitive-color-blue-50:   #E6FAF8; // Turquoise tint — very light
+
+        // Backgrounds — Sand & Light (light-first stack)
+        --primitive-color-gray-900: #FEFAF6; // bg-primary — warm sand white
+        --primitive-color-gray-800: #FEF3E8; // bg-secondary — golden sand
+        --primitive-color-gray-700: #FFFFFF; // bg-tertiary — pure white card
+        --primitive-color-gray-600: #FFF8F0; // bg-elevated / sizepicker-bg — cream
+
+        // Text — dark on light
+        --primitive-color-white:    #1A1A2E; // "white" = primary text — deep midnight navy
+        --primitive-color-gray-300: #4A4A6A; // text-secondary — slate purple
+        --primitive-color-gray-400: #8888AA; // text-tertiary — muted lavender
+
+        // Borders — warm, subtle
+        --primitive-color-gray-500: #EADDD0; // border-subtle — sand beige
+        --primitive-color-gray-200: #D8C9B8; // border-default — terracotta light
+        --primitive-color-gray-100: #C4A990; // border-strong — warm tan
+
+        // Sunset Amber — highlight accent
+        --primitive-color-warning-500: #FFB830; // warm amber
+
+        // States
+        --primitive-color-success-500: #00C897;
+        --primitive-color-error-500:   #FF4F4F;
+        --primitive-color-disabled:    #D8C9B8;
+
+        // ── Typography — Coastal Luxury ──────────────────
+        --primitive-font-family-ingravity-display:  'Playfair Display', Georgia, 'Times New Roman', serif;
+        --primitive-font-family-ingravity-ui:       'Lato', 'Helvetica Neue', Arial, sans-serif;
+        --primitive-font-family-ingravity-body:     'Lato', 'Helvetica Neue', Arial, sans-serif;
+        --primitive-font-family-ingravity-heading:  'Playfair Display', Georgia, serif;
+        --primitive-font-family-ingravity-mono:     'JetBrains Mono', 'Fira Code', monospace;
+
+        // ── SVG icon filters ─────────────────────────────
+        // black (#000) → coral (#FF6B6B): used by --color-primary modifier
+        --primitive-filter-primary-ingravity:
+            brightness(0) saturate(100%) invert(58%) sepia(70%)
+            saturate(700%) hue-rotate(315deg) brightness(105%) contrast(102%);
+
+        // black (#000) → turquoise (#00BFA5): used by --color-secondary modifier
+        --primitive-filter-secondary-ingravity:
+            brightness(0) saturate(100%) invert(59%) sepia(60%)
+            saturate(500%) hue-rotate(135deg) brightness(95%) contrast(100%);
+
+        // Anything → dark navy (#1A1A2E): replaces white icons on dark bg
+        --primitive-filter-dark-ingravity:
+            brightness(0) saturate(100%) invert(9%) sepia(25%)
+            saturate(600%) hue-rotate(200deg) brightness(90%) contrast(95%);
+
+        // ================================================
+        // SECTION 2 — THEME VARIABLES (legacy SYX bindings)
+        // ================================================
+
+        --base-measure: var(--primitive-space-base);
+
+        --color-primary:               var(--primitive-color-orange-500);
+        --color-secondary:             var(--primitive-color-blue-500);
+        --color-accent:                var(--primitive-color-blue-400);
+        --color-state-ok:              var(--primitive-color-success-500);
+        --color-state-ko:              var(--primitive-color-error-500);
+        --color-state-warning:         var(--primitive-color-warning-500);
+        --color-state-disabled:        var(--primitive-color-disabled);
+        --color-state-focus:           var(--primitive-color-orange-500);
+        --color-state-hover-primary:   var(--primitive-color-orange-400);
+
+        --layout-max-width: calc(320 * var(--base-measure));
+        --layout-pad-1:     calc(2 * var(--base-measure));
+        --layout-gap-1:     calc(1 * var(--base-measure));
+
+        --theme-radius:    calc(2 * var(--base-measure));
+        --theme-focus:     0 0 0 3px color-mix(in srgb, var(--color-primary) 30%, transparent);
+        --theme-w-border:  calc(0.4 * var(--base-measure));
+
+        --btn-primary-font-color:        var(--primitive-color-white);
+        --btn-primary-filled-font-color: #FFFFFF;
+
+        --form-font-family:  var(--primitive-font-family-ingravity-body);
+        --form-height-size:  calc(6 * var(--base-measure));
+
+        // ================================================
+        // SECTION 2b — ICON PRIMITIVES (SVG data URIs)
+        // These MUST be in this file because setup-summer only calls
+        // theme-ingravity-summer(), not theme-ingravity(). Without them,
+        // background-image resolves to nothing and icons are invisible.
+        // ================================================
+
+        // Chevron right (accordion, select arrow)
+        --primitive-icon-ui-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 15 12 9 18'/%3E%3C/svg%3E");
+
+        // Search / magnifier
+        --primitive-icon-ui-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+
+        // Shopping cart / bag
+        --primitive-icon-ui-cart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E");
+
+        // Horizontal lines filter
+        --primitive-icon-ui-filters: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='4' y1='6' x2='20' y2='6'/%3E%3Cline x1='8' y1='12' x2='16' y2='12'/%3E%3Cline x1='11' y1='18' x2='13' y2='18'/%3E%3C/svg%3E");
+
+        // 2×2 grid
+        --primitive-icon-ui-grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Crect x='3' y='3' width='8' height='8' rx='1'/%3E%3Crect x='13' y='3' width='8' height='8' rx='1'/%3E%3Crect x='3' y='13' width='8' height='8' rx='1'/%3E%3Crect x='13' y='13' width='8' height='8' rx='1'/%3E%3C/svg%3E");
+
+        // Horizontal list rows
+        --primitive-icon-ui-list: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+
+        // User / account
+        --primitive-icon-ui-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+
+        // Hamburger menu
+        --primitive-icon-ui-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='4' y1='6' x2='20' y2='6'/%3E%3Cline x1='4' y1='12' x2='20' y2='12'/%3E%3Cline x1='4' y1='18' x2='20' y2='18'/%3E%3C/svg%3E");
+
+        // Circle help / FAQ
+        --primitive-icon-ui-circle-help: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E");
+
+        // Lock / secure
+        --primitive-icon-ui-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+
+        // Package / standard delivery
+        --primitive-icon-ui-package: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16.5 9.4 7.55 4.24'/%3E%3Cpath d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'/%3E%3Cpolyline points='3.27 6.96 12 12.01 20.73 6.96'/%3E%3Cline x1='12' y1='22.08' x2='12' y2='12'/%3E%3C/svg%3E");
+
+        // Zap / express delivery
+        --primitive-icon-ui-zap: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/%3E%3C/svg%3E");
+
+        // Trophy / confirmation
+        --primitive-icon-ui-trophy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9H4.5a2.5 2.5 0 0 1 0-5H6'/%3E%3Cpath d='M18 9h1.5a2.5 2.5 0 0 0 0-5H18'/%3E%3Cpath d='M4 22h16'/%3E%3Cpath d='M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22'/%3E%3Cpath d='M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22'/%3E%3Cpath d='M18 2H6v7a6 6 0 0 0 12 0V2z'/%3E%3C/svg%3E");
+
+        // Circle check / done state
+        --primitive-icon-ui-circle-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E");
+
+        // X / close
+        --primitive-icon-ui-x: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+
+        // Arrow right / CTA
+        --primitive-icon-ui-arrow-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
+
+        // Arrow left / pagination prev
+        --primitive-icon-ui-arrow-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5'/%3E%3Cpath d='m12 19-7-7 7-7'/%3E%3C/svg%3E");
+
+        // Plus / add quantity
+        --primitive-icon-ui-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+
+        // Minus / remove quantity
+        --primitive-icon-ui-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+
+        // Heart / wishlist (outline)
+        --primitive-icon-ui-heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E");
+
+        // Heart / wishlist (filled — active state)
+        --primitive-icon-ui-heart-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E");
+
+        // Icon aliases (semantic bindings — same as base theme)
+        --icon-ui-chevron:       var(--primitive-icon-ui-chevron);
+        --icon-ui-search:        var(--primitive-icon-ui-search);
+        --icon-ui-cart:          var(--primitive-icon-ui-cart);
+        --icon-ui-filters:       var(--primitive-icon-ui-filters);
+        --icon-ui-grid:          var(--primitive-icon-ui-grid);
+        --icon-ui-list:          var(--primitive-icon-ui-list);
+        --icon-ui-user:          var(--primitive-icon-ui-user);
+        --icon-ui-menu:          var(--primitive-icon-ui-menu);
+        --icon-ui-circle-help:   var(--primitive-icon-ui-circle-help);
+        --icon-ui-lock:          var(--primitive-icon-ui-lock);
+        --icon-ui-package:       var(--primitive-icon-ui-package);
+        --icon-ui-zap:           var(--primitive-icon-ui-zap);
+        --icon-ui-trophy:        var(--primitive-icon-ui-trophy);
+        --icon-ui-circle-check:  var(--primitive-icon-ui-circle-check);
+        --icon-ui-x:             var(--primitive-icon-ui-x);
+        --icon-ui-arrow-right:   var(--primitive-icon-ui-arrow-right);
+        --icon-ui-arrow-left:    var(--primitive-icon-ui-arrow-left);
+        --icon-ui-plus:          var(--primitive-icon-ui-plus);
+        --icon-ui-minus:         var(--primitive-icon-ui-minus);
+        --icon-ui-heart:         var(--primitive-icon-ui-heart);
+        --icon-ui-heart-filled:  var(--primitive-icon-ui-heart-filled);
+
+        // ================================================
+        // SECTION 3 — SEMANTIC TOKEN OVERRIDES
+        // ================================================
+
+        // Brand
+        --semantic-color-primary:          var(--primitive-color-orange-500);
+        --semantic-color-selection-text:   #FFFFFF;
+        --semantic-color-selection-bg:     var(--primitive-color-orange-500);
+        --reset-selection-color:           #FFFFFF;
+        --reset-selection-bg:              var(--primitive-color-orange-500);
+        --semantic-color-secondary:        var(--primitive-color-blue-500);
+        --semantic-color-tertiary:         var(--primitive-color-orange-50);
+
+        // Backgrounds (light summer stack)
+        --semantic-color-bg-primary:   var(--primitive-color-gray-900);
+        --semantic-color-bg-secondary: var(--primitive-color-gray-800);
+        --semantic-color-bg-tertiary:  var(--primitive-color-gray-700);
+        --semantic-color-bg-elevated:  var(--primitive-color-gray-600);
+
+        // Text (dark on light)
+        --semantic-color-text-primary:   var(--primitive-color-white);   // deep navy
+        --semantic-color-text-secondary: var(--primitive-color-gray-300);
+        --semantic-color-text-tertiary:  var(--primitive-color-gray-400);
+        --semantic-color-text-inverse:   #FEFAF6;                         // sand on dark surfaces
+
+        // Borders
+        --semantic-color-border-subtle:  var(--primitive-color-gray-500);
+        --semantic-color-border-default: var(--primitive-color-gray-200);
+        --semantic-color-border-strong:  var(--primitive-color-gray-100);
+        --semantic-color-border-focus:   var(--primitive-color-orange-500);
+
+        // States
+        --semantic-color-state-ok:              var(--primitive-color-success-500);
+        --semantic-color-state-ko:              var(--primitive-color-error-500);
+        --semantic-color-state-warning:         var(--primitive-color-warning-500);
+        --semantic-color-state-disabled:        var(--primitive-color-disabled);
+        --semantic-color-state-focus:           var(--primitive-color-orange-500);
+        --semantic-color-state-hover-primary:   var(--primitive-color-orange-400);
+        --semantic-color-state-hover-secondary: var(--primitive-color-blue-400);
+
+        // Shadows — soft, airy (light bg)
+        --semantic-shadow-sm:    0 1px 4px rgba(200, 160, 120, 0.15), 0 1px 2px rgba(200, 160, 120, 0.10);
+        --semantic-shadow-card:  0 4px 20px rgba(180, 130, 80, 0.14);
+        --semantic-shadow-md:    0 8px 32px rgba(180, 120, 60, 0.16);
+        --semantic-shadow-lg:    0 20px 60px rgba(180, 110, 40, 0.18);
+        --semantic-shadow-focus: 0 0 0 3px color-mix(in srgb, var(--primitive-color-orange-500) 30%, transparent);
+
+        // ── ICON FILTERS — critical for light bg ─────────
+        // All icons are black SVGs; we filter them to the right color.
+        --semantic-filter-primary:   var(--primitive-filter-primary-ingravity);   // → coral
+        --semantic-filter-secondary: var(--primitive-filter-secondary-ingravity); // → turquoise
+        // Icons that were white (for dark bg) must become dark navy
+        --semantic-filter-white:     var(--primitive-filter-dark-ingravity);      // → dark navy
+        --semantic-filter-black:     none;                                         // already dark — keep as-is
+        --semantic-filter-state-ok:
+            brightness(0) saturate(100%) invert(61%) sepia(50%)
+            saturate(400%) hue-rotate(135deg) brightness(95%) contrast(100%);
+        --semantic-filter-state-ko:
+            brightness(0) saturate(100%) invert(42%) sepia(80%)
+            saturate(700%) hue-rotate(330deg) brightness(100%) contrast(100%);
+        --semantic-filter-state-warning:
+            brightness(0) saturate(100%) invert(73%) sepia(60%)
+            saturate(500%) hue-rotate(10deg) brightness(105%) contrast(100%);
+
+        // Typography
+        --semantic-font-family-primary:      var(--primitive-font-family-ingravity-body);
+        --semantic-font-family-primary-bold: var(--primitive-font-family-ingravity-ui);
+        --semantic-font-family-heading:      var(--primitive-font-family-ingravity-heading);
+        --semantic-font-family-display:      var(--primitive-font-family-ingravity-display);
+        --semantic-font-family-mono:         var(--primitive-font-family-ingravity-mono);
+        --semantic-font-weight-bold:         700;
+        --semantic-font-weight-medium:       500;
+
+        // Border radius — rounder, resort-playful
+        --semantic-border-radius-sm:      6px;
+        --semantic-border-radius-default: 12px;
+        --semantic-border-radius-lg:      20px;
+        --semantic-border-radius-full:    12px;
+        --semantic-border-radius-circle:  9999px;
+        --semantic-border-radius-pill:    9999px;
+
+        // Links
+        --semantic-color-link-default:  var(--primitive-color-blue-500);
+        --semantic-color-link-hover:    var(--primitive-color-blue-400);
+        --semantic-color-link-visited:  var(--primitive-color-orange-400);
+        --semantic-color-link-active:   var(--primitive-color-orange-600);
+        --semantic-color-placeholder:   var(--primitive-color-gray-400);
+
+        // ================================================
+        // SECTION 4 — COMPONENT TOKENS (SYX base)
+        // ================================================
+
+        // Button — rounded, summer feel
+        --component-button-border-radius:    12px;
+        --component-button-border-width:     2px;
+        --component-button-font-family:      var(--primitive-font-family-ingravity-ui);
+        --component-button-font-size:        var(--primitive-font-size-lg);
+        --component-button-font-size-sm:     var(--primitive-font-size-md);
+        --component-button-font-size-md:     var(--primitive-font-size-lg);
+        --component-button-font-size-lg:     var(--primitive-font-size-xl);
+        --component-button-line-height:      1;
+        --component-button-size-sm:          calc(1.25 * var(--base-measure));
+        --component-button-size-md:          calc(1.75 * var(--base-measure));
+        --component-button-size-lg:          calc(2.25 * var(--base-measure));
+
+        // Primary — Sunburn Coral
+        --component-button-primary-color:                 var(--primitive-color-orange-500);
+        --component-button-primary-filled-bg:             var(--primitive-color-orange-500);
+        --component-button-primary-filled-color:          #FFFFFF;
+        --component-button-primary-bg-hover:              transparent;
+        --component-button-primary-color-hover:           var(--primitive-color-orange-600);
+        --component-button-primary-border-hover:          var(--primitive-color-orange-600);
+        --component-button-primary-filled-bg-hover:       var(--primitive-color-orange-600);
+        --component-button-primary-filled-color-hover:    #FFFFFF;
+        --component-button-primary-filled-border-hover:   var(--primitive-color-orange-600);
+
+        // Secondary — Swim Turquoise
+        --component-button-secondary-color:               var(--primitive-color-blue-500);
+        --component-button-secondary-filled-bg:           var(--primitive-color-blue-500);
+        --component-button-secondary-filled-color:        #FFFFFF;
+        --component-button-secondary-bg-hover:            transparent;
+        --component-button-secondary-color-hover:         var(--primitive-color-blue-400);
+        --component-button-secondary-border-hover:        var(--primitive-color-blue-400);
+        --component-button-secondary-filled-bg-hover:     var(--primitive-color-blue-400);
+        --component-button-secondary-filled-color-hover:  #FFFFFF;
+        --component-button-secondary-filled-border-hover: var(--primitive-color-blue-400);
+
+        // Tertiary (ghost)
+        --component-button-tertiary-color:                var(--primitive-color-gray-300);
+        --component-button-tertiary-filled-bg:            transparent;
+        --component-button-tertiary-filled-color:         var(--primitive-color-white);
+        --component-button-tertiary-bg-hover:             var(--primitive-color-gray-800);
+        --component-button-tertiary-color-hover:          var(--primitive-color-white);
+        --component-button-tertiary-border-hover:         var(--primitive-color-gray-200);
+        --component-button-tertiary-filled-bg-hover:      var(--primitive-color-gray-800);
+        --component-button-tertiary-filled-color-hover:   var(--primitive-color-white);
+        --component-button-tertiary-filled-border-hover:  var(--primitive-color-gray-200);
+
+        // Header / Navbar
+        --component-header-height:  4rem;
+        --component-header-z-index: 100;
+
+        // Landing organism tokens
+        --component-landing-navbar-bg:           color-mix(in srgb, #FEFAF6 94%, transparent);
+        --component-landing-navbar-border:       var(--primitive-color-gray-500);
+        --component-landing-container-max:       1280px;
+        --component-landing-section-padding-x:   clamp(1rem, 5vw, 4rem);
+        --component-landing-section-padding-y:   clamp(4rem, 8vw, 7rem);
+
+        --component-landing-hero-bg:             var(--primitive-color-gray-800);
+        --component-landing-hero-min-height:     min(90svh, 900px);
+        --component-landing-hero-padding-y:      clamp(5rem, 10vw, 8rem);
+        --component-landing-hero-heading-size:   clamp(3rem, 7vw, 6.5rem);
+        --component-landing-hero-lead-size:      clamp(1rem, 2vw, 1.25rem);
+        --component-landing-hero-accent-color:   var(--primitive-color-orange-500);
+        --component-landing-hero-pill-bg:        color-mix(in srgb, var(--primitive-color-orange-500) 15%, transparent);
+        --component-landing-hero-pill-color:     var(--primitive-color-orange-600);
+        --component-landing-hero-avatar-bg:      var(--primitive-color-orange-500);
+        --component-landing-hero-avatar-color:   #FFFFFF;
+
+        --component-landing-stats-bg:            var(--primitive-color-gray-700);
+        --component-landing-stats-border:        var(--primitive-color-gray-500);
+
+        --component-landing-plan-badge-bg:       var(--primitive-color-orange-500);
+        --component-landing-plan-badge-color:    #FFFFFF;
+        --component-landing-plan-badge-radius:   9999px;
+        --component-landing-plan-cta-bg:         transparent;
+        --component-landing-plan-cta-color:      var(--primitive-color-gray-300);
+        --component-landing-plan-cta-border:     var(--primitive-color-gray-200);
+
+        --component-landing-testimonial-padding:    1.75rem;
+        --component-landing-testimonial-bg:         var(--primitive-color-gray-700);
+        --component-landing-testimonial-border:     var(--primitive-color-gray-500);
+        --component-landing-testimonial-radius:     16px;
+        --component-landing-testimonial-min-height: 14rem;
+        --component-landing-testimonial-star:       var(--primitive-color-orange-500);
+        --component-landing-testimonial-avatar-bg:  var(--primitive-color-orange-50);
+        --component-landing-testimonial-avatar-color: var(--primitive-color-orange-600);
+
+        --component-landing-cta-padding-y:          clamp(4rem, 8vw, 6rem);
+        --component-landing-cta-color:              #FFFFFF;
+        --component-landing-cta-btn-inverse-bg:     #FFFFFF;
+        --component-landing-cta-btn-inverse-color:  var(--primitive-color-orange-600);
+        --component-landing-cta-btn-inverse-hover-bg: color-mix(in srgb, #FFFFFF 85%, transparent);
+
+        --component-landing-footer-bg:              var(--primitive-color-gray-800);
+        --component-landing-footer-border:          var(--primitive-color-gray-500);
+        --component-landing-footer-padding-y:       clamp(3rem, 6vw, 5rem);
+        --component-landing-footer-col-gap:         clamp(1.5rem, 4vw, 3rem);
+        --component-landing-footer-link-color:      var(--primitive-color-gray-300);
+        --component-landing-footer-link-hover:      var(--primitive-color-orange-500);
+
+        // ================================================
+        // SECTION 5 — BASKET / INGRAVITY COMPONENT TOKENS
+        // ================================================
+
+        // Badge atom — summer badges use pill shape
+        --component-ingravity-badge-radius:      9999px;
+        --component-ingravity-badge-font-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-badge-font-size:   0.625rem;
+        --component-ingravity-badge-font-weight: 700;
+        --component-ingravity-badge-padding:     0.2em 0.65em;
+        --component-ingravity-badge-bg-new:      var(--primitive-color-orange-500);
+        --component-ingravity-badge-color-new:   #FFFFFF;
+        --component-ingravity-badge-bg-drop:     var(--primitive-color-blue-500);
+        --component-ingravity-badge-color-drop:  #FFFFFF;
+        --component-ingravity-badge-bg-sale:     var(--primitive-color-success-500);
+        --component-ingravity-badge-color-sale:  #FFFFFF;
+        --component-ingravity-badge-bg-limited:  var(--primitive-color-error-500);
+        --component-ingravity-badge-color-limited: #FFFFFF;
+
+        // Price atom
+        --component-ingravity-price-font-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-price-size:        1.35rem;
+        --component-ingravity-price-size-lg:     1.75rem;
+        --component-ingravity-price-color:       var(--primitive-color-white); // deep navy
+        --component-ingravity-price-sale-color:  var(--primitive-color-orange-600);
+        --component-ingravity-price-old-color:   var(--primitive-color-gray-400);
+        --component-ingravity-price-old-size:    0.85rem;
+
+        // Rating atom
+        --component-ingravity-rating-star-color: var(--primitive-color-orange-500);
+        --component-ingravity-rating-font-size:  0.75rem;
+        --component-ingravity-rating-color:      var(--primitive-color-gray-300);
+
+        // Sizepicker atom — sand tones
+        --component-ingravity-sizepicker-size:         2.1rem;
+        --component-ingravity-sizepicker-radius:        9999px;  // pill shape → summer
+        --component-ingravity-sizepicker-bg:            var(--primitive-color-gray-700); // white
+        --component-ingravity-sizepicker-border:        var(--primitive-color-gray-200);
+        --component-ingravity-sizepicker-color:         var(--primitive-color-white);    // navy
+        --component-ingravity-sizepicker-bg-hover:      var(--primitive-color-gray-800); // warm sand
+        --component-ingravity-sizepicker-border-hover:  var(--primitive-color-orange-500);
+        --component-ingravity-sizepicker-color-hover:   var(--primitive-color-orange-600);
+        --component-ingravity-sizepicker-bg-active:     var(--primitive-color-orange-500);
+        --component-ingravity-sizepicker-border-active: var(--primitive-color-orange-500);
+        --component-ingravity-sizepicker-color-active:  #FFFFFF;
+        --component-ingravity-sizepicker-bg-oos:        transparent;
+        --component-ingravity-sizepicker-color-oos:     var(--primitive-color-gray-400);
+        --component-ingravity-sizepicker-font-size:     0.72rem;
+        --component-ingravity-sizepicker-font-family:   var(--primitive-font-family-ingravity-ui);
+
+        // Product card molecule
+        --component-ingravity-card-bg:           var(--primitive-color-gray-700); // white
+        --component-ingravity-card-border:       var(--primitive-color-gray-500);
+        --component-ingravity-card-border-hover: var(--primitive-color-orange-500);
+        --component-ingravity-card-radius:       16px;
+        --component-ingravity-card-shadow:       0 2px 12px rgba(180, 130, 80, 0.12);
+        --component-ingravity-card-shadow-hover: 0 8px 32px rgba(255, 107, 107, 0.22);
+        --component-ingravity-card-media-bg:     var(--primitive-color-gray-800); // warm sand
+        --component-ingravity-card-media-ratio:  1 / 1;
+        --component-ingravity-card-body-padding: 1rem;
+        --component-ingravity-card-name-size:    1rem;
+        --component-ingravity-card-name-family:  var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-card-name-weight:  600;
+        --component-ingravity-card-meta-size:    0.72rem;
+        --component-ingravity-card-meta-color:   var(--primitive-color-gray-300);
+
+        // Category card molecule
+        --component-ingravity-catcard-bg:           var(--primitive-color-gray-700);
+        --component-ingravity-catcard-border:       var(--primitive-color-gray-500);
+        --component-ingravity-catcard-border-hover: var(--primitive-color-orange-500);
+        --component-ingravity-catcard-radius:       20px;
+        --component-ingravity-catcard-media-ratio:  3 / 4;
+        --component-ingravity-catcard-label-size:   1.1rem;
+        --component-ingravity-catcard-label-family: var(--primitive-font-family-ingravity-display);
+
+        // Stat bar molecule
+        --component-ingravity-stat-number-family: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-stat-number-size:   clamp(2rem, 5vw, 3.5rem);
+        --component-ingravity-stat-number-color:  var(--primitive-color-orange-500);
+        --component-ingravity-stat-label-size:    0.78rem;
+        --component-ingravity-stat-label-color:   var(--primitive-color-gray-300);
+        --component-ingravity-stat-bg:            var(--primitive-color-gray-700); // white
+        --component-ingravity-stat-border:        var(--primitive-color-gray-500);
+
+        // Steps (checkout) — coral active, teal done
+        --component-ingravity-step-size:         1.9rem;
+        --component-ingravity-step-bg:           var(--primitive-color-gray-700);
+        --component-ingravity-step-border:       var(--primitive-color-gray-200);
+        --component-ingravity-step-active-bg:    var(--primitive-color-orange-500);
+        --component-ingravity-step-active-border: var(--primitive-color-orange-500);
+        --component-ingravity-step-done-bg:      var(--primitive-color-blue-500);
+        --component-ingravity-step-done-border:  var(--primitive-color-blue-500);
+        --component-ingravity-step-done-color:   #FFFFFF;
+        --component-ingravity-step-font:         var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-step-divider-bg:   var(--primitive-color-gray-200);
+        --component-ingravity-step-divider-done: var(--primitive-color-blue-500);
+
+        // Checkout panels
+        --component-ingravity-panel-bg:           var(--primitive-color-gray-700);
+        --component-ingravity-panel-border:       var(--primitive-color-gray-500);
+        --component-ingravity-panel-border-active: var(--primitive-color-orange-500);
+        --component-ingravity-panel-radius:       16px;
+        --component-ingravity-panel-title-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-panel-title-weight: 700;
+
+        // Form fields basket
+        --component-ingravity-input-bg:           var(--primitive-color-gray-700);
+        --component-ingravity-input-border:       var(--primitive-color-gray-200);
+        --component-ingravity-input-border-focus: var(--primitive-color-orange-500);
+        --component-ingravity-input-radius:       8px;
+        --component-ingravity-input-color:        var(--primitive-color-white);     // navy
+        --component-ingravity-input-placeholder:  var(--primitive-color-gray-400);
+        --component-ingravity-input-font:         var(--primitive-font-family-ingravity-body);
+        --component-ingravity-input-label-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-input-label-size:   0.72rem;
+        --component-ingravity-input-label-weight: 600;
+
+        // Trust badges — visible on light bg
+        --component-ingravity-trust-icon-size: 1rem;
+        --component-ingravity-trust-font-size: 0.72rem;
+        --component-ingravity-trust-color:     var(--primitive-color-gray-300);
+
+        // Delivery option
+        --component-ingravity-delivery-bg:         var(--primitive-color-gray-700);
+        --component-ingravity-delivery-border:     var(--primitive-color-gray-200);
+        --component-ingravity-delivery-border-sel: var(--primitive-color-orange-500);
+        --component-ingravity-delivery-radius:     10px;
+
+        // Payment tabs
+        --component-ingravity-pay-tab-bg:         var(--primitive-color-gray-700);
+        --component-ingravity-pay-tab-border:     var(--primitive-color-gray-200);
+        --component-ingravity-pay-tab-border-sel: var(--primitive-color-orange-500);
+        --component-ingravity-pay-tab-radius:     10px;
+        --component-ingravity-pay-tab-font:       var(--primitive-font-family-ingravity-ui);
+
+        // Organisms — hero + sections
+        --component-ingravity-hero-display-size:  clamp(3.5rem, 9vw, 8rem);
+        --component-ingravity-hero-display-font:  var(--primitive-font-family-ingravity-display);
+        --component-ingravity-hero-lead-font:     var(--primitive-font-family-ingravity-body);
+        --component-ingravity-hero-pill-font:     var(--primitive-font-family-ingravity-ui);
+
+        --component-ingravity-section-tag-font:   var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-section-title-font: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-section-title-size: clamp(2.5rem, 7vw, 6rem);
+
+        // Filters (PLP)
+        --component-ingravity-filter-bg:           var(--primitive-color-gray-700);
+        --component-ingravity-filter-border:       var(--primitive-color-gray-500);
+        --component-ingravity-filter-radius:       12px;
+        --component-ingravity-filter-heading-font: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-filter-heading-size: 0.72rem;
+        --component-ingravity-filter-heading-wt:   700;
+
+        // Order summary (checkout aside)
+        --component-ingravity-summary-bg:           var(--primitive-color-gray-800); // warm sand
+        --component-ingravity-summary-border:       var(--primitive-color-gray-500);
+        --component-ingravity-summary-radius:       16px;
+        --component-ingravity-summary-title-font:   var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-summary-total-font:   var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-summary-total-size:   1.5rem;
+        --component-ingravity-summary-total-color:  var(--primitive-color-orange-600);
+
+        // Progress bar — coral → amber gradient
+        --component-ingravity-progress-h:    3px;
+        --component-ingravity-progress-bg:   var(--primitive-color-gray-200);
+        --component-ingravity-progress-fill: linear-gradient(
+            90deg,
+            var(--primitive-color-orange-500),
+            var(--primitive-color-warning-500)
+        );
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // GLOBAL OVERRIDES — applied at CSS root level
+    // NOTE: The theme switcher works by swapping <link href>, NOT by
+    // adding a class to the DOM. Therefore, all overrides MUST be global
+    // selectors (not scoped under .syx--theme-ingravity).
+    // ══════════════════════════════════════════════════════════════════
+
+    // ── Page base ─────────────────────────────────────────────────────
+    body {
+        background-color: var(--semantic-color-bg-primary);
+        color: var(--semantic-color-text-primary);
+    }
+
+    // ── Icon filters — light background strategy ───────────────────────
+    // Summer theme has light backgrounds (#FEFAF6 sand, #FFFFFF white).
+    // The base @layer applies filter:white to many icons (for dark theme).
+    // We must OVERRIDE with dark filters so icons are visible on light bg.
+    //
+    // brightness(0) converts ANY SVG source (white/orange/transparent)
+    // to pure black → maximum contrast on sand/white backgrounds.
+
+    .atom-icon:before {
+        filter: brightness(0);  // → pure black, visible on any light surface
+    }
+
+    // Brand color modifiers — colorize from black:
+    .atom-icon--color-primary:before   { filter: var(--semantic-filter-primary); }   // → coral #FF6B6B
+    .atom-icon--color-secondary:before { filter: var(--semantic-filter-secondary); } // → turquoise #00BFA5
+
+    // White modifier: on light bg, dark/black IS correct (not white)
+    .atom-icon--color-white:before { filter: brightness(0); }  // → black, readable
+    .atom-icon--color-black:before { filter: brightness(0); }  // → pure black
+
+    // State color modifiers:
+    .atom-icon--color-state-ok:before      { filter: var(--semantic-filter-state-ok); }
+    .atom-icon--color-state-ko:before      { filter: var(--semantic-filter-state-ko); }
+    .atom-icon--color-state-warning:before { filter: var(--semantic-filter-state-warning); }
+
+    // Exception: icons inside dark-bg sections must stay white
+    .org-landing-cta .atom-icon:before,
+    .org-ingravity-cta-drop .atom-icon:before {
+        filter: brightness(0) invert(1);  // → white on dark teal bg
+    }
+
+    // Active view-toggle button (coral bg) → white icon
+    .mol-ingravity-view-toggle__btn.is-active .atom-icon:before,
+    .mol-ingravity-view-toggle__btn[aria-pressed="true"] .atom-icon:before {
+        filter: brightness(0) invert(1);
+    }
+
+    // ── Scoped overrides (still useful for component-level specificity) ─
+    .syx--theme-ingravity {
+
+        // ── Navbar ───────────────────────────────────────────────────
+        .org-header,
+        .org-ingravity-navbar {
+            background: color-mix(in srgb, #FEFAF6 92%, transparent);
+            border-bottom: 1px solid var(--primitive-color-gray-500);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(200, 150, 100, 0.10);
+            color: var(--primitive-color-white);
+        }
+
+        // Navbar brand / logo text
+        .org-header__logo,
+        .org-header__brand,
+        .org-ingravity-navbar__brand,
+        .org-ingravity-navbar__logo {
+            color: var(--primitive-color-white);
+        }
+
+        // Nav links
+        .org-header__nav a,
+        .org-ingravity-navbar__link {
+            color: var(--primitive-color-gray-300);
+
+            &:hover { color: var(--primitive-color-orange-500); }
+        }
+
+        // Cart badge
+        .org-header__cart-badge {
+            background-color: var(--primitive-color-orange-500);
+            color: #FFFFFF;
+        }
+
+        // ── Hero section — sunrise gradient ──────────────────────────
+        .org-landing-hero,
+        .org-ingravity-hero {
+            background:
+                radial-gradient(ellipse at 70% 50%, color-mix(in srgb, #00BFA5 18%, transparent) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 80%, color-mix(in srgb, #FF6B6B 14%, transparent) 0%, transparent 55%),
+                linear-gradient(155deg, #FEF3E8 0%, #FEFAF6 55%, #E6FAF8 100%);
+        }
+
+        // Remove the dark pseudo-elements used in the base theme
+        .org-landing-hero::before,
+        .org-landing-hero::after {
+            display: none;
+        }
+
+        // Hero heading — serif gradient
+        .org-landing-hero__title,
+        .org-ingravity-hero__headline,
+        .org-ingravity-hero__title {
+            font-family: var(--primitive-font-family-ingravity-display);
+            background: linear-gradient(135deg, #E84444 0%, #FF6B6B 40%, #FFB830 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .org-landing-hero__lead,
+        .org-ingravity-hero__lead {
+            color: var(--primitive-color-gray-300);
+        }
+
+        // ── PLP heading ──────────────────────────────────────────────
+        // Section/page titles that use display font hardcoded
+        .org-ingravity-plp-heading,
+        .org-ingravity-plp__title {
+            font-family: var(--primitive-font-family-ingravity-display);
+            color: var(--primitive-color-white);
+            letter-spacing: -0.01em;
+        }
+
+        .org-ingravity-plp-heading__subtitle,
+        .org-ingravity-plp__subtitle {
+            color: var(--primitive-color-gray-400);
+        }
+
+        // ── PLP toolbar ──────────────────────────────────────────────
+        .org-ingravity-plp-toolbar,
+        .org-ingravity-toolbar {
+            background-color: var(--primitive-color-gray-700);
+            border-bottom: 1px solid var(--primitive-color-gray-500);
+            box-shadow: 0 1px 4px rgba(200, 150, 100, 0.10);
+        }
+
+        // View toggle btns (grid/list) — background them so icons show
+        .org-ingravity-view-toggle button,
+        .mol-ingravity-view-toggle__btn {
+            background-color: var(--primitive-color-gray-700);
+            border: 1px solid var(--primitive-color-gray-200);
+            border-radius: 6px;
+
+            &.is-active,
+            &[aria-pressed="true"] {
+                background-color: var(--primitive-color-orange-500);
+                border-color: var(--primitive-color-orange-500);
+
+                .atom-icon:before {
+                    filter: brightness(0) invert(1); // white icon on coral
+                }
+            }
+        }
+
+        // Filter drawer
+        .org-ingravity-mobile-drawer,
+        .org-ingravity-filter-drawer {
+            background-color: var(--primitive-color-gray-700);
+            color: var(--primitive-color-white);
+        }
+
+        // Filter pills / active filters
+        .atom-pill {
+            background-color: color-mix(in srgb, var(--primitive-color-orange-500) 12%, #FFF0F0);
+            color: var(--primitive-color-orange-600);
+            border: 1px solid color-mix(in srgb, var(--primitive-color-orange-500) 30%, transparent);
+            border-radius: 9999px;
+        }
+
+        // ── Product cards ────────────────────────────────────────────
+        .mol-ingravity-product-card,
+        .mol-ingravity-card {
+            background-color: var(--primitive-color-gray-700);
+            border-color: var(--primitive-color-gray-500);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(180, 130, 80, 0.12);
+
+            &:hover {
+                border-color: var(--primitive-color-orange-400);
+                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.22);
+            }
+        }
+
+        .mol-ingravity-product-card__media,
+        .mol-ingravity-card__media {
+            background-color: var(--primitive-color-gray-800);
+        }
+
+        .mol-ingravity-product-card__title,
+        .mol-ingravity-card__title {
+            color: var(--primitive-color-white);
+        }
+
+        .mol-ingravity-product-card__meta,
+        .mol-ingravity-card__brand {
+            color: var(--primitive-color-gray-300);
+        }
+
+        // ── Wishlist button — override SVG color ─────────────────────
+        .atom-ingravity-wishlist {
+            background: color-mix(in srgb, #FFFFFF 80%, transparent);
+            border-color: var(--primitive-color-gray-200);
+            color: var(--primitive-color-gray-400);
+
+            svg { color: inherit; }
+
+            &:hover {
+                color: var(--primitive-color-error-500);
+                border-color: var(--primitive-color-error-500);
+                background: color-mix(in srgb, var(--primitive-color-error-500) 8%, #FFF);
+            }
+
+            &.is-active,
+            &[aria-pressed="true"] {
+                color: var(--primitive-color-error-500);
+                background: color-mix(in srgb, var(--primitive-color-error-500) 12%, #FFF);
+                border-color: var(--primitive-color-error-500);
+            }
+        }
+
+        // ── Checkout ─────────────────────────────────────────────────
+        .org-ingravity-checkout-panel,
+        .org-ingravity-panel {
+            background-color: var(--primitive-color-gray-700);
+            border: 1px solid var(--primitive-color-gray-500);
+            border-radius: 16px;
+            box-shadow: var(--semantic-shadow-card);
+        }
+
+        .org-ingravity-order-summary,
+        .org-ingravity-summary {
+            background-color: var(--primitive-color-gray-800);
+            border: 1px solid var(--primitive-color-gray-500);
+            border-radius: 16px;
+        }
+
+        // Checkout form inputs — light surface
+        .org-ingravity-form input,
+        .org-ingravity-form select,
+        .org-ingravity-form textarea,
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select {
+            background-color: var(--primitive-color-gray-700);
+            border-color: var(--primitive-color-gray-200);
+            color: var(--primitive-color-white);
+            border-radius: 8px;
+
+            &:focus {
+                border-color: var(--primitive-color-orange-500);
+                box-shadow: 0 0 0 3px color-mix(in srgb, var(--primitive-color-orange-500) 20%, transparent);
+            }
+
+            &::placeholder {
+                color: var(--primitive-color-gray-400);
+            }
+        }
+
+        // Cart item thumbnail
+        .mol-ingravity-cart-item {
+            border-bottom: 1px solid var(--primitive-color-gray-500);
+        }
+
+        .mol-ingravity-cart-item__img {
+            background-color: var(--primitive-color-gray-800);
+            border-radius: 10px;
+        }
+
+        // Trust icons (lock, package, zap) — force dark filter
+        .org-ingravity-trust .atom-icon:before {
+            filter: var(--primitive-filter-dark-ingravity);
+        }
+
+        // ── Manifesto / editorial section ─────────────────────────
+        .org-ingravity-manifesto,
+        .org-landing-manifesto {
+            background: linear-gradient(135deg, #FFF6F6 0%, #FEF3E8 50%, #E6FAF8 100%);
+            border-top: 1px solid var(--primitive-color-gray-500);
+            border-bottom: 1px solid var(--primitive-color-gray-500);
+        }
+
+        .org-ingravity-manifesto__quote,
+        .org-landing-manifesto__title {
+            font-family: var(--primitive-font-family-ingravity-display);
+            color: var(--primitive-color-white);
+        }
+
+        // ── CTA drop section — turquoise wave ────────────────────────
+        .org-ingravity-cta-drop,
+        .org-landing-cta {
+            background: linear-gradient(135deg, var(--primitive-color-blue-500) 0%, #00A08A 55%, #007D75 100%);
+            color: #FFFFFF;
+        }
+
+        .org-ingravity-cta-drop .atom-icon:before,
+        .org-landing-cta .atom-icon:before {
+            filter: brightness(0) invert(1); // white icons on teal bg
+        }
+
+        // ── Footer ───────────────────────────────────────────────────
+        .page-ingravity-footer,
+        .org-landing-footer {
+            background-color: var(--primitive-color-gray-800);
+            border-top: 1px solid var(--primitive-color-gray-500);
+            color: var(--primitive-color-gray-400);
+        }
+
+        .page-ingravity-footer a,
+        .org-landing-footer a {
+            color: var(--primitive-color-gray-300);
+
+            &:hover { color: var(--primitive-color-orange-500); }
+        }
+
+        // ── Step progress bar ─────────────────────────────────────────
+        .mol-ingravity-progress-bar__fill,
+        .org-ingravity-progress__fill {
+            background: linear-gradient(90deg, var(--primitive-color-orange-500), var(--primitive-color-warning-500));
+        }
+
+        // ── Ratings ──────────────────────────────────────────────────
+        .atom-ingravity-rating__stars {
+            color: var(--primitive-color-orange-500);
+        }
+
+        // ── Generic text that may be white from base ──────────────────
+        h1, h2, h3, h4 {
+            color: var(--primitive-color-white);
+        }
+
+        p, span, li {
+            color: inherit;
+        }
+
+        // Labels (form labels in checkout)
+        label {
+            color: var(--primitive-color-gray-300);
+        }
+
+        // Breadcrumbs
+        .atom-breadcrumb,
+        .atom-breadcrumb a {
+            color: var(--primitive-color-gray-400);
+        }
+
+        .atom-breadcrumb__separator { color: var(--primitive-color-gray-500); }
+        .atom-breadcrumb__current   { color: var(--primitive-color-white); }
+
+        // Pagination (PLP)
+        .atom-pagination__btn {
+            background-color: var(--primitive-color-gray-700);
+            border-color: var(--primitive-color-gray-200);
+            color: var(--primitive-color-white);
+
+            &:hover {
+                border-color: var(--primitive-color-orange-400);
+                color: var(--primitive-color-orange-500);
+            }
+
+            &.is-active,
+            &[aria-current] {
+                background-color: var(--primitive-color-orange-500);
+                border-color: var(--primitive-color-orange-500);
+                color: #FFFFFF;
+            }
+        }
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // VISUAL ENHANCEMENTS — 7 CSS-only summer upgrades
+    // All global selectors, no DOM class needed.
+    // ══════════════════════════════════════════════════════════════════
+
+    // ── 1. PRODUCT IMAGE FILTER ─────────────────────────────────────
+    // Warm, sun-kissed tone on every product photo.
+    // Makes all imagery feel cohesive with the summer palette.
+    .mol-ingravity-product-card__media img,
+    .mol-ingravity-card__media img,
+    .mol-ingravity-product-card__img,
+    .mol-ingravity-card__img {
+        filter: saturate(112%) brightness(103%) contrast(97%) warm-filter;
+        // Fallback (warm-filter not standard):
+        filter: saturate(112%) brightness(103%) contrast(97%);
+        transition: filter 0.4s ease;
+
+        &:hover {
+            filter: saturate(120%) brightness(106%) contrast(99%);
+        }
+    }
+
+    // ── 2. CLIP-PATH DIAGONAL CUTS ──────────────────────────────────
+    // Dramatic section dividers without any HTML changes.
+    // Hero: angled bottom edge → wave-in effect
+    .org-landing-hero,
+    .org-ingravity-hero {
+        clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%);
+        padding-bottom: clamp(5rem, 12vw, 9rem); // extra room for clip
+    }
+
+    // Manifesto / editorial: opposite diagonal
+    .org-ingravity-manifesto,
+    .org-landing-manifesto {
+        clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+        padding-block: clamp(5rem, 10vw, 8rem);
+        margin-block: -2rem; // overlap previous section
+    }
+
+    // CTA wave — coral to teal diagonal
+    .org-ingravity-cta-drop,
+    .org-landing-cta {
+        clip-path: polygon(0 8%, 100% 0, 100% 92%, 0 100%);
+        padding-block: clamp(6rem, 12vw, 10rem);
+        margin-block: -2rem;
+    }
+
+    // ── 3. CUSTOM SCROLLBAR ─────────────────────────────────────────
+    // Coral accent scrollbar — subtle premium detail.
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--primitive-color-gray-800);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+            160deg,
+            var(--primitive-color-orange-500),
+            var(--primitive-color-blue-400)
+        );
+        border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--primitive-color-orange-600);
+    }
+
+    // ── 4. GRADIENT BORDER ON CARD HOVER ───────────────────────────
+    // background-clip trick: padding-box (white fill) +
+    // border-box (coral→teal gradient) = gradient border effect.
+    // No extra HTML needed, pure CSS.
+    .mol-ingravity-product-card,
+    .mol-ingravity-card {
+        border: 2px solid transparent;
+        background-image:
+            linear-gradient(#FFFFFF, #FFFFFF),
+            linear-gradient(135deg, var(--primitive-color-gray-500), var(--primitive-color-gray-500));
+        background-origin: padding-box, border-box;
+        background-clip: padding-box, border-box;
+        transition:
+            background-image 0.3s ease,
+            box-shadow 0.35s ease,
+            transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        &:hover {
+            background-image:
+                linear-gradient(#FFFFFF, #FFFFFF),
+                linear-gradient(135deg, var(--primitive-color-orange-500), var(--primitive-color-blue-400));
+        }
+    }
+
+    // ── 5. LAYOUT DENSITY — already applied via --primitive-space-base: 0.3rem in :root
+    // Every calc(N * var(--primitive-space-base)) token auto-scales 20%.
+    // Result: more breathing room everywhere — resort / editorial feel.
+
+    // ── 6. ANIMATED GRADIENT HEADLINE + FONT VARIATION ─────────────
+    // Hero headline: living gradient that shifts colours continuously.
+    @keyframes summer-gradient-flow {
+        0%   { background-position: 0%   50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0%   50%; }
+    }
+
+    .org-landing-hero__title,
+    .org-ingravity-hero__headline,
+    .org-ingravity-hero__title {
+        background: linear-gradient(
+            135deg,
+            var(--primitive-color-error-500) 0%,
+            var(--primitive-color-orange-500) 30%,
+            var(--primitive-color-warning-500) 60%,
+            var(--primitive-color-blue-400) 100%
+        );
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: summer-gradient-flow 5s ease infinite;
+    }
+
+    // Section headings — optical size boost for display font
+    .org-ingravity-manifesto__quote,
+    .org-landing-manifesto__title,
+    .org-ingravity-plp-heading,
+    .org-ingravity-plp__title {
+        font-variation-settings: "opsz" 72;  // optical size → editorial
+        letter-spacing: -0.02em;
+    }
+
+    // ── 7. SPECTACULAR CARD HOVER ───────────────────────────────────
+    // Spring-easing lift + coral warm shadow + subtle scale.
+    // The gradient border (point 4) adds the colour burst.
+    .mol-ingravity-product-card,
+    .mol-ingravity-card {
+        // (transition already set in point 4 above)
+
+        &:hover {
+            transform: translateY(-8px) scale(1.015);
+            box-shadow:
+                0 24px 60px rgba(255, 107, 107, 0.28),
+                0  8px 20px rgba(255, 107, 107, 0.14),
+                0  0   0 1px rgba(255, 107, 107, 0.20);
+        }
+
+        // Warm glow overlay on hover using ::after
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(
+                135deg,
+                color-mix(in srgb, var(--primitive-color-orange-500) 8%, transparent),
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        &:hover::after {
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,592 @@
+// ================================================
+// BASKET THEME — COMPLETE TOKEN DEFINITION
+// ================================================
+// SYX Design System — INGRAVITY Basket Ecommerce 2026
+// BASKET: Urban Basketball Culture — Dark, kinetic, premium
+// Court Volt palette: Black · Orange · Electric Blue
+// ================================================
+
+@use '../../abstracts/index' as *;
+
+@mixin theme-ingravity {
+    :root {
+
+        // ================================================
+        // SECTION 1 — BRAND PRIMITIVES (Court Volt palette)
+        // ================================================
+
+        // Spacing base (4px grid)
+        --primitive-space-base: 0.25rem;
+
+        // Brand Orange — Court Orange (primary identity)
+        --primitive-color-orange-500: #FF6A00; // Primary — court orange
+        --primitive-color-orange-400: #FF8733; // Primary lighter — hover
+        --primitive-color-orange-600: #D95400; // Primary darker — pressed
+        --primitive-color-orange-50: #1A0F00; // Primary tint — dark surface
+
+        // Electric Blue — Volt Blue (accent tech)
+        --primitive-color-blue-500: #00C2FF; // Accent — volt blue
+        --primitive-color-blue-400: #6EE7F7; // Accent lighter — ice neon
+        --primitive-color-blue-50: #001A22; // Accent tint — dark surface
+
+        // Backgrounds — Court Black stack
+        --primitive-color-gray-900: #0B0F14; // bg-primary — court black
+        --primitive-color-gray-800: #121821; // bg-secondary — asphalt dark
+        --primitive-color-gray-700: #1A2332; // bg-tertiary — card surface
+        --primitive-color-gray-600: #2A3441; // bg-elevated — concrete grey
+
+        // Text — light on dark
+        --primitive-color-white: #F5F7FA; // text-primary — warm white
+        --primitive-color-gray-300: #8C98A8; // text-secondary — mist grey
+        --primitive-color-gray-400: #5A6678; // text-tertiary — muted slate
+
+        // Borders
+        --primitive-color-gray-500: #1E2A3A; // border-subtle
+        --primitive-color-gray-200: #2A3441; // border-default
+        --primitive-color-gray-100: #3D4F62; // border-strong
+
+        // States
+        --primitive-color-success-500: #1ED760;
+        --primitive-color-error-500: #FF3B3B;
+        --primitive-color-warning-500: #FFC700;
+        --primitive-color-disabled: #2A3441;
+
+        // Typography — Athletic + Technical
+        // ── Display (hero headlines) — ultra condensed, 100% streetwear
+        --primitive-font-family-ingravity-display: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
+        // ── UI / Subtítulos — técnica, futurista
+        --primitive-font-family-ingravity-ui: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+        // ── Body — máxima legibilidad
+        --primitive-font-family-ingravity-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        // ── Legacy alias (Barlow heading kept as fallback)
+        --primitive-font-family-ingravity-heading: 'Space Grotesk', 'Barlow Condensed', Arial, sans-serif;
+        --primitive-font-family-ingravity-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+        // ================================================
+        // Icons — Ingravity UI set (data URI SVGs, black source = filter-colorizable)
+        // Encode tool: https://yoksel.github.io/url-encoder/
+        // ================================================
+
+        // Chevron right (accordion, select arrow)
+        --primitive-icon-ui-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 15 12 9 18'/%3E%3C/svg%3E");
+
+        // Search / magnifier
+        --primitive-icon-ui-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+
+        // Shopping cart / bag
+        --primitive-icon-ui-cart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E");
+
+        // Horizontal lines filter
+        --primitive-icon-ui-filters: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='4' y1='6' x2='20' y2='6'/%3E%3Cline x1='8' y1='12' x2='16' y2='12'/%3E%3Cline x1='11' y1='18' x2='13' y2='18'/%3E%3C/svg%3E");
+
+        // 2×2 grid
+        --primitive-icon-ui-grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Crect x='3' y='3' width='8' height='8' rx='1'/%3E%3Crect x='13' y='3' width='8' height='8' rx='1'/%3E%3Crect x='3' y='13' width='8' height='8' rx='1'/%3E%3Crect x='13' y='13' width='8' height='8' rx='1'/%3E%3C/svg%3E");
+
+        // Horizontal list rows
+        --primitive-icon-ui-list: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cline x1='3' y1='12' x2='21' y2='12'/%3E%3Cline x1='3' y1='18' x2='21' y2='18'/%3E%3C/svg%3E");
+
+        // User / account
+        --primitive-icon-ui-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+
+        // Hamburger menu
+        --primitive-icon-ui-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='4' y1='6' x2='20' y2='6'/%3E%3Cline x1='4' y1='12' x2='20' y2='12'/%3E%3Cline x1='4' y1='18' x2='20' y2='18'/%3E%3C/svg%3E");
+
+        // Circle help / FAQ
+        --primitive-icon-ui-circle-help: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3'/%3E%3Cdot cx='12' cy='17' r='.5'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E");
+
+        // Lock / secure
+        --primitive-icon-ui-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+
+        // Package / standard delivery
+        --primitive-icon-ui-package: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16.5 9.4 7.55 4.24'/%3E%3Cpath d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'/%3E%3Cpolyline points='3.27 6.96 12 12.01 20.73 6.96'/%3E%3Cline x1='12' y1='22.08' x2='12' y2='12'/%3E%3C/svg%3E");
+
+        // Zap / express delivery
+        --primitive-icon-ui-zap: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/%3E%3C/svg%3E");
+
+        // Trophy / confirmation
+        --primitive-icon-ui-trophy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9H4.5a2.5 2.5 0 0 1 0-5H6'/%3E%3Cpath d='M18 9h1.5a2.5 2.5 0 0 0 0-5H18'/%3E%3Cpath d='M4 22h16'/%3E%3Cpath d='M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22'/%3E%3Cpath d='M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22'/%3E%3Cpath d='M18 2H6v7a6 6 0 0 0 12 0V2z'/%3E%3C/svg%3E");
+
+        // Circle check / done state
+        --primitive-icon-ui-circle-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E");
+
+        // X / close
+        --primitive-icon-ui-x: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E");
+
+        // Arrow right / CTA
+        --primitive-icon-ui-arrow-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E");
+
+        // Arrow left / pagination prev
+        --primitive-icon-ui-arrow-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5'/%3E%3Cpath d='m12 19-7-7 7-7'/%3E%3C/svg%3E");
+
+        // Plus / add
+        --primitive-icon-ui-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+
+        // Minus / remove qty
+        --primitive-icon-ui-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
+
+        // Heart / wishlist (outline)
+        --primitive-icon-ui-heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E");
+
+        // Heart / wishlist (filled — active state)
+        --primitive-icon-ui-heart-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E");
+
+        // ================================================
+        // CSS filter que convierte SVG negro (#000) → naranja ingravity (#FF6A00)
+        // Generated via https://codepen.io/sosuke/pen/Pjoqqp
+        // ================================================
+        --primitive-filter-primary-ingravity: brightness(0) saturate(100%) invert(47%) sepia(88%) saturate(835%) hue-rotate(354deg) brightness(103%) contrast(107%);
+
+        // ================================================
+        // SECTION 2 — THEME VARIABLES (legacy SYX bindings)
+        // ================================================
+
+        --base-measure: var(--primitive-space-base);
+
+        --color-primary: var(--primitive-color-orange-500);
+        --color-secondary: var(--primitive-color-blue-500);
+        --color-accent: var(--primitive-color-blue-400);
+        --color-state-ok: var(--primitive-color-success-500);
+        --color-state-ko: var(--primitive-color-error-500);
+        --color-state-warning: var(--primitive-color-warning-500);
+        --color-state-disabled: var(--primitive-color-disabled);
+        --color-state-focus: var(--primitive-color-orange-500);
+        --color-state-hover-primary: var(--primitive-color-orange-400);
+
+        --font-weight-1: var(--primitive-font-family-ingravity-body);
+        --font-weight-2: var(--primitive-font-family-ingravity-heading);
+        --font-bold: var(--primitive-font-family-ingravity-heading);
+
+        --layout-max-width: calc(320 * var(--base-measure)); // 1280px
+        --layout-pad-1: calc(2 * var(--base-measure));
+        --layout-gap-1: calc(1 * var(--base-measure));
+
+        // Theme shape — slightly rounded, athletic
+        --theme-radius: calc(0.5 * var(--base-measure)); // 2px — sharp
+        --theme-focus: 0 0 0 3px color-mix(in srgb, var(--color-primary) 30%, transparent);
+        --theme-w-border: calc(0.4 * var(--base-measure));
+
+        // Buttons
+        --btn-primary-font-color: var(--primitive-color-white);
+        --btn-primary-filled-font-color: var(--primitive-color-white);
+
+        // Forms
+        --form-font-family: var(--primitive-font-family-ingravity-body);
+        --form-height-size: calc(6 * var(--base-measure));
+
+        // Icon aliases — semantic layer
+        --icon-ui-chevron: var(--primitive-icon-ui-chevron);
+        --icon-ui-search:  var(--primitive-icon-ui-search);
+        --icon-ui-cart:    var(--primitive-icon-ui-cart);
+        --icon-ui-filters: var(--primitive-icon-ui-filters);
+        --icon-ui-grid:    var(--primitive-icon-ui-grid);
+        --icon-ui-list:    var(--primitive-icon-ui-list);
+        --icon-ui-user:         var(--primitive-icon-ui-user);
+        --icon-ui-menu:         var(--primitive-icon-ui-menu);
+        --icon-ui-circle-help:  var(--primitive-icon-ui-circle-help);
+        --icon-ui-lock:         var(--primitive-icon-ui-lock);
+        --icon-ui-package:      var(--primitive-icon-ui-package);
+        --icon-ui-zap:          var(--primitive-icon-ui-zap);
+        --icon-ui-trophy:       var(--primitive-icon-ui-trophy);
+        --icon-ui-circle-check: var(--primitive-icon-ui-circle-check);
+        --icon-ui-x:            var(--primitive-icon-ui-x);
+        --icon-ui-arrow-right:  var(--primitive-icon-ui-arrow-right);
+        --icon-ui-arrow-left:   var(--primitive-icon-ui-arrow-left);
+        --icon-ui-plus:         var(--primitive-icon-ui-plus);
+        --icon-ui-minus:        var(--primitive-icon-ui-minus);
+        --icon-ui-heart:        var(--primitive-icon-ui-heart);
+        --icon-ui-heart-filled: var(--primitive-icon-ui-heart-filled);
+
+        // ================================================
+        // SECTION 3 — SEMANTIC TOKEN OVERRIDES
+        // ================================================
+
+        // Brand colors
+        --semantic-color-primary: var(--primitive-color-orange-500);
+        --semantic-color-selection-text: var(--primitive-color-gray-900); // dark text on orange
+        --semantic-color-selection-bg:   var(--primitive-color-orange-500); // court orange brand highlight
+        --reset-selection-color: var(--semantic-color-selection-text);
+        --reset-selection-bg:    var(--semantic-color-selection-bg);
+        --semantic-color-secondary: var(--primitive-color-blue-500);
+        --semantic-color-tertiary: var(--primitive-color-orange-50);
+
+        // Backgrounds (dark court stack)
+        --semantic-color-bg-primary: var(--primitive-color-gray-900);
+        --semantic-color-bg-secondary: var(--primitive-color-gray-800);
+        --semantic-color-bg-tertiary: var(--primitive-color-gray-700);
+        --semantic-color-bg-elevated: var(--primitive-color-gray-600);
+
+        // Text
+        --semantic-color-text-primary: var(--primitive-color-white);
+        --semantic-color-text-secondary: var(--primitive-color-gray-300);
+        --semantic-color-text-tertiary: var(--primitive-color-gray-400);
+        --semantic-color-text-inverse: var(--primitive-color-gray-900);
+
+        // Borders
+        --semantic-color-border-subtle: var(--primitive-color-gray-500);
+        --semantic-color-border-default: var(--primitive-color-gray-200);
+        --semantic-color-border-strong: var(--primitive-color-gray-100);
+        --semantic-color-border-focus: var(--primitive-color-orange-500);
+
+        // States
+        --semantic-color-state-ok: var(--primitive-color-success-500);
+        --semantic-color-state-ko: var(--primitive-color-error-500);
+        --semantic-color-state-warning: var(--primitive-color-warning-500);
+        --semantic-color-state-disabled: var(--primitive-color-disabled);
+        --semantic-color-state-focus: var(--primitive-color-orange-500);
+        --semantic-color-state-hover-primary: var(--primitive-color-orange-400);
+        --semantic-color-state-hover-secondary: var(--primitive-color-blue-400);
+
+        --color-state-hover-primary: var(--primitive-color-orange-400);
+
+        // Shadows — deeper (dark bg)
+        --semantic-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.5);
+        --semantic-shadow-card: 0 4px 16px rgba(0, 0, 0, 0.5);
+        --semantic-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
+        --semantic-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
+        --semantic-shadow-focus: 0 0 0 3px color-mix(in srgb, var(--primitive-color-orange-500) 35%, transparent);
+
+        // Filters — icon colorization overrides
+        // --color-primary modifier produces court orange (#FF6A00)
+        --semantic-filter-primary: var(--primitive-filter-primary-ingravity);
+
+        // Typography
+        --semantic-font-family-primary: var(--primitive-font-family-ingravity-body);
+        --semantic-font-family-primary-bold: var(--primitive-font-family-ingravity-ui);
+        --semantic-font-family-heading: var(--primitive-font-family-ingravity-ui);
+        --semantic-font-family-display: var(--primitive-font-family-ingravity-display);
+        --semantic-font-family-mono: var(--primitive-font-family-ingravity-mono);
+        --semantic-font-weight-bold: 700;
+        --semantic-font-weight-medium: 500;
+
+        // Border radius — sharper, athletic
+        --semantic-border-radius-sm: 2px;
+        --semantic-border-radius-default: 4px;
+        --semantic-border-radius-lg: 8px;
+        --semantic-border-radius-full: 4px;
+        --semantic-border-radius-circle: 9999px;
+        --semantic-border-radius-pill: 9999px;
+
+        // Links
+        --semantic-color-link-default: var(--primitive-color-blue-500);
+        --semantic-color-link-hover: var(--primitive-color-blue-400);
+        --semantic-color-link-visited: var(--primitive-color-orange-400);
+        --semantic-color-link-active: var(--primitive-color-orange-600);
+
+        --semantic-color-placeholder: var(--primitive-color-gray-400);
+
+        // ================================================
+        // SECTION 4 — COMPONENT TOKENS
+        // ================================================
+
+        // Button — shared
+        --component-button-border-radius: 4px;
+        --component-button-border-width: 2px;
+        --component-button-font-family: var(--primitive-font-family-ingravity-heading);
+        --component-button-font-size: var(--primitive-font-size-lg);
+        --component-button-font-size-sm: var(--primitive-font-size-md);
+        --component-button-font-size-md: var(--primitive-font-size-lg);
+        --component-button-font-size-lg: var(--primitive-font-size-xl);
+        --component-button-line-height: 1;
+        --component-button-size-sm: calc(1.25 * var(--base-measure));
+        --component-button-size-md: calc(1.75 * var(--base-measure));
+        --component-button-size-lg: calc(2.25 * var(--base-measure));
+
+        // Primary button — Court Orange
+        --component-button-primary-color: var(--primitive-color-orange-500);
+        --component-button-primary-filled-bg: var(--primitive-color-orange-500);
+        --component-button-primary-filled-color: var(--primitive-color-white);
+        --component-button-primary-bg-hover: transparent;
+        --component-button-primary-color-hover: var(--primitive-color-orange-400);
+        --component-button-primary-border-hover: var(--primitive-color-orange-400);
+        --component-button-primary-filled-bg-hover: var(--primitive-color-orange-600);
+        --component-button-primary-filled-color-hover: var(--primitive-color-white);
+        --component-button-primary-filled-border-hover: var(--primitive-color-orange-600);
+
+        // Secondary button — Volt Blue
+        --component-button-secondary-color: var(--primitive-color-blue-500);
+        --component-button-secondary-filled-bg: var(--primitive-color-blue-500);
+        --component-button-secondary-filled-color: var(--primitive-color-gray-900);
+        --component-button-secondary-bg-hover: transparent;
+        --component-button-secondary-color-hover: var(--primitive-color-blue-400);
+        --component-button-secondary-border-hover: var(--primitive-color-blue-400);
+        --component-button-secondary-filled-bg-hover: var(--primitive-color-blue-400);
+        --component-button-secondary-filled-color-hover: var(--primitive-color-gray-900);
+        --component-button-secondary-filled-border-hover: var(--primitive-color-blue-400);
+
+        // Tertiary (ghost)
+        --component-button-tertiary-color: var(--primitive-color-gray-300);
+        --component-button-tertiary-filled-bg: transparent;
+        --component-button-tertiary-filled-color: var(--primitive-color-white);
+        --component-button-tertiary-bg-hover: var(--primitive-color-gray-700);
+        --component-button-tertiary-color-hover: var(--primitive-color-white);
+        --component-button-tertiary-border-hover: var(--primitive-color-gray-100);
+        --component-button-tertiary-filled-bg-hover: var(--primitive-color-gray-700);
+        --component-button-tertiary-filled-color-hover: var(--primitive-color-white);
+        --component-button-tertiary-filled-border-hover: var(--primitive-color-gray-100);
+
+        // Header / Navbar
+        --component-header-height: 4rem;
+        --component-header-z-index: 100;
+
+        // Landing organism tokens
+        --component-landing-navbar-bg: color-mix(in srgb, var(--primitive-color-gray-900) 92%, transparent);
+        --component-landing-navbar-border: var(--primitive-color-gray-500);
+        --component-landing-container-max: 1280px;
+        --component-landing-section-padding-x: clamp(1rem, 5vw, 4rem);
+        --component-landing-section-padding-y: clamp(4rem, 8vw, 7rem);
+
+        --component-landing-hero-bg: var(--primitive-color-gray-900);
+        --component-landing-hero-min-height: min(90svh, 900px);
+        --component-landing-hero-padding-y: clamp(5rem, 10vw, 8rem);
+        --component-landing-hero-heading-size: clamp(3rem, 7vw, 6.5rem);
+        --component-landing-hero-lead-size: clamp(1rem, 2vw, 1.25rem);
+        --component-landing-hero-accent-color: var(--primitive-color-orange-500);
+        --component-landing-hero-pill-bg: color-mix(in srgb, var(--primitive-color-orange-500) 12%, transparent);
+        --component-landing-hero-pill-color: var(--primitive-color-orange-400);
+        --component-landing-hero-avatar-bg: var(--primitive-color-orange-500);
+        --component-landing-hero-avatar-color: var(--primitive-color-white);
+
+        --component-landing-stats-bg: var(--primitive-color-gray-800);
+        --component-landing-stats-border: var(--primitive-color-gray-500);
+        --component-landing-stats-number-size: clamp(1.75rem, 4vw, 3rem);
+        --component-landing-stats-number-color: var(--primitive-color-orange-500);
+        --component-landing-stats-label-color: var(--primitive-color-gray-300);
+
+        --component-landing-section-tag-bg: color-mix(in srgb, var(--primitive-color-orange-500) 12%, transparent);
+        --component-landing-section-tag-color: var(--primitive-color-orange-400);
+        --component-landing-section-tag-radius: 4px;
+        --component-landing-section-title-size: clamp(1.75rem, 4vw, 3rem);
+
+        --component-landing-card-padding: 1.75rem;
+        --component-landing-card-bg: var(--primitive-color-gray-700);
+        --component-landing-card-border: var(--primitive-color-gray-500);
+        --component-landing-card-border-hover: var(--primitive-color-orange-500);
+        --component-landing-card-radius: 8px;
+        --component-landing-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        --component-landing-card-shadow-hover: 0 8px 32px rgba(255, 106, 0, 0.2);
+        --component-landing-card-icon-size: 3rem;
+        --component-landing-card-icon-bg: color-mix(in srgb, var(--primitive-color-orange-500) 12%, var(--primitive-color-gray-800));
+        --component-landing-card-icon-radius: 8px;
+        --component-landing-card-icon-font-size: 1.5rem;
+
+        --component-landing-plan-padding: 2rem;
+        --component-landing-plan-bg: var(--primitive-color-gray-700);
+        --component-landing-plan-border: var(--primitive-color-gray-500);
+        --component-landing-plan-border-featured: var(--primitive-color-orange-500);
+        --component-landing-plan-radius: 8px;
+        --component-landing-plan-price-size: clamp(2rem, 5vw, 3.5rem);
+        --component-landing-plan-price-color: var(--primitive-color-orange-500);
+        --component-landing-plan-badge-bg: var(--primitive-color-orange-500);
+        --component-landing-plan-badge-color: var(--primitive-color-white);
+        --component-landing-plan-badge-radius: 4px;
+        --component-landing-plan-cta-bg: transparent;
+        --component-landing-plan-cta-color: var(--primitive-color-gray-300);
+        --component-landing-plan-cta-border: var(--primitive-color-gray-500);
+
+        --component-landing-testimonial-padding: 1.75rem;
+        --component-landing-testimonial-bg: var(--primitive-color-gray-700);
+        --component-landing-testimonial-border: var(--primitive-color-gray-500);
+        --component-landing-testimonial-radius: 8px;
+        --component-landing-testimonial-min-height: 14rem;
+        --component-landing-testimonial-star: var(--primitive-color-orange-500);
+        --component-landing-testimonial-avatar-bg: var(--primitive-color-orange-50);
+        --component-landing-testimonial-avatar-color: var(--primitive-color-orange-400);
+
+        --component-landing-cta-padding-y: clamp(4rem, 8vw, 6rem);
+        --component-landing-cta-color: var(--primitive-color-white);
+        --component-landing-cta-btn-inverse-bg: var(--primitive-color-white);
+        --component-landing-cta-btn-inverse-color: var(--primitive-color-gray-900);
+        --component-landing-cta-btn-inverse-hover-bg: color-mix(in srgb, var(--primitive-color-white) 85%, transparent);
+
+        --component-landing-footer-bg: var(--primitive-color-gray-900);
+        --component-landing-footer-border: var(--primitive-color-gray-500);
+        --component-landing-footer-padding-y: clamp(3rem, 6vw, 5rem);
+        --component-landing-footer-col-gap: clamp(1.5rem, 4vw, 3rem);
+        --component-landing-footer-link-color: var(--primitive-color-gray-300);
+        --component-landing-footer-link-hover: var(--primitive-color-orange-400);
+
+        // ================================================
+        // SECTION 5 — BASKET COMPONENT TOKENS
+        // (consumed by atoms/_basket.scss, molecules/_basket.scss, organisms/_basket.scss)
+        // ================================================
+
+        // Badge atom
+        --component-ingravity-badge-radius: 3px;
+        --component-ingravity-badge-font-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-badge-font-size: 0.625rem;
+        --component-ingravity-badge-font-weight: 700;
+        --component-ingravity-badge-padding: 0.2em 0.55em;
+        --component-ingravity-badge-bg-new: var(--primitive-color-orange-500);
+        --component-ingravity-badge-color-new: var(--primitive-color-white);
+        --component-ingravity-badge-bg-drop: var(--primitive-color-blue-500);
+        --component-ingravity-badge-color-drop: var(--primitive-color-gray-900);
+        --component-ingravity-badge-bg-sale: var(--primitive-color-success-500);
+        --component-ingravity-badge-color-sale: var(--primitive-color-gray-900);
+        --component-ingravity-badge-bg-limited: var(--primitive-color-error-500);
+        --component-ingravity-badge-color-limited: var(--primitive-color-white);
+
+        // Price atom
+        --component-ingravity-price-font-family: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-price-size: 1.35rem;
+        --component-ingravity-price-size-lg: 1.75rem;
+        --component-ingravity-price-color: var(--primitive-color-white);
+        --component-ingravity-price-sale-color: var(--primitive-color-orange-500);
+        --component-ingravity-price-old-color: var(--primitive-color-gray-400);
+        --component-ingravity-price-old-size: 0.85rem;
+
+        // Rating atom
+        --component-ingravity-rating-star-color: var(--primitive-color-orange-500);
+        --component-ingravity-rating-font-size: 0.75rem;
+        --component-ingravity-rating-color: var(--primitive-color-gray-300);
+
+        // Sizepicker atom
+        --component-ingravity-sizepicker-size: 2.1rem;
+        --component-ingravity-sizepicker-radius: 4px;
+        --component-ingravity-sizepicker-bg: var(--primitive-color-gray-600);
+        --component-ingravity-sizepicker-border: var(--primitive-color-gray-500);
+        --component-ingravity-sizepicker-color: var(--primitive-color-gray-300);
+        --component-ingravity-sizepicker-bg-hover: var(--primitive-color-gray-700);
+        --component-ingravity-sizepicker-border-hover: var(--primitive-color-white);
+        --component-ingravity-sizepicker-color-hover: var(--primitive-color-white);
+        --component-ingravity-sizepicker-bg-active: var(--primitive-color-orange-500);
+        --component-ingravity-sizepicker-border-active: var(--primitive-color-orange-500);
+        --component-ingravity-sizepicker-color-active: var(--primitive-color-white);
+        --component-ingravity-sizepicker-bg-oos: transparent;
+        --component-ingravity-sizepicker-color-oos: var(--primitive-color-gray-400);
+        --component-ingravity-sizepicker-font-size: 0.72rem;
+        --component-ingravity-sizepicker-font-family: var(--primitive-font-family-ingravity-ui);
+
+        // Product card molecule
+        --component-ingravity-card-bg: var(--primitive-color-gray-800);
+        --component-ingravity-card-border: var(--primitive-color-gray-500);
+        --component-ingravity-card-border-hover: var(--primitive-color-orange-500);
+        --component-ingravity-card-radius: 6px;
+        --component-ingravity-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+        --component-ingravity-card-shadow-hover: 0 8px 32px rgba(255, 106, 0, 0.18);
+        --component-ingravity-card-media-bg: var(--primitive-color-gray-700);
+        --component-ingravity-card-media-ratio: 1 / 1;
+        --component-ingravity-card-body-padding: 1rem;
+        --component-ingravity-card-name-size: 1rem;
+        --component-ingravity-card-name-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-card-name-weight: 600;
+        --component-ingravity-card-meta-size: 0.72rem;
+        --component-ingravity-card-meta-color: var(--primitive-color-gray-300);
+
+        // Category card molecule
+        --component-ingravity-catcard-bg: var(--primitive-color-gray-700);
+        --component-ingravity-catcard-border: var(--primitive-color-gray-500);
+        --component-ingravity-catcard-border-hover: var(--primitive-color-orange-500);
+        --component-ingravity-catcard-radius: 8px;
+        --component-ingravity-catcard-media-ratio: 3 / 4;
+        --component-ingravity-catcard-label-size: 1.1rem;
+        --component-ingravity-catcard-label-family: var(--primitive-font-family-ingravity-display);
+
+        // Stat bar molecule
+        --component-ingravity-stat-number-family: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-stat-number-size: clamp(2rem, 5vw, 3.5rem);
+        --component-ingravity-stat-number-color: var(--primitive-color-orange-500);
+        --component-ingravity-stat-label-size: 0.78rem;
+        --component-ingravity-stat-label-color: var(--primitive-color-gray-300);
+        --component-ingravity-stat-bg: var(--primitive-color-gray-800);
+        --component-ingravity-stat-border: var(--primitive-color-gray-500);
+
+        // Steps (checkout)
+        --component-ingravity-step-size: 1.9rem;
+        --component-ingravity-step-bg: var(--primitive-color-gray-700);
+        --component-ingravity-step-border: var(--primitive-color-gray-500);
+        --component-ingravity-step-active-bg: var(--primitive-color-orange-500);
+        --component-ingravity-step-active-border: var(--primitive-color-orange-500);
+        --component-ingravity-step-done-bg: var(--primitive-color-success-500);
+        --component-ingravity-step-done-border: var(--primitive-color-success-500);
+        --component-ingravity-step-done-color: var(--primitive-color-gray-900);
+        --component-ingravity-step-font: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-step-divider-bg: var(--primitive-color-gray-500);
+        --component-ingravity-step-divider-done: var(--primitive-color-success-500);
+
+        // Checkout panels
+        --component-ingravity-panel-bg: var(--primitive-color-gray-800);
+        --component-ingravity-panel-border: var(--primitive-color-gray-500);
+        --component-ingravity-panel-border-active: var(--primitive-color-orange-500);
+        --component-ingravity-panel-radius: 8px;
+        --component-ingravity-panel-title-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-panel-title-weight: 700;
+
+        // Form fields basket
+        --component-ingravity-input-bg: var(--primitive-color-gray-700);
+        --component-ingravity-input-border: var(--primitive-color-gray-500);
+        --component-ingravity-input-border-focus: var(--primitive-color-orange-500);
+        --component-ingravity-input-radius: 4px;
+        --component-ingravity-input-color: var(--primitive-color-white);
+        --component-ingravity-input-placeholder: var(--primitive-color-gray-400);
+        --component-ingravity-input-font: var(--primitive-font-family-ingravity-body);
+        --component-ingravity-input-label-family: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-input-label-size: 0.72rem;
+        --component-ingravity-input-label-weight: 600;
+
+        // Trust badges
+        --component-ingravity-trust-icon-size: 1rem;
+        --component-ingravity-trust-font-size: 0.72rem;
+        --component-ingravity-trust-color: var(--primitive-color-gray-400);
+
+        // Delivery option
+        --component-ingravity-delivery-bg: var(--primitive-color-gray-700);
+        --component-ingravity-delivery-border: var(--primitive-color-gray-500);
+        --component-ingravity-delivery-border-sel: var(--primitive-color-orange-500);
+        --component-ingravity-delivery-radius: 6px;
+
+        // Payment tabs
+        --component-ingravity-pay-tab-bg: var(--primitive-color-gray-700);
+        --component-ingravity-pay-tab-border: var(--primitive-color-gray-500);
+        --component-ingravity-pay-tab-border-sel: var(--primitive-color-orange-500);
+        --component-ingravity-pay-tab-radius: 6px;
+        --component-ingravity-pay-tab-font: var(--primitive-font-family-ingravity-ui);
+
+        // Organisms
+        --component-ingravity-hero-display-size: clamp(4rem, 12vw, 10rem);
+        --component-ingravity-hero-display-font: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-hero-lead-font: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-hero-pill-font: var(--primitive-font-family-ingravity-ui);
+
+        --component-ingravity-section-tag-font: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-section-title-font: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-section-title-size: clamp(2.5rem, 7vw, 6rem);
+
+        --component-ingravity-filter-bg: var(--primitive-color-gray-800);
+        --component-ingravity-filter-border: var(--primitive-color-gray-500);
+        --component-ingravity-filter-radius: 6px;
+        --component-ingravity-filter-heading-font: var(--primitive-font-family-ingravity-ui);
+        --component-ingravity-filter-heading-size: 0.72rem;
+        --component-ingravity-filter-heading-wt: 700;
+
+        --component-ingravity-summary-bg: var(--primitive-color-gray-800);
+        --component-ingravity-summary-border: var(--primitive-color-gray-500);
+        --component-ingravity-summary-radius: 8px;
+        --component-ingravity-summary-title-font: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-summary-total-font: var(--primitive-font-family-ingravity-display);
+        --component-ingravity-summary-total-size: 1.5rem;
+        --component-ingravity-summary-total-color: var(--primitive-color-orange-500);
+
+        // Progress bar
+        --component-ingravity-progress-h: 3px;
+        --component-ingravity-progress-bg: var(--primitive-color-gray-600);
+        --component-ingravity-progress-fill: linear-gradient(90deg, var(--primitive-color-orange-500), var(--primitive-color-blue-500));
+    }
+
+    // Theme scope — override on syx--theme-ingravity body
+    .syx--theme-ingravity {
+
+        // Hero section gradient uses orange brand
+        .org-landing-hero::before {
+            background: radial-gradient(ellipse at center,
+                    color-mix(in srgb, #FF6A00 18%, transparent) 0%,
+                    color-mix(in srgb, #FF6A00 6%, transparent) 40%,
+                    transparent 70%);
+        }
+
+        .org-landing-hero::after {
+            background: radial-gradient(ellipse at center,
+                    color-mix(in srgb, #00C2FF 10%, transparent) 0%,
+                    transparent 65%);
+        }
+    }
+}

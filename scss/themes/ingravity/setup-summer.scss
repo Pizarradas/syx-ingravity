@@ -1,0 +1,109 @@
+// SYX — THEME: ingravity-summer | CAMPAIGN: Cayo Court Summer Drop 2026
+// ================================================
+// Light · Tropical · Playful · Coastal Luxury
+// Output: css/styles-theme-ingravity-summer.css
+//
+// Proof of concept: swap ONE CSS file → complete rebrand.
+// NO HTML changes required.
+//
+// sass scss/styles-theme-ingravity-summer.scss css/styles-theme-ingravity-summer.css
+// ================================================
+
+// CORE SCSS modules (same as the base ingravity theme)
+@use '../../abstracts/index' as *;
+@use '../../base/index' as *;
+@use '../../layout/grids/grid' as *;
+@use '../../atoms/index' as *;
+@use '../../molecules/index' as *;
+@use '../../organisms/index' as *;
+@use '../_base/universal' as *;
+@use 'theme-summer' as *;
+
+// PAGE mixins (same structure, same HTML)
+@use '../../pages/landing-brand' as *;
+@use '../../pages/ingravity' as *;
+
+
+// ================================================
+// THEME TOKENS
+// ================================================
+@include universal-values();
+@include theme-ingravity-summer();
+
+// ================================================
+// RESET: global
+// ================================================
+@include resets-global(ingravity);
+@include elements-base(ingravity);
+
+// ================================================
+// HELPER: icons
+// ================================================
+@include helper-icons();
+
+// ================================================
+// LAYOUT: grid
+// ================================================
+@include layout-grid(ingravity);
+
+// ================================================
+// HELPERS: theme utilities
+// ================================================
+@include helper-font-sizes(ingravity);
+@include helper-dimensions(ingravity);
+@include helper-spacer(ingravity);
+@include helper-fonts(ingravity);
+@include helper-backgrounds(ingravity);
+
+// ================================================
+// ATOMS: base SYX
+// ================================================
+@include atom-breadcrumb(ingravity);
+@include atom-btn(ingravity);
+@include atom-pill(ingravity);
+@include atom-check(ingravity);
+@include atom-form(ingravity);
+@include atom-icon(ingravity);
+@include atom-label(ingravity);
+@include atom-link(ingravity);
+@include atom-list(ingravity);
+@include atom-pagination(ingravity);
+@include atom-radio(ingravity);
+@include atom-switch(ingravity);
+@include atom-table(ingravity);
+@include atom-title(ingravity);
+@include atom-txt(ingravity);
+
+// ATOMS: basket e-commerce
+@include atom-ingravity(ingravity);
+
+// ================================================
+// MOLECULES: base SYX
+// ================================================
+@include mol-card(ingravity);
+@include mol-form-field(ingravity);
+@include mol-btn-group(ingravity);
+@include mol-label-group(ingravity);
+@include mol-form-field-set(ingravity);
+@include mol-landing(ingravity);
+@include mol-docs(ingravity);
+
+// MOLECULES: basket e-commerce
+@include mol-ingravity(ingravity);
+
+// ================================================
+// ORGANISMS: base SYX
+// ================================================
+@include org-navbar(ingravity);
+@include org-header(ingravity);
+@include org-landing(ingravity);
+@include org-docs(ingravity);
+
+// ORGANISMS: basket e-commerce
+@include org-ingravity(ingravity);
+
+// ================================================
+// PAGE BUNDLES
+// ================================================
+@include page-landing-brand(ingravity);
+@include page-ingravity(ingravity);
