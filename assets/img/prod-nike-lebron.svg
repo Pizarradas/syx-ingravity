@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#1a1a1a"/>
+  <!-- Shadow -->
+  <ellipse cx="200" cy="330" rx="130" ry="14" fill="#000" opacity="0.5"/>
+  <!-- Sole - thick performance sole LeBron style -->
+  <path d="M 68 308 Q 78 332 200 338 Q 322 332 332 308 L 322 292 Q 200 315 78 292 Z" fill="#080808"/>
+  <path d="M 72 292 Q 72 282 80 278 Q 200 295 320 278 Q 328 282 328 292 L 322 305 Q 200 320 78 305 Z" fill="#1a1a00"/>
+  <!-- Mid sole gold -->
+  <path d="M 78 278 Q 88 298 200 302 Q 312 298 322 278 L 315 262 Q 200 280 85 262 Z" fill="#B8960C"/>
+  <!-- Upper body - black high ankle LeBron -->
+  <path d="M 76 262 Q 76 190 95 150 Q 118 105 162 88 L 280 82 Q 325 88 335 118 Q 348 150 338 262 Z" fill="#111"/>
+  <!-- Gold side overlay panel -->
+  <path d="M 110 165 Q 148 140 210 136 Q 260 133 295 150 L 292 180 Q 260 163 212 167 Q 162 171 120 195 Z" fill="#C9A227"/>
+  <!-- Gold toe cap -->
+  <path d="M 76 262 Q 76 228 90 197 Q 108 162 142 148 Q 122 172 107 205 Q 96 232 95 262 Z" fill="#C9A227"/>
+  <!-- Upper texture main -->
+  <path d="M 96 262 Q 96 215 118 180 Q 140 145 175 132 L 278 127 Q 312 132 322 155 L 322 262 Z" fill="#1a1a1a" opacity="0.5"/>
+  <!-- Dragon scale texture hint -->
+  <path d="M 160 200 Q 175 185 200 183 Q 225 181 240 193 Q 225 200 200 202 Q 175 204 160 218 Z" fill="#C9A227" opacity="0.2"/>
+  <path d="M 150 230 Q 165 215 195 213 Q 225 211 248 222 Q 225 230 195 232 Q 165 234 150 248 Z" fill="#C9A227" opacity="0.2"/>
+  <!-- Ankle collar high -->
+  <path d="M 158 88 Q 178 60 215 52 Q 252 46 285 62 Q 308 75 316 90 L 298 100 Q 280 83 250 78 Q 218 73 195 82 Q 175 90 162 105 Z" fill="#0a0a0a"/>
+  <!-- Gold ankle strap LeBron signature -->
+  <path d="M 160 105 Q 200 95 248 97 Q 278 98 300 108 L 298 125 Q 275 114 248 113 Q 208 111 165 122 Z" fill="#C9A227" opacity="0.9"/>
+  <!-- Laces -->
+  <line x1="164" y1="158" x2="248" y2="153" stroke="#888" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="163" y1="173" x2="247" y2="168" stroke="#888" stroke-width="2.5"/>
+  <line x1="163" y1="188" x2="246" y2="183" stroke="#888" stroke-width="2.5"/>
+  <line x1="162" y1="203" x2="246" y2="198" stroke="#888" stroke-width="2.5"/>
+  <line x1="162" y1="218" x2="245" y2="213" stroke="#888" stroke-width="2.5"/>
+  <line x1="162" y1="233" x2="245" y2="228" stroke="#888" stroke-width="2.5"/>
+  <line x1="161" y1="248" x2="244" y2="243" stroke="#888" stroke-width="2.5"/>
+  <!-- Large LeBron lion on heel -->
+  <text x="315" y="205" text-anchor="middle" font-size="40" fill="#C9A227" opacity="0.3">♛</text>
+  <!-- Heel shape -->
+  <path d="M 298 95 Q 334 112 335 148 L 338 262 L 308 262 L 308 102 Z" fill="#0a0a0a"/>
+  <!-- Gold heel accent  -->
+  <path d="M 320 120 Q 338 135 338 165 L 338 262 L 328 262 L 328 168 Q 328 138 320 128 Z" fill="#C9A227" opacity="0.7"/>
+  <!-- Highlight -->
+  <path d="M 93 180 Q 104 155 128 140 Q 110 165 103 195 Z" fill="white" opacity="0.08"/>
+  <!-- NIKE LEBRON label -->
+  <text x="200" y="370" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="13" font-weight="900" fill="#C9A227" letter-spacing="2">NIKE LEBRON</text>
+</svg>

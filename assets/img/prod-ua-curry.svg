@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#1a1a1a"/>
+  <!-- Shadow -->
+  <ellipse cx="200" cy="330" rx="130" ry="14" fill="#000" opacity="0.5"/>
+  <!-- Sole -->
+  <path d="M 70 302 Q 80 324 200 328 Q 320 324 330 302 L 322 290 Q 200 310 78 290 Z" fill="#0a0a0a"/>
+  <!-- Outsole hex pattern -->
+  <path d="M 78 283 Q 88 304 200 308 Q 312 304 322 283 L 316 268 Q 200 286 84 268 Z" fill="#112233"/>
+  <line x1="110" y1="284" x2="110" y2="297" stroke="#1a3355" stroke-width="1.5"/>
+  <line x1="130" y1="284" x2="130" y2="300" stroke="#1a3355" stroke-width="1.5"/>
+  <line x1="160" y1="283" x2="160" y2="302" stroke="#1a3355" stroke-width="1.5"/>
+  <line x1="190" y1="283" x2="190" y2="303" stroke="#1a3355" stroke-width="1.5"/>
+  <line x1="220" y1="283" x2="220" y2="303" stroke="#1a3355" stroke-width="1.5"/>
+  <line x1="250" y1="283" x2="250" y2="302" stroke="#1a3355" stroke-width="1.5"/>
+  <line x1="280" y1="284" x2="280" y2="300" stroke="#1a3355" stroke-width="1.5"/>
+  <!-- Upper body - navy/steel blue Curry style -->
+  <path d="M 78 268 Q 78 205 97 168 Q 118 128 158 115 L 275 110 Q 315 114 327 140 Q 337 165 328 268 Z" fill="#1B3A6B"/>
+  <!-- Upper overlay -->
+  <path d="M 84 268 Q 84 212 102 177 Q 122 140 160 128 L 270 123 Q 308 127 320 150 L 320 268 Z" fill="#142d54" opacity="0.5"/>
+  <!-- Curry signature overlay panel flowy -->
+  <path d="M 130 145 Q 180 128 245 126 Q 285 125 310 138 L 308 160 Q 280 148 243 150 Q 195 152 148 168 Z" fill="#2255AA" opacity="0.8"/>
+  <!-- Sole/ankle swoosh UA design element -->
+  <path d="M 82 250 Q 130 225 195 228 Q 240 230 285 218 Q 260 245 200 245 Q 155 244 100 260 Z" fill="#4488FF" opacity="0.6"/>
+  <!-- Ankle collar -->
+  <path d="M 155 115 Q 178 93 215 87 Q 252 83 282 97 Q 300 107 308 120 L 292 127 Q 275 114 248 110 Q 218 106 192 114 Q 173 121 162 133 Z" fill="#142d54"/>
+  <!-- Laces -->
+  <line x1="162" y1="168" x2="244" y2="163" stroke="#aac4ff" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="161" y1="182" x2="243" y2="177" stroke="#aac4ff" stroke-width="2.5"/>
+  <line x1="161" y1="196" x2="242" y2="191" stroke="#aac4ff" stroke-width="2.5"/>
+  <line x1="161" y1="210" x2="242" y2="205" stroke="#aac4ff" stroke-width="2.5"/>
+  <line x1="160" y1="224" x2="241" y2="219" stroke="#aac4ff" stroke-width="2.5"/>
+  <line x1="160" y1="238" x2="241" y2="233" stroke="#aac4ff" stroke-width="2.5"/>
+  <line x1="160" y1="252" x2="240" y2="247" stroke="#aac4ff" stroke-width="2.5"/>
+  <!-- Heel -->
+  <path d="M 292 125 Q 327 138 328 168 L 328 268 L 300 268 L 300 132 Z" fill="#142d54"/>
+  <!-- UA Logo on heel -->
+  <text x="315" y="215" text-anchor="middle" font-family="Arial Black" font-size="16" fill="#4488FF" opacity="0.7">UA</text>
+  <!-- Highlight -->
+  <path d="M 97 190 Q 108 168 130 155 Q 112 177 106 205 Z" fill="white" opacity="0.1"/>
+  <!-- Under Armour label -->
+  <text x="200" y="370" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="12" font-weight="900" fill="#4488FF" letter-spacing="1">UNDER ARMOUR</text>
+</svg>
